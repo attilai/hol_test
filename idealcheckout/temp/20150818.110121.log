@@ -1,0 +1,64 @@
+
+TEXT: array (
+        'trxid' => '0050001980887690',
+        'ec' => 'dNaWcejrCNiU1KsmyOd0O07S51C2PfCU',
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 21
+
+
+TEXT: array (
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 22
+
+
+TEXT: Found record by $_GET[trxid] and $_GET[ec]
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 171
+
+
+TEXT: Found record in #_idealcheckout table
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 249
+
+
+TEXT: array (
+        'id' => '8',
+        'order_id' => '100010915',
+        'order_code' => 'jSxfWyyOQYrdM2TIrhwVCMO5OdrXQ322',
+        'order_params' => 'a:3:{s:5:"order";a:1:{s:2:"id";s:5:"11021";}s:8:"customer";a:30:{s:16:"shipment_company";N;s:13:"shipment_name";s:15:"Tjallin Tjallin";s:19:"shipment_first_name";s:7:"Tjallin";s:18:"shipment_last_name";s:7:"Melgers";s:15:"shipment_gender";s:0:"";s:22:"shipment_date_of_birth";s:0:"";s:14:"shipment_phone";s:10:"0616412960";s:14:"shipment_email";s:26:"tjallin@newtalentgroup.com";s:16:"shipment_address";s:30:"Burgemeester Hogguerstraat 655";s:20:"shipment_street_name";s:26:"Burgemeester Hogguerstraat";s:22:"shipment_street_number";s:3:"655";s:16:"shipment_zipcode";s:7:"1064 CX";s:13:"shipment_city";s:9:"Amsterdam";s:21:"shipment_country_code";s:2:"NL";s:21:"shipment_country_name";s:9:"Nederland";s:15:"payment_company";N;s:12:"payment_name";s:15:"Tjallin Tjallin";s:18:"payment_first_name";s:7:"Tjallin";s:17:"payment_last_name";s:7:"Melgers";s:14:"payment_gender";s:0:"";s:21:"payment_date_of_birth";s:0:"";s:13:"payment_phone";s:10:"0616412960";s:13:"payment_email";s:26:"tjallin@newtalentgroup.com";s:15:"payment_address";s:30:"Burgemeester Hogguerstraat 655";s:19:"payment_street_name";s:26:"Burgemeester Hogguerstraat";s:21:"payment_street_number";s:3:"655";s:15:"payment_zipcode";s:7:"1064 CX";s:12:"payment_city";s:9:"Amsterdam";s:20:"payment_country_code";s:2:"NL";s:20:"payment_country_name";s:9:"Nederland";}s:8:"products";a:3:{i:0;a:6:{s:4:"code";s:5:"15850";s:11:"description";s:42:"Maple Leaf 1 troy ounce zilveren munt 2015";s:8:"quantity";s:6:"2.0000";s:10:"price_incl";s:7:"17.4000";s:10:"price_excl";s:7:"17.4000";s:3:"vat";s:6:"0.0000";}i:1;a:6:{s:4:"code";s:5:"15851";s:11:"description";s:41:"Philharmoniker 1 troy ounce zilveren munt";s:8:"quantity";s:6:"2.0000";s:10:"price_incl";s:7:"17.7000";s:10:"price_excl";s:7:"17.7000";s:3:"vat";s:6:"0.0000";}i:2;a:6:{s:4:"code";s:8:"SHIPPING";s:11:"description";s:13:"Verzendkosten";s:8:"quantity";s:1:"1";s:10:"price_incl";d:9;s:10:"price_excl";d:7.4400000000000004;s:3:"vat";d:21;}}}',
+        'store_code' => '87d8a69f8301ca7207d3722eff723e01',
+        'gateway_code' => 'ideal',
+        'language_code' => 'nl',
+        'country_code' => NULL,
+        'currency_code' => 'EUR',
+        'transaction_id' => '0050001980887690',
+        'transaction_code' => 'dNaWcejrCNiU1KsmyOd0O07S51C2PfCU',
+        'transaction_params' => NULL,
+        'transaction_date' => '1439888477',
+        'transaction_amount' => '79.20',
+        'transaction_description' => 'Webshop order #100010915',
+        'transaction_status' => 'OPEN',
+        'transaction_url' => 'https://www.ing.nl/open/ideal/detect.jsp?trxid=0050001980887690&random=66cda45541eddca0',
+        'transaction_payment_url' => 'https://www.hollandgold.nl/idealcheckoutideal/idealcheckoutideal/return/order_id/100010915/order_code/jSxfWyyOQYrdM2TIrhwVCMO5OdrXQ322/',
+        'transaction_success_url' => 'https://www.hollandgold.nl/idealcheckoutideal/idealcheckoutideal/return/order_id/100010915/order_code/jSxfWyyOQYrdM2TIrhwVCMO5OdrXQ322/',
+        'transaction_pending_url' => 'https://www.hollandgold.nl/idealcheckoutideal/idealcheckoutideal/return/order_id/100010915/order_code/jSxfWyyOQYrdM2TIrhwVCMO5OdrXQ322/',
+        'transaction_failure_url' => 'https://www.hollandgold.nl/idealcheckoutideal/idealcheckoutideal/return/order_id/100010915/order_code/jSxfWyyOQYrdM2TIrhwVCMO5OdrXQ322/',
+        'transaction_log' => 'Executing IssuerRequest on 2015-08-18, 11:01:09.
+      
+      Executing TransactionRequest on 2015-08-18, 11:01:17. Recieved: 0050001980887690',
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 250
+
+
+TEXT: Loading gateway: /var/www/vhosts/hollandgold.nl/idealcheckout/gateways/ideal-professional-v3/gateway.cls.php
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 265
+
+
+TEXT: Calling doReturn()
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/return.php
+LINE: 6
+

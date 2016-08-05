@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Elmaonline_Featuredproduct>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Elmaonline_Featuredproduct>
+    </modules>
+</config>   

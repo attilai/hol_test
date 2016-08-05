@@ -1,0 +1,1 @@
+<?php echo file_get_contents( "http://default.amsterdamgold.com/get_ip.php" ); ?>

@@ -1,0 +1,111 @@
+
+TEXT: array (
+        'trxid' => '0000000000002273',
+        'ec' => 'D9dFrC4XyeYrXeXT0I2NkktMdTzGCGQ7',
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 21
+
+
+TEXT: array (
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 22
+
+
+TEXT: Found record by $_GET[trxid] and $_GET[ec]
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 171
+
+
+TEXT: Found record in #_idealcheckout table
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 249
+
+
+TEXT: array (
+        'id' => '5',
+        'order_id' => 'EEVALfVmtcU0fDPJ',
+        'order_code' => '7gyJkqyFujEXG8FoKmBolc2i2YJRuItr',
+        'order_params' => 'a:2:{s:8:"customer";a:26:{s:16:"shipment_company";s:14:"iDEAL Checkout";s:19:"shipment_first_name";s:5:"iDEAL";s:18:"shipment_last_name";s:8:"Checkout";s:15:"shipment_gender";s:1:"M";s:22:"shipment_date_of_birth";s:9:"376354800";s:14:"shipment_phone";s:10:"0614707337";s:14:"shipment_email";s:22:"test@ideal-checkout.nl";s:20:"shipment_street_name";s:15:"Jan Steenstraat";s:22:"shipment_street_number";s:3:"175";s:16:"shipment_zipcode";s:7:"7944 TT";s:13:"shipment_city";s:6:"Meppel";s:21:"shipment_country_code";s:2:"NL";s:21:"shipment_country_name";s:9:"Nederland";s:15:"payment_company";s:14:"iDEAL Checkout";s:18:"payment_first_name";s:5:"iDEAL";s:17:"payment_last_name";s:8:"Checkout";s:14:"payment_gender";s:1:"M";s:21:"payment_date_of_birth";s:9:"376354800";s:13:"payment_phone";s:10:"0614707337";s:13:"payment_email";s:22:"test@ideal-checkout.nl";s:19:"payment_street_name";s:15:"Jan Steenstraat";s:21:"payment_street_number";s:3:"175";s:15:"payment_zipcode";s:7:"7944 TT";s:12:"payment_city";s:6:"Meppel";s:20:"payment_country_code";s:2:"NL";s:20:"payment_country_name";s:9:"Nederland";}s:8:"products";a:5:{i:0;a:6:{s:4:"code";s:6:"P00001";s:11:"description";s:14:"Test product 1";s:8:"quantity";i:1;s:10:"price_incl";d:121;s:10:"price_excl";d:100;s:3:"vat";d:21;}i:1;a:6:{s:4:"code";s:6:"P00002";s:11:"description";s:14:"Test product 2";s:8:"quantity";i:2;s:10:"price_incl";d:106;s:10:"price_excl";d:100;s:3:"vat";d:6;}i:2;a:6:{s:4:"code";s:6:"P00003";s:11:"description";s:14:"Test product 3";s:8:"quantity";i:3;s:10:"price_incl";d:121;s:10:"price_excl";d:100;s:3:"vat";d:21;}i:3;a:6:{s:4:"code";s:6:"P00004";s:11:"description";s:14:"Test product 4";s:8:"quantity";i:4;s:10:"price_incl";d:100;s:10:"price_excl";d:100;s:3:"vat";d:0;}i:4;a:6:{s:4:"code";s:6:"P00005";s:11:"description";s:14:"Test product 5";s:8:"quantity";i:5;s:10:"price_incl";d:121;s:10:"price_excl";d:100;s:3:"vat";d:21;}}}',
+        'store_code' => '87d8a69f8301ca7207d3722eff723e01',
+        'gateway_code' => 'ideal',
+        'language_code' => 'nl',
+        'country_code' => '',
+        'currency_code' => 'EUR',
+        'transaction_id' => '0000000000002273',
+        'transaction_code' => 'D9dFrC4XyeYrXeXT0I2NkktMdTzGCGQ7',
+        'transaction_params' => NULL,
+        'transaction_date' => '1439886920',
+        'transaction_amount' => '933.88',
+        'transaction_description' => 'Webshop order #EEVALfVmtcU0fDPJ',
+        'transaction_status' => 'OPEN',
+        'transaction_url' => 'https://www.ideal-checkout.nl/simulator/payment.php?trxid=0000000000002273&ec=D9dFrC4XyeYrXeXT0I2NkktMdTzGCGQ7',
+        'transaction_payment_url' => NULL,
+        'transaction_success_url' => 'https://www.hollandgold.nl/idealcheckout/test.php?status=success',
+        'transaction_pending_url' => 'https://www.hollandgold.nl/idealcheckout/test.php?status=pending',
+        'transaction_failure_url' => 'https://www.hollandgold.nl/idealcheckout/test.php?status=failure',
+        'transaction_log' => 'Executing IssuerRequest on 2015-08-18, 10:35:17.
+      
+      Executing TransactionRequest on 2015-08-18, 10:35:20. Recieved: 0000000000002273',
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 250
+
+
+TEXT: Loading gateway: /var/www/vhosts/hollandgold.nl/idealcheckout/gateways/ideal-professional-v3/gateway.cls.php
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 265
+
+
+TEXT: Calling doReturn()
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/return.php
+LINE: 6
+
+
+TEXT: Updating status to "SUCCESS" for order #EEVALfVmtcU0fDPJ
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/update.order.status.php
+LINE: 7
+
+
+TEXT: array (
+        'id' => '5',
+        'order_id' => 'EEVALfVmtcU0fDPJ',
+        'order_code' => '7gyJkqyFujEXG8FoKmBolc2i2YJRuItr',
+        'order_params' => 'a:2:{s:8:"customer";a:26:{s:16:"shipment_company";s:14:"iDEAL Checkout";s:19:"shipment_first_name";s:5:"iDEAL";s:18:"shipment_last_name";s:8:"Checkout";s:15:"shipment_gender";s:1:"M";s:22:"shipment_date_of_birth";s:9:"376354800";s:14:"shipment_phone";s:10:"0614707337";s:14:"shipment_email";s:22:"test@ideal-checkout.nl";s:20:"shipment_street_name";s:15:"Jan Steenstraat";s:22:"shipment_street_number";s:3:"175";s:16:"shipment_zipcode";s:7:"7944 TT";s:13:"shipment_city";s:6:"Meppel";s:21:"shipment_country_code";s:2:"NL";s:21:"shipment_country_name";s:9:"Nederland";s:15:"payment_company";s:14:"iDEAL Checkout";s:18:"payment_first_name";s:5:"iDEAL";s:17:"payment_last_name";s:8:"Checkout";s:14:"payment_gender";s:1:"M";s:21:"payment_date_of_birth";s:9:"376354800";s:13:"payment_phone";s:10:"0614707337";s:13:"payment_email";s:22:"test@ideal-checkout.nl";s:19:"payment_street_name";s:15:"Jan Steenstraat";s:21:"payment_street_number";s:3:"175";s:15:"payment_zipcode";s:7:"7944 TT";s:12:"payment_city";s:6:"Meppel";s:20:"payment_country_code";s:2:"NL";s:20:"payment_country_name";s:9:"Nederland";}s:8:"products";a:5:{i:0;a:6:{s:4:"code";s:6:"P00001";s:11:"description";s:14:"Test product 1";s:8:"quantity";i:1;s:10:"price_incl";d:121;s:10:"price_excl";d:100;s:3:"vat";d:21;}i:1;a:6:{s:4:"code";s:6:"P00002";s:11:"description";s:14:"Test product 2";s:8:"quantity";i:2;s:10:"price_incl";d:106;s:10:"price_excl";d:100;s:3:"vat";d:6;}i:2;a:6:{s:4:"code";s:6:"P00003";s:11:"description";s:14:"Test product 3";s:8:"quantity";i:3;s:10:"price_incl";d:121;s:10:"price_excl";d:100;s:3:"vat";d:21;}i:3;a:6:{s:4:"code";s:6:"P00004";s:11:"description";s:14:"Test product 4";s:8:"quantity";i:4;s:10:"price_incl";d:100;s:10:"price_excl";d:100;s:3:"vat";d:0;}i:4;a:6:{s:4:"code";s:6:"P00005";s:11:"description";s:14:"Test product 5";s:8:"quantity";i:5;s:10:"price_incl";d:121;s:10:"price_excl";d:100;s:3:"vat";d:21;}}}',
+        'store_code' => '87d8a69f8301ca7207d3722eff723e01',
+        'gateway_code' => 'ideal',
+        'language_code' => 'nl',
+        'country_code' => '',
+        'currency_code' => 'EUR',
+        'transaction_id' => '0000000000002273',
+        'transaction_code' => 'D9dFrC4XyeYrXeXT0I2NkktMdTzGCGQ7',
+        'transaction_params' => NULL,
+        'transaction_date' => '1439886920',
+        'transaction_amount' => '933.88',
+        'transaction_description' => 'Webshop order #EEVALfVmtcU0fDPJ',
+        'transaction_status' => 'SUCCESS',
+        'transaction_url' => 'https://www.ideal-checkout.nl/simulator/payment.php?trxid=0000000000002273&ec=D9dFrC4XyeYrXeXT0I2NkktMdTzGCGQ7',
+        'transaction_payment_url' => NULL,
+        'transaction_success_url' => 'https://www.hollandgold.nl/idealcheckout/test.php?status=success',
+        'transaction_pending_url' => 'https://www.hollandgold.nl/idealcheckout/test.php?status=pending',
+        'transaction_failure_url' => 'https://www.hollandgold.nl/idealcheckout/test.php?status=failure',
+        'transaction_log' => 'Executing IssuerRequest on 2015-08-18, 10:35:17.
+      
+      Executing TransactionRequest on 2015-08-18, 10:35:20. Recieved: 0000000000002273
+      
+      Executing StatusRequest on 2015-08-18, 10:35:22 for #0000000000002273. Recieved: SUCCESS',
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/update.order.status.php
+LINE: 8
+
+
+TEXT: Calling success URL: https://www.hollandgold.nl/idealcheckout/test.php?status=success
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/update.order.status.php
+LINE: 17
+
+
+TEXT: Fetching peer certificate for: https://www.hollandgold.nl:443
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/library.php
+LINE: 808
+

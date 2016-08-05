@@ -1,0 +1,38 @@
+html
+{
+	height: 100%;
+}
+
+a
+{
+	color: #FFA500;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #87CEEB;
+}
+
+body
+{
+	font-family: "Trebuchet MS", Arial, Tahoma, sans-serif;
+	font-size: 0.8em;
+	line-height: 1.6em;
+	color: #000000;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+img, form, br
+{
+	border: 0px;
+	margin: 0px;
+	line-height: 1.6em;
+}
+
+/* MSIE suffers rendering speed when using opacity on png */
+img.imagebutton:hover {
+	-moz-opacity: .50;
+}

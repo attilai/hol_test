@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+	<tabs>
+		<hellodialog>
+			<label><![CDATA[<img style="margin-right: 5px; height: 10px;" src="http://www.hellodialog.com/img/magento_plugin_assets/logo.png" alt="" border="0" />HelloDialog]]></label>
+			<sort_order>100</sort_order>
+		</hellodialog>
+	</tabs>
+	<sections>
+		<hellodialog>
+			<label>Configuration</label>
+			<tab>hellodialog</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>1000</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<general>
+					<label>Hellodialog Magento plugin v2.0.3</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<expanded>1</expanded>
+					<comment>
+						<![CDATA[
+						<img src='http://www.hellodialog.com/img/magento_plugin_assets/logo.png' style='float: left; width: 100px;'/>
+						<div style='margin-left: 130px; padding-top: 6px; line-height: 25px;'>
+							<strong>Hellodialog Magento Plugin v2.0.3</strong><br/>
+							This plugin connects your Magento shop to Hellodialog. Your customers will automatically be subscribed to your Hellodialog account.
+							<br/>
+							Optionally use the Hellodialog eCommerce Plugin to target groups of customers based on their purchase history.
+							<br/>
+							Need help or have feedback? Please check our <a style='color: #ea7601; text-decoration: underline; margin-left: 0;' target='_blank' href='http://www.hellodialog.com/en/online-support-email-marketing'>support page</a> or contact us at <a style='color: #ea7601; text-decoration: underline; margin-left: 0;' href='mailto:support@hellodialog.com?subject=Hellodialog Magento plugin'>support@hellodialog.com</a>.
+						</div>
+						<div style='clear: both; padding-bottom: 20px; border-bottom: 1px solid #ddd; margin-bottom: 20px;'></div>
+						]]>
+					</comment>
+					<fields>
+						<apikey>
+							<label>API Key</label>
+							<comment>
+								<![CDATA[Please enter your Hellodialog API Key.<br/><a target='_blank' href='https://app.hellodialog.com/settings/api'>Where do I find my API key?</a>]]>
+							</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</apikey>
+						<validate>
+							<label></label>
+							<frontend_type>button</frontend_type>
+							<frontend_model>hellodialog_tracker_block_validator</frontend_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</validate>
+						<fieldmapping translate="label comment">
+							<label>Fields</label>
+							<frontend_type>button</frontend_type>
+							<frontend_model>hellodialog_tracker_block_fieldmapping</frontend_model>
+							<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[
+								Configure additional customer data to be added to Hellodialog. Select a customer attribute on the left, and select the target field in Hellodialog on the right.
+								<script type='text/javascript'>
+									document.observe("dom:loaded", function() {
+									$$('.dropdown-hellodialog-fieldmappings').each(function(select) {
+									select.value = select.readAttribute('data-value');
+									});
+									});
+								</script>
+								]]>
+							</comment>
+						</fieldmapping>
+						<ecommerce>
+							<label>Enable eCommerce Plugin</label>
+							<comment>Optionally enrich your subscribers in Hellodialog. This enables you to target groups of customers based on their purchase history.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</ecommerce>
+						<geocode>
+							<label>Geocode addresses</label>
+							<comment>Use Google's geocode API to automatically send Lat/Lng coordinates to Hellodialog. This enables detailed location filtering.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</geocode>
+					</fields>
+				</general>
+				<synchronize_history>
+					<label>Synchronize Order history</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<expanded>1</expanded>
+					<comment>
+						<![CDATA[
+						<img src='http://www.hellodialog.com/img/magento_plugin_assets/sync.png' style='width: 100px; float: left;'/>
+						<div style='margin-left: 130px; line-height: 25px;'>
+							<strong>Synchronize Order history</strong><br/>
+							Enable the synchronization to start importing all your completed orders into Hellodialog.<br/>
+							This job will start running in the background, and takes time to complete (about 2.400 orders will be processed per 24 hours).<br/>
+							<span style='color: red; font-style: italic;'>Requires Magento cronjobs to be up and running.</span>
+						</div>
+						<div style='clear: both; padding-bottom: 20px; border-bottom: 1px solid #ddd; margin-bottom: 20px;'></div>
+						]]>
+					</comment>
+					<fields>
+						<enabled>
+							<label>Synchronization enabled</label>
+							<comment>Start importing orders by toggling this on.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enabled>
+						<coverage>
+							<label>Coverage</label>
+							<comment>
+								<![CDATA[This represents the number of orders in Magento that have been synchronized to Hellodialog.]]>
+							</comment>
+							<frontend_type>button</frontend_type>
+							<frontend_model>hellodialog_tracker_block_syncstatus</frontend_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</coverage>
+						<status>
+							<label>Cron Progress</label>
+							<comment>
+								<![CDATA[Whenever you encounter problems during your sync, these numbers might help our team to identify the issue.]]>
+							</comment>
+							<frontend_type>button</frontend_type>
+							<frontend_model>hellodialog_tracker_block_cronprogress</frontend_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</status>
+					</fields>
+				</synchronize_history>
+			</groups>
+		</hellodialog>
+	</sections>
+</config>

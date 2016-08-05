@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Wyomind
+ * @package    Wyomind_Googleshopping
+ * @license    http://wyomind.com
+ */
+ --> 
+<config>
+    <modules>
+        <Wyomind_Googleshopping>
+            <version>5.4.0</version> 
+        </Wyomind_Googleshopping> 
+    </modules> 
+	<default>
+     <googleshopping>
+        <license>
+            <version>5.4.0</version>
+        </license>
+     </googleshopping>
+   </default>
+	<frontend>
+        <routers>
+            <googleshopping>
+                <use>standard</use>
+                <args>
+                    <module>Wyomind_Googleshopping</module>
+                    <frontName>googleshopping</frontName>
+                </args>
+            </googleshopping>
+        </routers>  
+    </frontend>
+    <admin>
+        <routers>
+			<googleshopping>
+				<use>admin</use>
+				<args>
+					<module>Wyomind_Googleshopping</module>
+					<frontName>googleshopping</frontName>
+				</args>
+			</googleshopping>
+        </routers>
+    </admin>
+    <adminhtml>
+		 <menu>
+            <catalog>
+                <children>
+                    <googleshopping translate="title" module="googleshopping">
+                        <title>Google Shopping</title>
+                        <sort_order>180</sort_order>
+                        <action>googleshopping/adminhtml_googleshopping</action>
+                    </googleshopping>
+                </children>
+            </catalog>
+        </menu>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<catalog>
+							<children>
+								<googleshopping translate="title" module="googleshopping">
+									<title>Google Shopping</title>
+								</googleshopping>
+							</children>
+						</catalog>
+						 <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <googleshopping>
+                                            <title>Google Shopping</title>
+                                        </googleshopping>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		
+		
+		
+		<translate>
+            <modules>
+                <Wyomind_Googleshopping>
+                   <files>
+                       <default>Wyomind_Googleshopping.csv</default>
+                    </files>
+               </Wyomind_Googleshopping>
+            </modules>
+        </translate>
+		<layout>
+			<updates>
+				<googleshopping>
+					<file>googleshopping.xml</file>
+				</googleshopping>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <googleshopping>
+                <class>Wyomind_Googleshopping_Model</class>
+                <resourceModel>googleshopping_mysql4</resourceModel>
+            </googleshopping>
+            <googleshopping_mysql4>
+                <class>Wyomind_Googleshopping_Model_Mysql4</class>
+                <entities>
+                    <googleshopping>
+                        <table>googleshopping</table>
+                    </googleshopping>
+                </entities>
+            </googleshopping_mysql4>
+        </models>
+        <resources>
+            <googleshopping_setup>
+                <setup>
+                    <module>Wyomind_Googleshopping</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </googleshopping_setup>
+            <googleshopping_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </googleshopping_write>
+            <googleshopping_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </googleshopping_read>
+        </resources>
+        <blocks>
+            <googleshopping>
+                <class>Wyomind_Googleshopping_Block</class>
+            </googleshopping>
+        </blocks>
+        <helpers>
+            <googleshopping>
+                <class>Wyomind_Googleshopping_Helper</class>
+            </googleshopping>
+        </helpers>
+    </global>
+    <crontab>
+        <jobs>
+            <googleshopping_generate>
+                <schedule><cron_expr>* * * * *</cron_expr></schedule>
+                <run>
+                    <model>googleshopping/observer::scheduledGenerateCatalogs</model>
+                </run>
+            </googleshopping_generate>
+        </jobs>
+    </crontab>
+</config>

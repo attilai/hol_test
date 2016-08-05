@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <modules>
+        <TerraPreta_Subscribe>
+            <version>1.0.0</version>
+        </TerraPreta_Subscribe>
+    </modules>
+    <frontend>
+        <translate>
+            <modules>
+                <translations>
+                    <files>
+                        <default>TerraPreta_Subscribe.csv</default>
+                    </files>
+                </translations>
+            </modules>
+        </translate>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <translations>
+                    <files>
+                        <default>TerraPreta_Subscribe.csv</default>
+                    </files>
+                </translations>
+            </modules>
+        </translate>
+    </adminhtml>
+</config>

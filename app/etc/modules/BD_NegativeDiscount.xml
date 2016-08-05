@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<BD_NegativeDiscount>
+			<codePool>local</codePool>
+			<active>true</active>
+		</BD_NegativeDiscount>
+	</modules>
+</config>

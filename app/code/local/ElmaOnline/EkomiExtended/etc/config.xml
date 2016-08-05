@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <ElmaOnline_EkomiExtended>
+      <version>0.1.0</version>
+    </ElmaOnline_EkomiExtended>
+  </modules>
+  <global>
+    <helpers>
+      <ekomiextended>
+        <class>ElmaOnline_EkomiExtended_Helper</class>
+      </ekomiextended>
+    </helpers>
+	<blocks>
+	  <ekomiextended>
+		<class>ElmaOnline_EkomiExtended_Block</class>
+	  </ekomiextended>
+	</blocks>
+  </global>
+</config> 

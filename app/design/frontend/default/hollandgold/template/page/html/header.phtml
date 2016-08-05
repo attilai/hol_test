@@ -1,0 +1,158 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2009 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class="header">
+<div class="header-container">
+<div class="header-top">
+    <div class="header-topbar">
+        <?php echo $this->getChildHtml('store_language') ?>
+		<?php echo $this->getChildHtml('topLinks') ?>
+        <div class="mini-cart-custom" onclick="document.location='<?php echo Mage::getUrl('checkout/cart')?>'">
+        	<div class="cart-icon">&nbsp;</div>
+        	<div class="corner-left">&nbsp;</div>
+				<p>
+        		<?php $count = $this->helper('checkout/cart')->getSummaryCount();  //get total items in cart  
+        		$total = $this->helper('checkout/cart')->getQuote()->getGrandTotal(); //get total price  
+
+				if($count==0)  
+				{  
+				echo $this->__('<span class="items" id="tpCartItems">');
+				echo $this->__('%s items',$count);
+				echo $this->__('</span>');
+				}  
+				if($count==1)  
+				{  
+				echo $this->__('<span class="items" id="tpCartItems">');
+				echo $this->__('%s item',$count);  
+				echo $this->__('</span>');
+				}  
+				if($count>1)  
+				{  
+				echo $this->__('<span class="items" id="tpCartItems">');
+				echo $this->__('%s items',$count);
+					 $counter = $count;
+				echo $this->__('</span>');
+				}		
+				echo $this->__('<span class="cart-total" id="tpCartTotal">');
+				echo $this->__('%s', $this->helper('core')->formatPrice($total, false));
+				echo $this->__('</span>');?>
+				</p>
+                <input type="hidden" id="whatIsThePrice" value="<?php echo $this->helper('checkout/cart')->getQuote()->getGrandTotal(); ?>" />
+                <input type="hidden" id="whatIsTheCount" value="<?php echo $counter; ?>" />
+        	<div class="corner-right">&nbsp;</div>
+        </div>
+        <div class="head-checkout-link"><a href="<?php echo Mage::getUrl('checkout/cart')?>"><?php echo $this->__('> Afrekenen')?></a></div>
+        
+        <div id="cart-alert">
+			<script type="text/javascript">
+            function showMe(){
+                setTimeout("document.getElementById('cart-alert').style.display='none'",5000);
+            }
+            function setLocationTP(TPnP, url){
+                var urlVisit     = url; 
+                var currentTotal = (document.getElementById('whatIsThePrice').value*1);
+                var currentTotal = (document.getElementById('whatIsThePrice2').value*1); // Used for cart overlay block
+                var boughtFor    = TPnP*1;
+                var newTotal	 = Math.round((boughtFor+currentTotal)*1000)/1000;
+                var newTotal     = newTotal.toFixed(2);
+                var oneUp		 = 1*1;
+                var newItems     = Math.round((document.getElementById('whatIsTheCount').value*1)+oneUp);
+                var newItems     = Math.round((document.getElementById('whatIsTheCount2').value*1)+oneUp); // Used for cart overlay block
+                document.getElementById('whatIsTheCount').value    = newItems;
+                document.getElementById('whatIsThePrice').value    = newTotal;
+                document.getElementById('tpCartTotal').innerHTML   = '&euro;&nbsp;'+newTotal;
+                document.getElementById('tpCartItems').innerHTML   = newItems + ' items';
+                document.getElementById('whatIsTheCount2').value    = newItems; // Used for cart overlay block
+                document.getElementById('whatIsThePrice2').value    = newTotal; // Used for cart overlay block
+                document.getElementById('tpCartTotal2').innerHTML   = '&euro;&nbsp;'+newTotal; // Used for cart overlay block
+                document.getElementById('tpCartItems2').innerHTML   = newItems + ' items'; // Used for cart overlay block
+                document.getElementById('cart-alert').style.display = 'block';
+				//jquery('#cart-alert').fadeIn('fast');
+                try {
+                xmlhttp = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                catch(e) {
+                    alert ( 'Uw browser wordt niet ondersteund. Download Mozilla Firefox of Microsoft Internet Explorer' );
+                }
+                xmlhttp.onreadystatechange = showMe;
+                xmlhttp.open("GET", url);
+                xmlhttp.send(null);
+            }
+            </script>
+            <div id="prodIsAdd"><p><span class="icon-check">&nbsp;</span><?php echo $this->__('Uw product is toegevoegd.')?></p><p><a class="btn-cart-checkout" href="/checkout/cart/"><?php echo $this->__('Afrekenen')?></a></p></div>
+
+	        	<?php // This is a copy of the gray cart block ?>
+                <div class="mini-cart-custom" onclick="document.location='<?php echo Mage::getUrl('checkout/cart')?>'">
+                    <div class="cart-icon">&nbsp;</div>
+                    <div class="corner-left">&nbsp;</div>
+                        <p>
+                        <?php $count = $this->helper('checkout/cart')->getSummaryCount();  //get total items in cart  
+                        $total = $this->helper('checkout/cart')->getQuote()->getGrandTotal(); //get total price  
+        
+                        if($count==0)  
+                        {  
+                        echo $this->__('<span class="items" id="tpCartItems2">');
+                        echo $this->__('%s items',$count);
+                        echo $this->__('</span>');
+                        }  
+                        if($count==1)  
+                        {  
+                        echo $this->__('<span class="items" id="tpCartItems2">');
+                        echo $this->__('%s item',$count);  
+                        echo $this->__('</span>');
+                        }  
+                        if($count>1)  
+                        {  
+                        echo $this->__('<span class="items" id="tpCartItems2">');
+                        echo $this->__('%s items',$count);
+                             $counter = $count;
+                        echo $this->__('</span>');
+                        }		
+                        echo $this->__('<span class="cart-total" id="tpCartTotal2">');
+                        echo $this->__('%s', $this->helper('core')->formatPrice($total, false));
+                        echo $this->__('</span>');?>
+                        </p>
+                        <input type="hidden" id="whatIsThePrice2" value="<?php echo $this->helper('checkout/cart')->getQuote()->getGrandTotal(); ?>" />
+                        <input type="hidden" id="whatIsTheCount2" value="<?php echo $counter; ?>" />
+                    <div class="corner-right">&nbsp;</div>
+                </div>
+                <div class="head-checkout-link"><a href="<?php echo Mage::getUrl('checkout/cart')?>"><?php echo $this->__('> Afrekenen')?></a></div>
+        
+        </div> 
+    </div>
+    <div class="header-top">
+        <?php if ($this->getIsHomePage()):?>
+        <div class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></div>
+        <?php else:?>
+        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+        <?php endif?>
+        <p class="no-display"><a href="#main"><strong><?php echo $this->__('Skip to Main Content') ?> &raquo;</strong></a></p>
+    	<?php echo $this->getChildHtml('topSearch') ?>        
+        <?php echo $this->getChildHtml('topMenu') ?>
+    </div>	
+</div>
+</div>
+</div>

@@ -1,0 +1,43 @@
+Apply the rule only to cart items matching the following conditions (leave blank for all items),Apply the rule only to cart items matching the following conditions (leave blank for all items)
+Apply To,Apply To
+Customer Groups,Customer Groups
+NOT LOGGED IN,NOT LOGGED IN
+Order Email Name,Order Email Name
+Description,Description
+Status,Status
+Please Select Status,Please Select Status
+Priority,Priority
+Email Template,Email Template
+Select Order Email Template,Select Order Email Template
+Order Email Template,Order Email Template
+Order Email Template Information,Order Email Template Information
+Information,Information
+Conditions,Conditions
+Email Template,Email Template
+Save Order Email Template,Save Order Email Template
+Delete,Delete
+Save And Continue Edit,Save And Continue Edit
+ID,ID
+Title,Title
+Edit Order Email Template '%s',Edit Order Email Template '%s'
+Add Order Email Template,Add Order Email Template
+Enabled,Enabled
+Disabled,Disabled
+Order Email Template Manager,Order Email Template Manager
+Add Order Template,Add Order Template
+Action,Action
+Edit,Edit
+Are you sure?,Are you sure?
+Change status,Change status
+Item does not exist,Item does not exist
+Item was successfully saved,Item was successfully saved
+Unable to find item to save,Unable to find item to save
+Item was successfully deleted,Item was successfully deleted
+Please select item(s),Please select item(s)
+Total of %d record(s) were successfully updated,Total of %d record(s) were successfully updated
+Multiple Order Email Permission Setting,Multiple Order Email Permission Setting
+Multiple Order Email,Multiple Order Email
+Email Notification for Admin,Email Notification for Admin
+Enable to send email Notification to Admin when having new Order/Invoice/Shipment,Enable to send email Notification to Admin when having new Order/Invoice/Shipment
+Default Admin Email Address Received Notification,Default Admin Email Address Received Notification
+Admin email address received notification,Admin email address received notification

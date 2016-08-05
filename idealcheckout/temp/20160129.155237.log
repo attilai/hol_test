@@ -1,0 +1,5 @@
+
+TEXT: Error while calling url: https://www.hollandgold.nl/idealcheckoutideal/idealcheckoutideal/return/order_id/100012766/order_code/Cwv1WIMNY4yOMoyPKdmEtj6jmweGo5MT/
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/library.php
+LINE: 760
+

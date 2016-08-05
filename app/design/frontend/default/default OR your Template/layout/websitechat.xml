@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- 
+Version : 0.1.2
+FILE : websitechat.xml
+Date : 18-JULY-2011
+Created By : Sanjib Behera
+Company : Modulesoft.com
+Mail : info@modulesoft.com, modulesoft@gmail.com
+
+This is the second small extension for magento from modulesoft.com
+And we are trying to develope as many feaures as we can for Magentocommerce.com
+
+Thanks
+Modulesoft.com team
+-->
+<layout version="0.1.0">
+    <default>
+		<reference name="left">
+			<block type="websitechat/chat" name="left.top.websitechat" before="-">
+				<action method="setTemplate" ifconfig="websitechat/websitechat/enabled">
+					<template>websitechat/websitechat.phtml</template> 
+				</action>
+			</block>
+		</reference>
+		<reference name="right">
+			<block type="websitechat/chat" name="right.top.websitechat" before="-">
+				<action method="setTemplate" ifconfig="websitechat/websitechat/enabled">
+					<template>websitechat/websitechat.phtml</template> 
+				</action>
+			</block>
+		</reference>
+    </default>
+	
+</layout> 

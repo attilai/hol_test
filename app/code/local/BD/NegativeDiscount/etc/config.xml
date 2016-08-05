@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <BD_NegativeDiscount>
+            <version>0.1</version>
+        </BD_NegativeDiscount>
+    </modules>
+	<global>
+		<blocks>
+            <adminhtml>
+                <rewrite>
+					<promo_quote_edit_tab_actions>BD_NegativeDiscount_Block_Promo_Quote_Edit_Tab_Actions</promo_quote_edit_tab_actions>
+                </rewrite>
+            </adminhtml>
+        </blocks>	
+		<models>
+			<salesrule>
+				<rewrite>
+					<rule>BD_NegativeDiscount_Model_Rule</rule>
+					<validator>BD_NegativeDiscount_Model_Validator</validator>
+					<quote_discount>BD_NegativeDiscount_Model_Quote_Discount</quote_discount>
+				</rewrite>
+			</salesrule>
+		</models>
+	</global>
+</config>

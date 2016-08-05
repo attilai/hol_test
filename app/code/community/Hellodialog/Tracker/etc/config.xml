@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+
+	<modules>
+		<Hellodialog_Tracker>
+			<version>2.0.3</version>
+		</Hellodialog_Tracker>
+	</modules>
+
+	<crontab>
+		<jobs>
+			<hellodialog_tracker_sync_cron>
+				<schedule>
+					<cron_expr>*/15 * * * *</cron_expr>
+				</schedule>
+				<run>
+					<model>hellodialogtrackermodel/Cron::sync</model>
+				</run>
+			</hellodialog_tracker_sync_cron>
+		</jobs>
+	</crontab>
+
+	<global>
+		<models>
+			<hellodialogtrackermodel>
+				<class>Hellodialog_Tracker_Model</class>
+			</hellodialogtrackermodel>
+		</models>
+		<helpers>
+			<hellodialog_tracker>
+				<class>Hellodialog_Tracker_Helper</class>
+			</hellodialog_tracker>
+		</helpers>
+		<events>
+			<sales_order_place_after>
+				<observers>
+					<hellodialog_tracker_after_order_handler>
+						<type>singleton</type>							
+						<class>hellodialogtrackermodel/Observer</class>
+						<method>trackOrder</method>
+					</hellodialog_tracker_after_order_handler>
+				</observers>
+			</sales_order_place_after>
+			<checkout_onepage_controller_success_action>
+				<observers>
+					<hellodialog_tracker_after_payment_handler>
+						<type>singleton</type>							
+						<class>hellodialogtrackermodel/Observer</class>
+						<method>updateOrder</method>
+					</hellodialog_tracker_after_payment_handler>
+				</observers>
+			</checkout_onepage_controller_success_action>
+		</events>
+	</global> 
+
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<hellodialogtracker after="Mage_Adminhtml">Hellodialog_Tracker</hellodialogtracker>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+
+</config>

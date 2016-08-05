@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <multipleorderemail_adminhtml_multipleorderemail_edit>
+    <update handle="editor"/>
+  </multipleorderemail_adminhtml_multipleorderemail_edit>
+  <multipleorderemail_adminhtml_multipleorderemail_index>
+    <update handle="editor"/>
+    <reference name="content">
+      <block type="multipleorderemail/adminhtml_multipleorderemail" name="multipleorderemail"/>
+    </reference>
+  </multipleorderemail_adminhtml_multipleorderemail_index>
+</layout>

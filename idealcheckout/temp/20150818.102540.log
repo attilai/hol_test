@@ -1,0 +1,10 @@
+
+TEXT: Database check completed, status: OK
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/install/includes/install.php
+LINE: 534
+
+
+TEXT: Fetching peer certificate for: https://www.ideal-checkout.nl:443
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/library.php
+LINE: 808
+

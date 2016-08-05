@@ -1,0 +1,50 @@
+<?php
+/**
+ * Appmerce - Applications for Ecommerce
+ * http://www.appmerce.com
+ *
+ * @extension   iDEAL Advanced, Professional, Zakelijk Plus, Integrated
+ * @type        Payment method
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category    Magento Commerce
+ * @package     Appmerce_IdealAdvanced
+ * @copyright   Copyright (c) 2011-2013 Appmerce (http://www.appmerce.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php
+$_code = $this->getMethodCode();
+$_issuers = $this->getIssuers();
+?>
+<ul class="form-list" id="payment_form_<?php echo $_code; ?>" style="display: none;">
+    <li>
+        <label for="<?php echo $_code; ?>_issuer_id" class="required"><em>*</em><?php echo Mage::helper('idealadvanced')->__('Issuer'); ?></label>
+        <div class="input-box">
+            <?php if ($_issuers): ?>
+                <select id="<?php echo $_code; ?>_issuer_id" name="payment[idealadvanced_issuer_id]" class="required-entry">
+                    <option value=""><?php echo Mage::helper('idealadvanced')->__('--Please Select--'); ?></option>
+                    <?php $_selected = $this->getInfoData('idealadvanced_issuer_id'); ?>
+                    <?php foreach ($_issuers as $optgroup => $options): ?>
+                        <optgroup label="<?php echo $optgroup; ?>">
+                            <?php foreach ($options as $value => $label): ?>
+                                <option value="<?php echo $value; ?>"<?php if ($_selected == $value): ?> selected="selected"<?php endif; ?>><?php echo $label; ?></option>
+                            <?php endforeach; ?>
+                        </optgroup>
+                    <?php endforeach; ?>
+                </select>
+            <?php else: ?>
+                <?php echo $this->getError(); ?>
+            <?php endif; ?>
+        </div>
+    </li>
+    <li>
+        <?php echo Mage::helper('idealadvanced')->__('You will be redirected to the payment gateway after placing an order.'); ?>
+    </li>
+</ul>

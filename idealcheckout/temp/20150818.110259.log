@@ -1,0 +1,62 @@
+
+TEXT: array (
+        'order_id' => '100010917',
+        'order_code' => '46047y7DlZc5LsuvBMN4Uq29lDbnVHkP',
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 21
+
+
+TEXT: array (
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 22
+
+
+TEXT: Found record by $_GET[order_id] and $_GET[order_code]
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 114
+
+
+TEXT: Found record in #_idealcheckout table
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 249
+
+
+TEXT: array (
+        'id' => '10',
+        'order_id' => '100010917',
+        'order_code' => '46047y7DlZc5LsuvBMN4Uq29lDbnVHkP',
+        'order_params' => 'a:3:{s:5:"order";a:1:{s:2:"id";s:5:"11023";}s:8:"customer";a:30:{s:16:"shipment_company";N;s:13:"shipment_name";s:15:"Tjallin Tjallin";s:19:"shipment_first_name";s:7:"Tjallin";s:18:"shipment_last_name";s:7:"Melgers";s:15:"shipment_gender";s:0:"";s:22:"shipment_date_of_birth";s:0:"";s:14:"shipment_phone";s:10:"0616412960";s:14:"shipment_email";s:26:"tjallin@newtalentgroup.com";s:16:"shipment_address";s:30:"Burgemeester Hogguerstraat 655";s:20:"shipment_street_name";s:26:"Burgemeester Hogguerstraat";s:22:"shipment_street_number";s:3:"655";s:16:"shipment_zipcode";s:7:"1064 CX";s:13:"shipment_city";s:9:"Amsterdam";s:21:"shipment_country_code";s:2:"NL";s:21:"shipment_country_name";s:9:"Nederland";s:15:"payment_company";N;s:12:"payment_name";s:15:"Tjallin Tjallin";s:18:"payment_first_name";s:7:"Tjallin";s:17:"payment_last_name";s:7:"Melgers";s:14:"payment_gender";s:0:"";s:21:"payment_date_of_birth";s:0:"";s:13:"payment_phone";s:10:"0616412960";s:13:"payment_email";s:26:"tjallin@newtalentgroup.com";s:15:"payment_address";s:30:"Burgemeester Hogguerstraat 655";s:19:"payment_street_name";s:26:"Burgemeester Hogguerstraat";s:21:"payment_street_number";s:3:"655";s:15:"payment_zipcode";s:7:"1064 CX";s:12:"payment_city";s:9:"Amsterdam";s:20:"payment_country_code";s:2:"NL";s:20:"payment_country_name";s:9:"Nederland";}s:8:"products";a:3:{i:0;a:6:{s:4:"code";s:5:"15854";s:11:"description";s:42:"Maple Leaf 1 troy ounce zilveren munt 2015";s:8:"quantity";s:6:"2.0000";s:10:"price_incl";s:7:"17.4000";s:10:"price_excl";s:7:"17.4000";s:3:"vat";s:6:"0.0000";}i:1;a:6:{s:4:"code";s:5:"15855";s:11:"description";s:41:"Philharmoniker 1 troy ounce zilveren munt";s:8:"quantity";s:6:"2.0000";s:10:"price_incl";s:7:"17.7000";s:10:"price_excl";s:7:"17.7000";s:3:"vat";s:6:"0.0000";}i:2;a:6:{s:4:"code";s:8:"SHIPPING";s:11:"description";s:13:"Verzendkosten";s:8:"quantity";s:1:"1";s:10:"price_incl";d:9;s:10:"price_excl";d:7.4400000000000004;s:3:"vat";d:21;}}}',
+        'store_code' => '87d8a69f8301ca7207d3722eff723e01',
+        'gateway_code' => 'ideal',
+        'language_code' => 'nl',
+        'country_code' => NULL,
+        'currency_code' => 'EUR',
+        'transaction_id' => 'DcKBAH6OwbJat6wXIbStsKtFduV148Gx',
+        'transaction_code' => 'ag0BQXfdYRdiNB7mDQHXq2tvnemhcVGd',
+        'transaction_params' => NULL,
+        'transaction_date' => '1439888579',
+        'transaction_amount' => '79.20',
+        'transaction_description' => 'Webshop order #100010917',
+        'transaction_status' => NULL,
+        'transaction_url' => NULL,
+        'transaction_payment_url' => 'https://www.hollandgold.nl/idealcheckoutideal/idealcheckoutideal/return/order_id/100010917/order_code/46047y7DlZc5LsuvBMN4Uq29lDbnVHkP/',
+        'transaction_success_url' => 'https://www.hollandgold.nl/idealcheckoutideal/idealcheckoutideal/return/order_id/100010917/order_code/46047y7DlZc5LsuvBMN4Uq29lDbnVHkP/',
+        'transaction_pending_url' => 'https://www.hollandgold.nl/idealcheckoutideal/idealcheckoutideal/return/order_id/100010917/order_code/46047y7DlZc5LsuvBMN4Uq29lDbnVHkP/',
+        'transaction_failure_url' => 'https://www.hollandgold.nl/idealcheckoutideal/idealcheckoutideal/return/order_id/100010917/order_code/46047y7DlZc5LsuvBMN4Uq29lDbnVHkP/',
+        'transaction_log' => NULL,
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 250
+
+
+TEXT: Loading gateway: /var/www/vhosts/hollandgold.nl/idealcheckout/gateways/ideal-professional-v3/gateway.cls.php
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 265
+
+
+TEXT: Calling doSetup()
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/setup.php
+LINE: 6
+

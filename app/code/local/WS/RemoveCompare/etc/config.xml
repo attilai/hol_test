@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/* @category   WS
+ * @package    WS_RemoveCompare
+ * @author     Willoughby Stewart <digitalmedia@wsa.net.uk>
+ */
+-->
+<config>
+	<modules>
+		<WS_RemoveCompare>
+			<version>0.1.0</version>
+			<depends>
+				<!-- No dependences -->				
+			</depends>
+		</WS_RemoveCompare>
+	</modules>
+	
+	<global>
+		<helpers>
+			<catalog>
+				<rewrite>
+					<product_compare>WS_RemoveCompare_Helper_Product_Compare</product_compare>
+				</rewrite>
+			</catalog>
+		</helpers>	
+	</global>
+	
+	<frontend>
+		<layout>
+            <updates>
+                <removecompare>
+                    <file>removecompare.xml</file>
+                </removecompare>
+            </updates>
+        </layout>
+	</frontend>
+</config>

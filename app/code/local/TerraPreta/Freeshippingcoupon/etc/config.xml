@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TerraPreta_Freeshippingcoupon>
+            <version>0.1.0</version>
+        </TerraPreta_Freeshippingcoupon>
+    </modules>
+    
+    <global>  
+    	<blocks>
+    		<freeshippingcoupon>
+    			<class>TerraPreta_Freeshippingcoupon_Block</class>
+    		</freeshippingcoupon>  
+			<!--
+    		<page>
+				<rewrite>
+					<template_links>TerraPreta_Freeshippingcoupon_Block_Page_Template_Links</template_links>
+				</rewrite>
+			</page>	  		
+			-->
+    	</blocks>
+    	<helpers>
+			<freeshippingcoupon>
+				<class>TerraPreta_Freeshippingcoupon_Helper</class>				
+			</freeshippingcoupon>			
+		</helpers>
+	    <!--<models>
+            <freeshippingcoupon>
+                  <class>TerraPreta_Freeshippingcoupon_Model</class>           	                
+            </freeshippingcoupon>
+	    </models>-->
+             
+               
+		<resources>
+            <freeshippingcoupon_setup>
+                <setup>
+                    <module>TerraPreta_Freeshippingcoupon</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </freeshippingcoupon_setup>
+            <freeshippingcoupon_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </freeshippingcoupon_write>
+            <freeshippingcoupon_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </freeshippingcoupon_read>            
+        </resources>
+    </global>    
+    <admin>
+        <routers>
+            <freeshippingcoupon>
+                <use>admin</use>
+                <args>
+                    <module>TerraPreta_Freeshippingcoupon</module>
+                    <frontName>adminfreeshippingcoupon</frontName>
+                </args>
+            </freeshippingcoupon>
+        </routers>
+    </admin>    
+    <adminhtml>
+	     <menu>
+            <freeshippingcoupon translate="title" module="freeshippingcoupon">
+                <title>Verzend Coupon Maken</title>
+                <sort_order>100</sort_order>
+                <action>adminfreeshippingcoupon/adminhtml_fscoupon</action>
+            </freeshippingcoupon>
+        </menu>
+        <acl>
+			<resources>
+				<admin translate="title" module="adminhtml">
+		             <children>
+		             	<freeshippingcoupon translate="title">
+		             		<title>Free shipping coupons</title>
+							<sort_order>100</sort_order>
+		             	</freeshippingcoupon>
+						<system translate="title">
+		                      <children>
+		                          <config translate="title">
+		                              <children>
+		                                   <freeshippingcoupon translate="title">
+		                                        <title>Free shipping coupons</title>
+		                                        <sort_order>5000</sort_order>
+		                                   </freeshippingcoupon>
+		                              </children>
+		                          </config>                                       
+		                      </children>
+		                 </system>
+					 </children>
+				</admin>	
+			</resources>
+		</acl>        
+    </adminhtml>
+    
+</config>

@@ -1,0 +1,16 @@
+<?php if ($posts = $this->getRecent()): ?>
+<div class="block-title">
+    <h3><?php echo Mage::helper('blog')->__('Recent Posts'); ?></h3>
+</div>
+<div class="block-content">
+    <ul>
+    <?php foreach ($posts as $post): ?>
+        <li>
+            <div class="post-time"><?php echo Mage::helper('core')->formatDate($post->getCreatedTime(), 'long', false); ?></div>
+            <a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a>
+            <div class="clear"></div>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+</div>    
+<?php endif; ?>

@@ -1,0 +1,35 @@
+127.0.0.1	localhost
+127.0.1.1	dev-pc42
+127.0.1.2	magento.local
+127.0.1.3	magento2beta.local
+127.0.1.4	medicshop.local
+127.0.1.5	tasteidea.local
+127.0.1.6	skywell.local http://www.skywell.local
+127.0.1.7   nashuanutrition.local http://www.nashuanutrition.local
+
+192.168.1.150 appcrm
+192.168.1.150      d4fs.server
+151.80.201.175      d4fs.artjoker.org
+192.168.1.150   ae.server
+93.190.45.45    d4fs.com
+192.168.1.150 fansport24.server
+192.168.1.150 ledworld.server
+192.168.1.150 ledworldnew.server
+192.168.1.150 selecrebau.server
+158.69.146.5:80 trulyergonomic.com/estore-test
+151.80.201.175    users.myapp.com.ua
+192.168.1.150 horlogesdesign.server
+46.101.185.19 justdoit.com
+
+192.168.1.6 revoni.server
+
+192.168.1.93 magento2
+
+
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters

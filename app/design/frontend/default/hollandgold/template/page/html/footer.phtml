@@ -1,0 +1,162 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   design_default
+ * @package    Mage
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class="footer-container">
+	<div class="footer">
+		<div class="footer_links_container">
+		
+		    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_links_list')->toHtml();?>
+		</div>
+		<div class="footerl">
+			<p class="legality"><?php echo $this->getCopyright() ?></p>
+		</div>
+		<div class="informational">
+			<?php echo $this->getChildHtml('cms_footer_links') ?>
+		    <?php /*echo $this->getChildHtml('footer_links')*/ ?>
+		</div>
+		<div class="footer_logos">
+		    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('payments')->toHtml();?>
+		</div>
+	</div>
+</div>
+<?php if(Mage::app()->getStore()->getCode()=='hg_be_fr'){ ?>
+<script type="text/javascript">
+if(document.getElementById('blockWithPricesTitle')){
+	var startTimer = 59;
+	function checkWeder(){
+		try {
+			xmlhttp = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		catch(e) {
+			alert ( 'Uw browser wordt niet ondersteund. Download Mozilla Firefox of Microsoft Internet Explorer' );
+		}
+		xmlhttp.onreadystatechange = showWederCheck;
+		var timestamp = Number(new Date());
+		xmlhttp.open("GET", "/koersen/index.php?content=both&fr=1&timestamp=" + timestamp);
+		xmlhttp.send(null);
+	}
+	
+	function showWederCheck() {
+			if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)) {
+				document.getElementById('blockWithPrices').innerHTML = xmlhttp.responseText;
+			}
+	}
+	
+	function countDown(){
+		startTimer = startTimer - 1;
+		if(startTimer < 10){
+			startTimerShow = '0' + startTimer;	
+		} else {
+			startTimerShow = startTimer;
+		}
+		document.getElementById('blockWithPricesTitle').innerHTML = '<strong>Cours actuels &nbsp;&nbsp;&nbsp;<img src="/koersen/icon_chart_time.png" style="margin-top:11px" /> 0:' + startTimerShow + '</strong>';
+		if(startTimer==0){
+			document.getElementById('blockWithPrices').innerHTML = 'charge...';
+			checkWeder();
+			startTimer = 59;	
+		}
+	}
+	
+	setInterval("countDown()", 1000);
+	window.onload = checkWeder();
+}
+</script>
+<?php } else { ?>
+<script type="text/javascript">
+if(document.getElementById('blockWithPricesTitle')){
+	var startTimer = 59;
+	function checkWeder(){
+		try {
+			xmlhttp = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		catch(e) {
+			alert ( 'Uw browser wordt niet ondersteund. Download Mozilla Firefox of Microsoft Internet Explorer' );
+		}
+		xmlhttp.onreadystatechange = showWederCheck;
+		var timestamp = Number(new Date());
+		xmlhttp.open("GET", "/koersen/index.php?content=both&timestamp=" + timestamp);
+		xmlhttp.send(null);
+	}
+	
+	function showWederCheck() {
+			if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)) {
+				document.getElementById('blockWithPrices').innerHTML = xmlhttp.responseText;
+			}
+	}
+	
+	function countDown(){
+		startTimer = startTimer - 1;
+		if(startTimer < 10){
+			startTimerShow = '0' + startTimer;	
+		} else {
+			startTimerShow = startTimer;
+		}
+		document.getElementById('blockWithPricesTitle').innerHTML = '<strong>Actuele koersen &nbsp;&nbsp;&nbsp;<img src="/koersen/icon_chart_time.png" style="margin-top:11px" /> 0:' + startTimerShow + '</strong>';
+		if(startTimer==0){
+			document.getElementById('blockWithPrices').innerHTML = 'laden...';
+			checkWeder();
+			startTimer = 59;	
+		}
+	}
+	
+	setInterval("countDown()", 1000);
+	window.onload = checkWeder();
+}
+</script>
+<?php
+}
+?>
+<?php
+echo '<!--'.$_SERVER["REQUEST_URI"].'-->';
+if($_SERVER["REQUEST_URI"]=='/checkout/onepage/success' || $_SERVER["REQUEST_URI"]=='/checkout/onepage/success/'){
+?>
+<!-- Google Code for Verkoop Conversion Page --> <script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1015185044;
+var google_conversion_language = "en";
+var google_conversion_format = "2";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "g6ULCOSkhQQQlP2J5AM"; var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" 
+src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1015185044/?value=0&amp;label=g6ULCOSkhQQQlP2J5AM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<?php	
+}
+?>
+<script type="text/javascript" >
+var reachlocalTRKDOM="rtsys.rtrk.nl";
+(function()
+
+{ var rlocal_load = document.createElement("script"); rlocal_load.type = "text/javascript"; rlocal_load.src = document.location.protocol+"//"+reachlocalTRKDOM+"/rct_lct/js/rlrct1.js"; (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild (rlocal_load); }
+
+)(); </script>

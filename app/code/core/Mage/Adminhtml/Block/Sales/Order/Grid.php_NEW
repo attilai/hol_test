@@ -1,0 +1,240 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    Mage
+ * @package     Mage_Adminhtml
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
+ * Adminhtml sales orders grid
+ *
+ * @category   Mage
+ * @package    Mage_Adminhtml
+ * @author      Magento Core Team <core@magentocommerce.com>
+ */
+class Mage_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block_Widget_Grid
+{
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setId('sales_order_grid');
+        $this->setUseAjax(true);
+        $this->setDefaultSort('created_at');
+        $this->setDefaultDir('DESC');
+        //$this->setSaveParametersInSession(true);
+		//
+		// construct extras
+		// TABEL extra in sales_flat_order EN method_understand in sales_flat_order_payment
+		//
+		$db = Mage::getSingleton('core/resource')->getConnection('core_read');
+		$result = $db->query("SELECT `entity_id` FROM `sales_flat_order` WHERE extra = ''");
+		while ($row = $result->fetch(PDO::FETCH_ASSOC)){
+			$singleSet = ''; //set
+			$singleOrder = $db->query("SELECT order_id, name, qty_ordered, base_row_total, sku FROM `sales_flat_order_item` WHERE order_id = ".$row['entity_id']);
+			while ($singleOrderRow = $singleOrder->fetch(PDO::FETCH_ASSOC)){	
+				$singleSet .= round($singleOrderRow['qty_ordered']).'x '.Mage::helper('core/string')->truncate($singleOrderRow['sku'], $length = 24, $etc = '...', $remainder = '', $breakWords = false).' ('.$this->helper('core')->currency($singleOrderRow['base_row_total'], true, false).')<br>';		
+			}
+			$db->query("UPDATE `sales_flat_order` SET extra = '".$singleSet."' WHERE entity_id = '".$row['entity_id']."' LIMIT 1");
+		}
+		//unset($result);
+		$result = $db->query("SELECT `entity_id`, `method` FROM `sales_flat_order_payment` WHERE method_understand = ''");
+		while ($row = $result->fetch(PDO::FETCH_ASSOC)){
+			if($row['method']=='cashondelivery'){
+				$understandable = 'contant';
+			} else if($row['method']=='checkmo'){
+				$understandable = 'bankoverschrijving';
+			} else {
+				$understandable = $row['method'];
+			}
+			$db->query("UPDATE `sales_flat_order_payment` SET method_understand = '".$understandable."' WHERE entity_id = '".$row['entity_id']."' LIMIT 1");
+		}
+    }
+
+    /**
+     * Retrieve collection class
+     *
+     * @return string
+     */
+    protected function _getCollectionClass()
+    {
+        return 'sales/order_grid_collection';
+    }
+
+	protected function _prepareCollection()
+	{
+		$collection = Mage::getResourceModel($this->_getCollectionClass());
+		$collection->getSelect()->join('sales_flat_order_item', '`sales_flat_order_item`.order_id=`main_table`.entity_id', array('skus' => new Zend_Db_Expr('group_concat(`sales_flat_order_item`.sku SEPARATOR "<br>")')));
+		$collection->getSelect()->join('sales_flat_order', 'main_table.entity_id = sales_flat_order.entity_id',array('extra', 'shipping_description'));
+		$collection->getSelect()->join('sales_flat_order_payment', 'main_table.entity_id = sales_flat_order_payment.parent_id',array('method_understand'))->group('main_table.entity_id');
+		$collection->getSelect()->joinLeft('sales_flat_invoice', 'main_table.entity_id = sales_flat_invoice.order_id', 'increment_id AS invoice_id');
+		$this->setCollection($collection);
+		return parent::_prepareCollection();
+	}
+
+    protected function _prepareColumns()
+    {
+		
+        $this->addColumn('real_order_id', array(
+            'header'=> Mage::helper('sales')->__('Bestel nr.'),
+            'width' => '80px',
+            'type'  => 'text',
+            'index' => 'increment_id',
+        ));
+		
+		$this->addColumn('invoice', array(
+            'header'=> Mage::helper('sales')->__('Factuur nr.'),
+            'width' => '80px',
+            'type'  => 'text',
+			//'filter_index' => '`sales_flat_invoice`.increment_id',
+            'index' => 'invoice_id',
+        ));
+		
+		$this->addColumn('created_at', array(
+            'header' => Mage::helper('sales')->__('Gekocht op'),
+            'index' => 'created_at',
+            'type' => 'datetime',
+            //'width' => '100px',
+        ));
+		
+		$this->addColumn('billing_name', array(
+            'header' => Mage::helper('sales')->__('Bill to Name'),
+            'index' => 'billing_name',
+        ));
+
+		
+        //
+        // all that is ordered
+        //
+        $this->addColumn('extraInformation', array(
+            'header'=> Mage::helper('sales')->__('Bestelling'),
+            'width' => '280px',
+            'type'  => 'text',
+            'index' => 'extra',
+        ));
+        
+        $this->addColumn('grand_total', array(
+            'header' => Mage::helper('sales')->__('Totaal'),
+            'index' => 'grand_total',
+            'type'  => 'currency',
+            'currency' => 'order_currency_code',
+        ));
+        
+        $this->addColumn('shipping_description', array(
+            'header'=> Mage::helper('sales')->__('Verzendwijze'),
+            'width' => '250px',
+            'type'  => 'text',
+            'index' => 'shipping_description',
+        ));
+		
+        $this->addColumn('method_understand', array(
+                'header' => Mage::helper('sales')->__('Betaalwijze'),
+                'index' => 'method_understand',
+                'filter_index' => 'sales_flat_order_payment.method',
+        ));
+        
+                
+        $this->addColumn('status', array(
+            'header' => Mage::helper('sales')->__('Status'),
+            'index' => 'status',
+            'type'  => 'options',
+            //'width' => '70px',
+            'options' => Mage::getSingleton('sales/order_config')->getStatuses(),
+        ));
+        
+        $this->addRssList('rss/order/new', Mage::helper('sales')->__('New Order RSS'));
+
+        $this->addExportType('*/*/exportCsv', Mage::helper('sales')->__('CSV'));
+        $this->addExportType('*/*/exportExcel', Mage::helper('sales')->__('Excel XML'));
+
+        return parent::_prepareColumns();
+    }
+
+    protected function _prepareMassaction()
+    {
+        $this->setMassactionIdField('entity_id');
+        $this->getMassactionBlock()->setFormFieldName('order_ids');
+        $this->getMassactionBlock()->setUseSelectAll(false);
+
+        if (Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/cancel')) {
+            $this->getMassactionBlock()->addItem('cancel_order', array(
+                 'label'=> Mage::helper('sales')->__('Cancel'),
+                 'url'  => $this->getUrl('*/sales_order/massCancel'),
+            ));
+        }
+
+        if (Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/hold')) {
+            $this->getMassactionBlock()->addItem('hold_order', array(
+                 'label'=> Mage::helper('sales')->__('Hold'),
+                 'url'  => $this->getUrl('*/sales_order/massHold'),
+            ));
+        }
+
+        if (Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/unhold')) {
+            $this->getMassactionBlock()->addItem('unhold_order', array(
+                 'label'=> Mage::helper('sales')->__('Unhold'),
+                 'url'  => $this->getUrl('*/sales_order/massUnhold'),
+            ));
+        }
+
+        $this->getMassactionBlock()->addItem('pdfinvoices_order', array(
+             'label'=> Mage::helper('sales')->__('Print Invoices'),
+             'url'  => $this->getUrl('*/sales_order/pdfinvoices'),
+        ));
+
+        $this->getMassactionBlock()->addItem('pdfshipments_order', array(
+             'label'=> Mage::helper('sales')->__('Print Packingslips'),
+             'url'  => $this->getUrl('*/sales_order/pdfshipments'),
+        ));
+
+        $this->getMassactionBlock()->addItem('pdfcreditmemos_order', array(
+             'label'=> Mage::helper('sales')->__('Print Credit Memos'),
+             'url'  => $this->getUrl('*/sales_order/pdfcreditmemos'),
+        ));
+
+        //$this->getMassactionBlock()->addItem('pdfdocs_order', array(
+        //    'label'=> Mage::helper('sales')->__('Alles printen'),
+        //     'url'  => $this->getUrl('*/sales_order/pdfdocs'),
+        //));
+
+        $this->getMassactionBlock()->addItem('print_shipping_label', array(
+             'label'=> Mage::helper('sales')->__('Print Shipping Labels'),
+             'url'  => $this->getUrl('*/sales_order_shipment/massPrintShippingLabel'),
+        ));
+
+        return $this;
+    }
+
+    public function getRowUrl($row)
+    {
+        if (Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/view')) {
+            return $this->getUrl('*/sales_order/view', array('order_id' => $row->getId()));
+        }
+        return false;
+    }
+
+    public function getGridUrl()
+    {
+        return $this->getUrl('*/*/grid', array('_current'=>true));
+    }
+
+}

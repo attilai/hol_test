@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<config>
+  <menu>
+    <multipleorderemail module="multipleorderemail">
+      <title>Multiple Order Email</title>
+      <sort_order>71</sort_order>
+      <children>
+        <items module="multipleorderemail">
+          <title>Manage Order Email Template</title>
+          <sort_order>0</sort_order>
+          <action>multipleorderemail/adminhtml_multipleorderemail</action>
+        </items>
+      </children>
+    </multipleorderemail>
+  </menu>
+  <acl>
+    <resources>
+      <all>
+        <title>Allow Everything</title>
+      </all>
+      <admin>
+        <children>
+          <system>
+            <children>
+              <config>
+                <children>
+                  <multipleorderemail translate="title">
+                    <title>Multiple Order Email Permission Setting</title>
+                    <sort_order>50</sort_order>
+                  </multipleorderemail>
+                </children>
+              </config>
+            </children>
+          </system>
+          <multipleorderemail>
+            <title>Multiple Order Email</title>
+            <sort_order>71</sort_order>
+            <children>
+              <items module="multipleorderemail">
+                <title>Manage Order Email Template</title>
+                <sort_order>0</sort_order>
+                <action>multipleorderemail/adminhtml_multipleorderemail</action>
+              </items>
+            </children>
+          </multipleorderemail>
+        </children>
+      </admin>
+    </resources>
+  </acl>
+</config>

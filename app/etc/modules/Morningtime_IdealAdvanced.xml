@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+Disable conflicting Morningtime extension.
+-->
+<config>
+    <modules>
+        <Morningtime_IdealAdvanced>
+            <active>false</active>
+            <codePool>community</codePool>
+        </Morningtime_IdealAdvanced>
+    </modules>
+</config>

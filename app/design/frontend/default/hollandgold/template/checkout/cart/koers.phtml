@@ -1,0 +1,62 @@
+<?php
+/**
+ * Shoping cart sidebar
+ *
+ * @see Mage_Checkout_Block_Cart_Koers
+ */
+?>
+<script type="text/javascript">
+var i = 60;
+function getPrice(type, div){
+	var div = div;
+	var type = type;
+	try {
+			xmlhttp = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	catch(e) {
+			alert ( 'Uw browser wordt niet ondersteund. Download Mozilla Firefox of Microsoft Internet Explorer' );
+		}
+	xmlhttp.onreadystatechange = addPrice(div);
+	var timestamp = Number(new Date());
+	xmlhttp.open("GET", "http://www.google.com?timestamp=" + timestamp);
+	xmlhttp.send(null);
+}
+function addPrice(div){
+	if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)) {
+		var price = xmlhttp.responseText;
+		document.getElementById(div).innerHTML = '&euro;' + price;
+		alert('hij is ok');
+	} else {
+		var price = xmlhttp.responseText;
+		document.getElementById(div).innerHTML = '&euro;1';
+	}
+}
+function countDown(){
+	if(i==0){
+		i = 60;
+		document.getElementById("secCountDown").innerHTML = i;
+		getPrice(1, 'thisIsGold');
+		getPrice(1, 'thisIsSilver');
+	} else {
+		i = i - 1;
+		document.getElementById("secCountDown").innerHTML = i;
+	}
+}
+setInterval("countDown()", 1000);
+setTimeout("getPrice(1, 'thisIsGold');",100);
+setTimeout("getPrice(1, 'thisIsSilver');",200);
+</script>
+<div class="block block-cart">
+    <div class="block-title">
+        <strong><span>Actuele koersen</span></strong>
+    </div>
+    <div class="block-content">
+		<table class="table-charts" border="0" cellspacing="4" cellpadding="4">
+		  <tr>
+			<td><h3>Goud</h3><span id="thisIsGold"></span></td>
+			<td><h3>Zilver</h3><span id="thisIsSilver"></span></td>
+		  </tr>
+		</table>
+	<p class="charts-text">Nieuwe prijzen over: <span id="secCountDown">60</span> sec</p>
+    </div>
+</div>

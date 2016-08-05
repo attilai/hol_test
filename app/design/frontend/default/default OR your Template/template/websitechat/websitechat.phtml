@@ -1,0 +1,28 @@
+<?php
+/*
+Version : 0.1.2
+FILE : websitechat.phtml
+Date : 18-JULY-2011
+Created By : Sanjib Behera
+Company : Modulesoft.com
+Mail : info@modulesoft.com, modulesoft@gmail.com
+
+This is the second small extension for magento from modulesoft.com
+And we are trying to develope as many feaures as we can for Magentocommerce.com
+
+Thanks
+Modulesoft.com team
+*/
+$webchat = Mage::getModel('websitechat/config');
+?>
+<div class="block base-mini alfasrch">
+	<?php if($webchat->getWebsiteChat('title') !='' ): ?>
+	<div class="block-title">
+		<strong><span><?php echo $this->__($webchat->getWebsiteChat('title')); ?></span></strong>
+	</div>
+	<?php endif; ?>
+	<div class="block-content" style="padding:10px 5px 10px 5px; text-align:center;">
+		<?php echo $webchat->getWebsiteChat('chat_button_html'); ?>
+	</div>
+</div>
+<!-- Powered By Modulesoft Solutions Private Limited (ModuleSoft.com) -->

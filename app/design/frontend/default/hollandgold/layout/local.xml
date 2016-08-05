@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+	<default>
+		<remove name="right.poll"/>
+		<remove name="right.permanent.callout"/>
+		<remove name="left.permanent.callout"/>
+        <remove name="left.reports.product.viewed" />
+        <remove name="right.reports.product.viewed" />
+		<remove name="paypal.partner.right.logo"/>
+		<remove name="catalog.leftnav"/>
+		<remove name="cart_sidebar"/>
+		<reference name="top_slider">
+		<block type="cms/block" name="category_bar">
+			<action method="setBlockId"><block_id>category_bar</block_id></action>
+		</block>
+		</reference>
+
+        <reference name="left">
+			<action method="unsetChild"><name>left.permanent.callout-1</name></action>
+			<action method="unsetChild"><name>left.permanent.callout-2</name></action>
+        </reference>
+		<reference name="right">
+			<block type="cms/block" name="block_ekomi" after="telefoonnummer">
+				<action method="setBlockId"><block_id>block_ekomi</block_id></action>
+			</block>
+
+			<block type="cms/block" name="block_logos" before="right.newsletter">
+				<action method="setBlockId"><block_id>block_logos</block_id></action>
+			</block>
+			
+			<block type="cms/block" name="block_movie" after="block_usp" before="block_logos">
+				<action method="setBlockId"><block_id>block_movie</block_id></action>
+			</block>
+		</reference>
+
+		<reference name="content">
+            <block type="page/html_breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
+		</reference>
+		<reference name="footer_links">
+			<action method="removeLinkByUrl"><url helper="catalogsearch/getAdvancedSearchUrl"/></action>
+			<action method="removeLinkByUrl"><url helper="catalogsearch/getSearchTermUrl"/></action>
+			<action method="addLink" translate="label title">
+				<label>Over ons</label><url>over-ons.html</url><title>Over Ons</title><prepare>true</prepare>
+			</action>
+			<action method="addLink" translate="label title">
+				<label>Algemene voorwaarden</label><url>algemene-voorwaarden</url><title>Algemene voorwaarden</title><prepare>true</prepare>
+			</action>
+			<action method="addLink" translate="label title">
+				<label>Disclaimer</label><url>disclaimer</url><title>Disclaimer</title><prepare>true</prepare>
+			</action>
+		</reference>
+        <reference name="checkout_cart_link">
+            <block type="cms/block" name="help_link" after="-">
+				<action method="setBlockId"><block_id>help_link</block_id></action>
+            </block>
+        </reference>
+	</default>	
+	<catalog_category_default>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+        </reference>
+		<reference name="left">
+<!--			<block type="catalog/navigation" before="-" name="catalog.sidebar" template="catalog/navigation/sidebar.phtml"/>-->
+		</reference>		
+		<reference name="product_list_toolbar">
+<!--			<action method="setTemplate"><template>bluedesk/theme/blank.phtml</template></action>-->
+			<action method="setTemplate"><template>catalog/product/list/toolbar.phtml</template></action>
+		</reference>
+	</catalog_category_default>
+    <catalog_category_layered_nochildren>
+        <reference name="right">
+        <remove name="left.reports.product.viewed" />
+        </reference>
+    </catalog_category_layered_nochildren>	
+    <catalog_product_view>
+        <reference name="product.info.additional">
+            <remove name="product_tag_list"/>
+        </reference>
+		<reference name="product.info">
+                <block type="catalog/product_list_upsell" name="product.info.upsell" as="upsell_products" template="catalog/product/list/upsell.phtml" before="-">
+                    <action method="setColumnCount"><columns>4</columns></action>
+                    <action method="setItemLimit"><type>upsell</type><limit>4</limit></action>
+                </block>
+		</reference>
+    </catalog_product_view>
+	<catalogsearch_result_index>
+		<reference name="product_list_toolbar">
+<!--			<action method="setTemplate"><template>bluedesk/theme/blank.phtml</template></action>-->
+			<action method="setTemplate"><template>catalog/product/list/toolbar.phtml</template></action>
+		</reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+        </reference>
+	</catalogsearch_result_index>
+	<checkout_cart_index>
+		<reference name="content">
+			<remove name="checkout.cart.shipping" />
+			<!--<remove name="checkout.cart.coupon" />-->
+		</reference>
+	</checkout_cart_index>
+	<checkout_onepage_index>
+		<reference name="head">
+			<action method="addItem"><type>skin_js</type><name>js/bd_checkout_mod.js</name></action>
+		</reference>		
+	</checkout_onepage_index>
+	<customer_account>
+		<reference name="customer_account_navigation">
+			<action method="removeLinkByName"><name>recurring_profiles</name></action>
+			<action method="removeLinkByName"><name>billing_agreements</name></action>
+		</reference>
+	</customer_account>	
+</layout>

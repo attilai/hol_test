@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config>
+	<global>
+		<events>
+			<!-- Event to attach observer to -->
+			<core_block_abstract_to_html_before>
+				<observers>
+					<paidstatus>
+						<type>singleton</type>
+						<!-- Observer location (e.g. SW/GridExample/Model) -->
+						<class>TerraPreta_PaidStatus_Model_Observer</class>
+						<!-- Function to call -->
+						<method>addActions</method>
+					</paidstatus>
+				</observers>
+			</core_block_abstract_to_html_before>
+		</events>
+		<helpers>
+			<paidstatus>
+				<class>TerraPreta_PiadStatus_Helper</class>
+			</paidstatus>
+		</helpers>
+		<sales>
+            <order>
+                <statuses>
+                    <paymentreceived translate="label"><label>Payment Received (manual)</label></paymentreceived>
+                </statuses>
+			<states>
+                    <processing translate="label">
+                        <label>Processing</label>
+                        <statuses>
+                            <processing default="1"/>
+                            <paymentreceived default="2" />
+                        </statuses>
+                        <visible_on_front/>
+                    </processing>
+                </states>                  
+            </order>            
+        </sales>
+	</global>
+    <admin>
+        <routers>
+            <the_name_of_this_element_is_not_important_it_should_be_unique>
+                <use>admin</use>
+                <args>
+                    <module>TerraPreta_PaidStatus</module>
+                    <frontName>paidstatus</frontName>
+                </args>
+            </the_name_of_this_element_is_not_important_it_should_be_unique>
+        </routers>
+    </admin> 
+</config>

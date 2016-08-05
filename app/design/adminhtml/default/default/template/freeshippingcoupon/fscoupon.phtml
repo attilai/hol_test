@@ -1,0 +1,79 @@
+<?php $message = Mage::getSingleton('admin/session')->getData('freeShippingCouponData') ?>
+
+<?php $couponCode = Mage::getSingleton('admin/session')->getData('freeShippingCouponCode') ?>
+
+
+<?php $id = $this->getLinkId(); ?>
+<?php $parentName = $this->getParentName($id) ?>
+<div class="content-header">
+    <h3>Gratis verzend coupons</h3>
+</div>
+<center>
+<div>
+    <form id="frmFooterLinks" name="frmFooterLinks" method="post" action="<?php echo $this->getFormUrl() ?>">
+        <input type="hidden" id="form_key" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+        <input type="hidden" id="action_name" name="action_name" value="add" />
+    <div class="grid">
+
+        <?php if(!empty($message)): ?>
+            <table width="100%" class="data">            
+                <tr>
+                    <td colspan="2">
+                        <ul class="messages">
+                            <li class="success-msg"><?php echo $message ?></li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>        
+                <?php Mage::getSingleton('admin/session')->setData('freeShippingCouponData',''); ?>
+        <?php endif; ?>
+    
+         
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend">Genereer coupon code</h4>
+                <div class="form-buttons"></div>
+            </div>
+            <div id="settings" class="fieldset ">
+                <div class="hor-scroll">
+        <?php if(!empty($couponCode)): ?>            
+            <h3>Coupon code: </h3><h1><?php echo $couponCode ?></h1><br>        
+            <?php Mage::getSingleton('admin/session')->setData('freeShippingCouponCode',''); ?>
+        <?php endif; ?>
+                            
+            <table cellspacing="0" class="form-list">
+                <tbody>
+                    <tr>
+                        <td class="label" style=""><label for="rule_from_date">Geldig tot:</label></td>
+                        <td class="value">
+                            <input type="text" style="width:110px !important;" class=" input-text" title="From Date" value="<?php echo date('d-m-Y', strtotime(date('Y-m-d H:i:s')) + 86400); ?>" id="rule_from_date" name="from_date"> <img style="" title="Select Date" id="rule_from_date_trig" class="v-middle" alt="" src="<?php echo $this->getSkinUrl('images/grid-cal.gif'); ?>">
+                            <script type="text/javascript">
+                            //&lt;![CDATA[
+                                Calendar.setup({
+                                    inputField: "rule_from_date",
+                                    ifFormat: "%d-%m-%Y",
+                                    showsTime: false,
+                                    button: "rule_from_date_trig",
+                                    align: "Bl",
+                                    singleClick : true
+                                });
+                            //]]&gt;
+                            </script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label" style=""><label for="Save">Genereer en opslaan:</label></td>
+                        <td class="value">
+                            <button type="submit" title="Save" id="Save" name="Save"><span>Genereer</span></button> 
+                        </td>
+                    </tr>                      
+                </tbody>
+            </table>
+            </div>
+            </div>
+        </div>    
+    </div>
+</form>             
+</div>
+</center>
+

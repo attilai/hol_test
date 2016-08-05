@@ -1,0 +1,212 @@
+
+TEXT: cURL Retrieved SSL Certificate:
+      * About to connect() to www.hollandgold.nl port 443 (#0)
+      *   Trying 185.37.64.17... * connected
+      * successfully set certificate verify locations:
+      *   CAfile: none
+        CApath: /etc/ssl/certs
+      * SSL connection using ECDHE-RSA-AES256-SHA
+      * --- Certificate chain
+      *  0 Subject: OU=GT54943370; OU=See www.rapidssl.com/resources/cps (c)15; OU=Domain Control Validated - RapidSSL(R); CN=www.hollandgold.nl
+      *    Issuer: C=US; O=GeoTrust Inc.; CN=RapidSSL SHA256 CA - G3
+      *    Version: 3 (0x2)
+      *    Serial Number: 89435 (0x15d5b)
+      *    Signature Algorithm: sha256WithRSAEncryption
+      *    Start date: 2014-12-31 12:10:20 GMT
+      *    Expire date: 2016-01-03 21:42:51 GMT
+      *    Public Key Algorithm: rsaEncryption
+      *    RSA Public Key (2048 bits)
+      *    rsa(n): f9:1e:3b:2d:81:76:73:67:8e:22:9e:9f:2b:da:fd:58:fc:2c:7c:c5:8b:2a:65:16:9d:5a:e1:1c:62:88:e3:1c:f1:d9:99:e6:5e:fd:a3:75:74:4c:ef:8e:f4:0f:2b:72:85:c1:d1:f6:49:25:03:e9:d8:95:4b:bc:af:7b:fb:8a:cd:d6:71:b5:84:c9:98:71:3d:09:06:f5:4a:55:28:28:8d:b0:f3:61:b9:45:f0:f9:b4:16:cd:57:88:74:cf:83:1d:2d:32:66:35:d7:01:09:23:c2:ea:8f:42:9f:08:9f:25:98:06:6f:a3:18:c9:8b:8a:ae:22:77:74:8b:c4:b5:85:c2:d4:c2:45:4f:0e:70:4a:8e:a5:8f:64:a0:6d:66:d3:59:1e:30:68:cf:8a:f7:d8:50:fc:de:ec:c0:6e:de:26:38:49:54:96:67:de:ed:86:ec:42:d5:4a:ed:80:7f:9a:bd:65:c7:db:cf:5b:2e:0b:c6:6a:5d:b5:77:fd:82:6d:68:e7:be:34:47:6a:b9:59:38:73:f7:ac:f1:a0:b3:9e:29:fe:43:5d:b6:86:ac:d4:b4:0f:5c:fb:49:65:31:95:a4:ee:31:ef:ee:03:4e:94:cc:82:9a:5f:81:94:39:1f:3d:49:ef:53:2e:c0:54:bd:e8:82:52:e1:f8:67:f7:
+      *    rsa(e): 01:00:01:
+      * X509v3 Authority Key Identifier: 
+      *   keyid:C3:9C:F3:FC:D3:46:08:34:BB:CE:46:7F:A0:7C:5B:F3:E2:08:CB:59
+      * Authority Information Access: 
+      *   OCSP-URI:http://gv.symcd.com, CAIssuers-URI:http://gv.symcb.com/gv.crt
+      * X509v3 Key Usage: (critical)
+      *   DigitalSignature,KeyEncipherment
+      * X509v3 Extended Key Usage: 
+      *   TLSWebServerAuthentication,TLSWebClientAuthentication
+      * X509v3 Subject Alternative Name: 
+      *   DNS:www.hollandgold.nl,DNS:hollandgold.nl
+      * X509v3 CRL Distribution Points: 
+      *   , FullName:, URI:http://gv.symcb.com/gv.crl
+      * X509v3 Basic Constraints: (critical)
+      *   CA:FALSE
+      * X509v3 Certificate Policies: 
+      *   Policy:2.16.840.1.113733.1.7.54, CPS:https://www.rapidssl.com/legal
+      *  Signature: 76:6c:1c:ec:07:b7:9c:6c:08:83:d7:30:4a:b0:e0:9e:2c:3f:81:d0:78:0f:fa:8b:4d:df:65:5d:6e:24:ba:bd:da:d1:67:e1:1b:70:b8:bd:21:c6:ee:60:51:02:43:97:50:4e:92:61:57:39:2b:17:6f:3e:ec:25:a2:4a:d2:31:27:41:61:0a:40:44:01:ca:17:b4:7e:ba:e7:86:04:8b:c5:83:96:cb:46:4a:b9:31:50:b8:70:26:00:f3:1a:17:0d:63:cc:87:0d:56:4e:de:37:bf:d0:34:5e:d3:71:48:b0:37:e8:cf:95:ee:7f:b2:e7:7a:c4:45:f7:75:0e:6d:c9:86:de:5d:39:54:17:ae:33:6a:ab:b8:67:b9:f9:3e:05:22:f0:b5:e6:03:5d:51:35:89:01:62:81:3b:dc:96:40:06:d9:5f:4c:ee:60:c8:63:92:bd:c8:03:55:a9:d9:e8:89:f3:0a:ac:d3:97:ee:67:32:ab:05:be:f3:5d:b0:1e:e9:dc:f3:90:07:8d:ff:57:72:ac:d2:2b:39:43:35:0c:2b:63:83:3e:a1:07:a7:58:b1:e8:35:3d:37:f2:4e:bc:1c:55:26:e3:fe:2d:b7:f8:04:60:90:e0:e7:6e:a8:cb:70:58:73:7b:83:d0:ed:21:30:be:37:a2:e3:f5:c5:
+      * -----BEGIN CERTIFICATE-----
+      MIIEuzCCA6OgAwIBAgIDAV1bMA0GCSqGSIb3DQEBCwUAMEcxCzAJBgNVBAYTAlVT
+      MRYwFAYDVQQKEw1HZW9UcnVzdCBJbmMuMSAwHgYDVQQDExdSYXBpZFNTTCBTSEEy
+      NTYgQ0EgLSBHMzAeFw0xNDEyMzExMjEwMjBaFw0xNjAxMDMyMTQyNTFaMIGWMRMw
+      EQYDVQQLEwpHVDU0OTQzMzcwMTEwLwYDVQQLEyhTZWUgd3d3LnJhcGlkc3NsLmNv
+      bS9yZXNvdXJjZXMvY3BzIChjKTE1MS8wLQYDVQQLEyZEb21haW4gQ29udHJvbCBW
+      YWxpZGF0ZWQgLSBSYXBpZFNTTChSKTEbMBkGA1UEAxMSd3d3LmhvbGxhbmRnb2xk
+      Lm5sMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA+R47LYF2c2eOIp6f
+      K9r9WPwsfMWLKmUWnVrhHGKI4xzx2ZnmXv2jdXRM7470DytyhcHR9kklA+nYlUu8
+      r3v7is3WcbWEyZhxPQkG9UpVKCiNsPNhuUXw+bQWzVeIdM+DHS0yZjXXAQkjwuqP
+      Qp8InyWYBm+jGMmLiq4id3SLxLWFwtTCRU8OcEqOpY9koG1m01keMGjPivfYUPze
+      7MBu3iY4SVSWZ97thuxC1UrtgH+avWXH289bLgvGal21d/2CbWjnvjRHarlZOHP3
+      rPGgs54p/kNdtoas1LQPXPtJZTGVpO4x7+4DTpTMgppfgZQ5Hz1J71MuwFS96IJS
+      4fhn9wIDAQABo4IBXjCCAVowHwYDVR0jBBgwFoAUw5zz/NNGCDS7zkZ/oHxb8+II
+      y1kwVwYIKwYBBQUHAQEESzBJMB8GCCsGAQUFBzABhhNodHRwOi8vZ3Yuc3ltY2Qu
+      Y29tMCYGCCsGAQUFBzAChhpodHRwOi8vZ3Yuc3ltY2IuY29tL2d2LmNydDAOBgNV
+      HQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMC0GA1Ud
+      EQQmMCSCEnd3dy5ob2xsYW5kZ29sZC5ubIIOaG9sbGFuZGdvbGQubmwwKwYDVR0f
+      BCQwIjAgoB6gHIYaaHR0cDovL2d2LnN5bWNiLmNvbS9ndi5jcmwwDAYDVR0TAQH/
+      BAIwADBFBgNVHSAEPjA8MDoGCmCGSAGG+EUBBzYwLDAqBggrBgEFBQcCARYeaHR0
+      cHM6Ly93d3cucmFwaWRzc2wuY29tL2xlZ2FsMA0GCSqGSIb3DQEBCwUAA4IBAQB2
+      bBzsB7ecbAiD1zBKsOCeLD+B0HgP+otN32VdbiS6vdrRZ+EbcLi9IcbuYFECQ5dQ
+      TpJhVzkrF28+7CWiStIxJ0FhCkBEAcoXtH6654YEi8WDlstGSrkxULhwJgDzGhcN
+      Y8yHDVZO3je/0DRe03FIsDfoz5Xuf7LnesRF93UObcmG3l05VBeuM2qruGe5+T4F
+      IvC15gNdUTWJAWKBO9yWQAbZX0zuYMhjkr3IA1Wp2eiJ8wqs05fuZzKrBb7zXbAe
+      6dzzkAeN/1dyrNIrOUM1DCtjgz6hB6dYseg1PTfyTrwcVSbj/i23+ARgkODnbqjL
+      cFhze4PQ7SEwvjei4/XF
+      -----END CERTIFICATE-----
+      [
+      *  1 Subject: C=US; O=GeoTrust Inc.; CN=GeoTrust Global CA
+      *    Issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust Global CA
+      *    Version: 3 (0x2)
+      *    Serial Number: 144470 (0x23456)
+      *    Signature Algorithm: sha1WithRSAEncryption
+      *    Start date: 2002-05-21 04:00:00 GMT
+      *    Expire date: 2022-05-21 04:00:00 GMT
+      *    Public Key Algorithm: rsaEncryption
+      *    RSA Public Key (2048 bits)
+      *    rsa(n): da:cc:18:63:30:fd:f4:17:23:1a:56:7e:5b:df:3c:6c:38:e4:71:b7:78:91:d4:bc:a1:d8:4c:f8:a8:43:b6:03:e9:4d:21:07:08:88:da:58:2f:66:39:29:bd:05:78:8b:9d:38:e8:05:b7:6a:7e:71:a4:e6:c4:60:a6:b0:ef:80:e4:89:28:0f:9e:25:d6:ed:83:f3:ad:a6:91:c7:98:c9:42:18:35:14:9d:ad:98:46:92:2e:4f:ca:f1:87:43:c1:16:95:57:2d:50:ef:89:2d:80:7a:57:ad:f2:ee:5f:6b:d2:00:8d:b9:14:f8:14:15:35:d9:c0:46:a3:7b:72:c8:91:bf:c9:55:2b:cd:d0:97:3e:9c:26:64:cc:df:ce:83:19:71:ca:4e:e6:d4:d5:7b:a9:19:cd:55:de:c8:ec:d2:5e:38:53:e5:5c:4f:8c:2d:fe:50:23:36:fc:66:e6:cb:8e:a4:39:19:00:b7:95:02:39:91:0b:0e:fe:38:2e:d1:1d:05:9a:f6:4d:3e:6f:0f:07:1d:af:2c:1e:8f:60:39:e2:fa:36:53:13:39:d4:5e:26:2b:db:3d:a8:14:bd:32:eb:18:03:28:52:04:71:e5:ab:33:3d:e1:38:bb:07:36:84:62:9c:79:ea:16:30:f4:5f:c0:2b:e8:71:6b:e4:f9:
+      *    rsa(e): 01:00:01:
+      * X509v3 Basic Constraints: (critical)
+      *   CA:TRUE
+      * X509v3 Subject Key Identifier: 
+      *   C0:7A:98:68:8D:89:FB:AB:05:64:0C:11:7D:AA:7D:65:B8:CA:CC:4E
+      * X509v3 Authority Key Identifier: 
+      *   keyid:C0:7A:98:68:8D:89:FB:AB:05:64:0C:11:7D:AA:7D:65:B8:CA:CC:4E
+      *  Signature: 35:e3:29:6a:e5:2f:5d:54:8e:29:50:94:9f:99:1a:14:e4:8f:78:2a:62:94:a2:27:67:9e:d0:cf:1a:5e:47:e9:c1:b2:a4:cf:dd:41:1a:05:4e:9b:4b:ee:4a:6f:55:52:b3:24:a1:37:0a:eb:64:76:2a:2e:2c:f3:fd:3b:75:90:bf:fa:71:d8:c7:3d:37:d2:b5:05:95:62:b9:a6:de:89:3d:36:7b:38:77:48:97:ac:a6:20:8f:2e:a6:c9:0c:c2:b2:99:45:00:c7:ce:11:51:22:22:e0:a5:ea:b6:15:48:09:64:ea:5e:4f:74:f7:05:3e:c7:8a:52:0c:db:15:b4:bd:6d:9b:e5:c6:b1:54:68:a9:e3:69:90:b6:9a:a5:0f:b8:b9:3f:20:7d:ae:4a:b5:b8:9c:e4:1d:b6:ab:e6:94:a5:c1:c7:83:ad:db:f5:27:87:0e:04:6c:d5:ff:dd:a0:5d:ed:87:52:b7:2b:15:02:ae:39:a6:6a:74:e9:da:c4:e7:bc:4d:34:1e:a9:5c:4d:33:5f:92:09:2f:88:66:5d:77:97:c7:1d:76:13:a9:d5:e5:f1:16:09:11:35:d5:ac:db:24:71:70:2c:98:56:0b:d9:17:b4:d1:e3:51:2b:5e:75:e8:d5:d0:dc:4f:34:ed:c2:05:66:80:a1:cb:e6:33:
+      * -----BEGIN CERTIFICATE-----
+      MIIDVDCCAjygAwIBAgIDAjRWMA0GCSqGSIb3DQEBBQUAMEIxCzAJBgNVBAYTAlVT
+      MRYwFAYDVQQKEw1HZW9UcnVzdCBJbmMuMRswGQYDVQQDExJHZW9UcnVzdCBHbG9i
+      YWwgQ0EwHhcNMDIwNTIxMDQwMDAwWhcNMjIwNTIxMDQwMDAwWjBCMQswCQYDVQQG
+      EwJVUzEWMBQGA1UEChMNR2VvVHJ1c3QgSW5jLjEbMBkGA1UEAxMSR2VvVHJ1c3Qg
+      R2xvYmFsIENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2swYYzD9
+      9BcjGlZ+W988bDjkcbd4kdS8odhM+KhDtgPpTSEHCIjaWC9mOSm9BXiLnTjoBbdq
+      fnGk5sRgprDvgOSJKA+eJdbtg/OtppHHmMlCGDUUna2YRpIuT8rxh0PBFpVXLVDv
+      iS2Aelet8u5fa9IAjbkU+BQVNdnARqN7csiRv8lVK83Qlz6cJmTM386DGXHKTubU
+      1XupGc1V3sjs0l44U+VcT4wt/lAjNvxm5suOpDkZALeVAjmRCw7+OC7RHQWa9k0+
+      bw8HHa8sHo9gOeL6NlMTOdReJivbPagUvTLrGAMoUgRx5aszPeE4uwc2hGKceeoW
+      MPRfwCvocWvk+QIDAQABo1MwUTAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBTA
+      ephojYn7qwVkDBF9qn1luMrMTjAfBgNVHSMEGDAWgBTAephojYn7qwVkDBF9qn1l
+      uMrMTjANBgkqhkiG9w0BAQUFAAOCAQEANeMpauUvXVSOKVCUn5kaFOSPeCpilKIn
+      Z57QzxpeR+nBsqTP3UEaBU6bS+5Kb1VSsyShNwrrZHYqLizz/Tt1kL/6cdjHPTfS
+      tQWVYrmm3ok9Nns4d0iXrKYgjy6myQzCsplFAMfOEVEiIuCl6rYVSAlk6l5PdPcF
+      PseKUgzbFbS9bZvlxrFUaKnjaZC2mqUPuLk/IH2uSrW4nOQdtqvmlKXBx4Ot2/Un
+      hw4EbNX/3aBd7YdStysVAq45pmp06drE57xNNB6pXE0zX5IJL4hmXXeXxx12E6nV
+      5fEWCRE11azbJHFwLJhWC9kXtNHjUStedejV0NxPNO3CBWaAocvmMw==
+      -----END CERTIFICATE-----
+      
+      *  2 Subject: C=US; O=GeoTrust Inc.; CN=RapidSSL SHA256 CA - G3
+      *    Issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust Global CA
+      *    Version: 3 (0x2)
+      *    Serial Number: 146039 (0x23a77)
+      *    Signature Algorithm: sha256WithRSAEncryption
+      *    Start date: 2014-08-29 21:39:32 GMT
+      *    Expire date: 2022-05-20 21:39:32 GMT
+      *    Public Key Algorithm: rsaEncryption
+      *    RSA Public Key (2048 bits)
+      *    rsa(n): af:54:9b:d9:58:5d:1e:2c:56:c6:d5:e8:7f:f4:7d:16:03:ff:d0:8b:5a:e4:8e:a7:dd:54:2e:d4:04:c0:5d:98:9c:8d:90:0f:bc:10:65:5f:da:9a:d6:44:7c:c0:9f:b5:e9:4a:8c:0b:06:43:04:bb:f4:96:e2:26:f6:61:01:91:66:31:22:c3:34:34:5f:3f:3f:91:2f:44:5f:dc:c7:14:b6:03:9f:86:4b:0e:a3:ff:a0:80:02:83:c3:d3:1f:69:52:d6:9d:64:0f:c9:83:e7:1b:c4:70:ac:94:e7:c3:a4:6a:2c:bd:b8:9e:69:d8:be:0a:8f:16:63:5a:68:71:80:7b:30:de:15:04:bf:cc:d3:bf:3e:48:05:55:7a:b3:d7:10:0c:03:fc:9b:fd:08:a7:8c:8c:db:a7:8e:f1:1e:63:dc:b3:01:2f:7f:af:57:c3:3c:48:a7:83:68:21:a7:2f:e7:a7:3f:f0:b5:0c:fc:f5:84:d1:53:bc:0e:72:4f:60:0c:42:b8:98:ad:19:88:57:d7:04:ec:87:bf:7e:87:4e:a3:21:f9:53:fd:36:98:48:8d:d6:f8:bb:48:f2:29:c8:64:d1:cc:54:48:53:8b:af:b7:65:1e:bf:29:33:29:d9:29:60:48:f8:ff:91:bc:57:58:e5:35:2e:bb:69:b6:59:
+      *    rsa(e): 01:00:01:
+      * X509v3 Authority Key Identifier: 
+      *   keyid:C0:7A:98:68:8D:89:FB:AB:05:64:0C:11:7D:AA:7D:65:B8:CA:CC:4E
+      * X509v3 Subject Key Identifier: 
+      *   C3:9C:F3:FC:D3:46:08:34:BB:CE:46:7F:A0:7C:5B:F3:E2:08:CB:59
+      * X509v3 Basic Constraints: (critical)
+      *   CA:TRUE,pathlen:0
+      * X509v3 Key Usage: (critical)
+      *   CertificateSign,CRLSign
+      * X509v3 CRL Distribution Points: 
+      *   , FullName:, URI:http://g.symcb.com/crls/gtglobal.crl
+      * Authority Information Access: 
+      *   OCSP-URI:http://g.symcd.com
+      * X509v3 Certificate Policies: 
+      *   Policy:2.16.840.1.113733.1.7.54, CPS:http://www.geotrust.com/resources/cps
+      *  Signature: a3:58:1e:c6:43:32:ac:ac:2f:93:78:b7:ea:ae:54:40:47:2d:7e:78:8d:50:f6:f8:66:ac:d6:4f:73:d6:44:ef:af:0b:cc:5b:c1:f4:4f:9a:8f:49:7e:60:af:c2:27:c7:16:f1:fb:93:81:90:a9:7c:ef:6f:7e:6e:45:94:16:84:bd:ec:49:f1:c4:0e:f4:af:04:59:83:87:0f:2c:3b:97:c3:5a:12:9b:7b:04:35:7b:a3:95:33:08:7b:93:71:22:42:b3:a9:d9:6f:4f:81:92:fc:07:b6:79:bc:84:4a:9d:77:09:f1:c5:89:f2:f0:b4:9c:54:aa:12:7b:0d:ba:4f:ef:93:19:ec:ef:7d:4e:61:a3:8e:76:9c:59:cf:8c:94:b1:84:97:f7:1a:b9:07:b8:b2:c6:4f:13:79:db:bf:4f:51:1b:7f:69:0d:51:2a:c1:d6:15:ff:37:51:34:65:51:f4:1e:be:38:6a:ec:0e:ab:bf:3d:7b:39:05:7b:f4:f3:fb:1a:a1:d0:c8:7e:4e:64:8d:cd:8c:61:55:90:fe:3a:ca:5d:25:0f:f8:1d:a3:4a:74:56:4f:1a:55:40:70:75:25:a6:33:2e:ba:4b:a5:5d:53:9a:0d:30:e1:8d:5f:61:2c:af:cc:ef:b0:99:a1:80:ff:0b:f2:62:4c:70:26:98:
+      * -----BEGIN CERTIFICATE-----
+      MIIEJTCCAw2gAwIBAgIDAjp3MA0GCSqGSIb3DQEBCwUAMEIxCzAJBgNVBAYTAlVT
+      MRYwFAYDVQQKEw1HZW9UcnVzdCBJbmMuMRswGQYDVQQDExJHZW9UcnVzdCBHbG9i
+      YWwgQ0EwHhcNMTQwODI5MjEzOTMyWhcNMjIwNTIwMjEzOTMyWjBHMQswCQYDVQQG
+      EwJVUzEWMBQGA1UEChMNR2VvVHJ1c3QgSW5jLjEgMB4GA1UEAxMXUmFwaWRTU0wg
+      U0hBMjU2IENBIC0gRzMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCv
+      VJvZWF0eLFbG1eh/9H0WA//Qi1rkjqfdVC7UBMBdmJyNkA+8EGVf2prWRHzAn7Xp
+      SowLBkMEu/SW4ib2YQGRZjEiwzQ0Xz8/kS9EX9zHFLYDn4ZLDqP/oIACg8PTH2lS
+      1p1kD8mD5xvEcKyU58Okaiy9uJ5p2L4KjxZjWmhxgHsw3hUEv8zTvz5IBVV6s9cQ
+      DAP8m/0Ip4yM26eO8R5j3LMBL3+vV8M8SKeDaCGnL+enP/C1DPz1hNFTvA5yT2AM
+      QriYrRmIV9cE7Ie/fodOoyH5U/02mEiN1vi7SPIpyGTRzFRIU4uvt2UevykzKdkp
+      YEj4/5G8V1jlNS67abZZAgMBAAGjggEdMIIBGTAfBgNVHSMEGDAWgBTAephojYn7
+      qwVkDBF9qn1luMrMTjAdBgNVHQ4EFgQUw5zz/NNGCDS7zkZ/oHxb8+IIy1kwEgYD
+      VR0TAQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAQYwNQYDVR0fBC4wLDAqoCig
+      JoYkaHR0cDovL2cuc3ltY2IuY29tL2NybHMvZ3RnbG9iYWwuY3JsMC4GCCsGAQUF
+      BwEBBCIwIDAeBggrBgEFBQcwAYYSaHR0cDovL2cuc3ltY2QuY29tMEwGA1UdIARF
+      MEMwQQYKYIZIAYb4RQEHNjAzMDEGCCsGAQUFBwIBFiVodHRwOi8vd3d3Lmdlb3Ry
+      dXN0LmNvbS9yZXNvdXJjZXMvY3BzMA0GCSqGSIb3DQEBCwUAA4IBAQCjWB7GQzKs
+      rC+TeLfqrlRARy1+eI1Q9vhmrNZPc9ZE768LzFvB9E+aj0l+YK/CJ8cW8fuTgZCp
+      fO9vfm5FlBaEvexJ8cQO9K8EWYOHDyw7l8NaEpt7BDV7o5UzCHuTcSJCs6nZb0+B
+      kvwHtnm8hEqddwnxxYny8LScVKoSew26T++TGezvfU5ho452nFnPjJSxhJf3GrkH
+      uLLGTxN5279PURt/aQ1RKsHWFf83UTRlUfQevjhq7A6rvz17OQV79PP7GqHQyH5O
+      ZI3NjGFVkP46yl0lD/gdo0p0Vk8aVUBwdSWmMy66S6VdU5oNMOGNX2Esr8zvsJmh
+      gP8L8mJMcCaY
+      -----END CERTIFICATE-----
+      
+      * Server certificate:
+      * 	 subject: OU=GT54943370; OU=See www.rapidssl.com/resources/cps (c)15; OU=Domain Control Validated - RapidSSL(R); CN=www.hollandgold.nl
+      * 	 start date: 2014-12-31 12:10:20 GMT
+      * 	 expire date: 2016-01-03 21:42:51 GMT
+      * 	 subjectAltName: www.hollandgold.nl matched
+      * 	 issuer: C=US; O=GeoTrust Inc.; CN=RapidSSL SHA256 CA - G3
+      * 	 SSL certificate verify ok.
+      > GET /idealcheckout/test.php?status=success HTTP/1.1
+      Host: www.hollandgold.nl
+      Accept: */*
+      
+      < HTTP/1.1 404 Not Found
+      < Server: nginx/1.1.19
+      < Date: Tue, 18 Aug 2015 08:33:18 GMT
+      < Content-Type: text/html; charset=UTF-8
+      < Transfer-Encoding: chunked
+      < Connection: keep-alive
+      < X-Powered-By: PHP/5.3.10-1ubuntu3.15
+      < Set-Cookie: frontend=h9kps7efgm0q23nlglni51nkj2; expires=Tue, 18-Aug-2015 09:33:18 GMT; path=/; domain=www.hollandgold.nl; HttpOnly
+      < Expires: Thu, 19 Nov 1981 08:52:00 GMT
+      < Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      < Pragma: no-cache
+      < 
+      * Connection #0 to host www.hollandgold.nl left intact
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/library.php
+LINE: 672
+
+
+TEXT: Sending mail for order #tcxolHnR2N1uEADM
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/update.order.status.php
+LINE: 40
+
+
+TEXT: Error while sending e-mail to: tjallin@newtalentgroup.com
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/library.php
+LINE: 1794
+
+
+TEXT: array (
+        'status' => 'success',
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 21
+
+
+TEXT: array (
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 22
+
+
+TEXT: Loading gateway: /var/www/vhosts/hollandgold.nl/idealcheckout/gateways/ideal-professional-v3/gateway.cls.php
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 265
+

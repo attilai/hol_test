@@ -1,0 +1,18 @@
+
+TEXT: array (
+        'gateway_code' => 'ideal',
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 21
+
+
+TEXT: array (
+      )
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 22
+
+
+TEXT: Loading gateway: /var/www/vhosts/hollandgold.nl/idealcheckout/gateways/ideal-professional-v3/gateway.cls.php
+FILE: /var/www/vhosts/hollandgold.nl/idealcheckout/includes/init.php
+LINE: 265
+

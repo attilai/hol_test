@@ -1,0 +1,56 @@
+* {
+	font-family: "Verdana", Verdana, Arial, sans-serif;
+	font-size: 12.5px;
+	line-height: 1.5;
+	font-weight: 100; 
+}
+
+hr {
+color: #c7c7c7;
+background-color: #c7c7c7;
+height: 1px;
+border: 0px;
+margin-left: -10px;
+}
+
+td {
+width: 120px;
+padding-left: 10px;
+}
+
+#miniKoersButtonGold {
+padding-left: 10px;
+padding-top:3px;
+margin-right: 10px;
+}
+
+#miniKoersButtonSilver {
+padding-left: 10px;
+padding-top:3px;
+color: #fff;
+}
+
+#container {
+padding-left: 10px;
+padding-top:3px;
+left: 0;
+}
+
+#container canvas{
+margin-left: 10px;
+}
+
+.jqplot-axis {
+left: 0px;
+margin-left: 7px;
+font-size: 9px;
+}
+
+.jqplot-yaxis-tick, .jqplot-xaxis-tick {
+font-size: 8px;
+}
+
+.jqplot-xaxis-tick {
+margin-bottom: 10px;
+margin-top: 5px;
+}

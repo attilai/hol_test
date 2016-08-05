@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <googleshopping_adminhtml_googleshopping_index>
+        <reference name="content">
+            <block type="googleshopping/adminhtml_googleshopping" name="googleshopping" />
+				
+        </reference>
+    </googleshopping_adminhtml_googleshopping_index>
+    <googleshopping_adminhtml_googleshopping_edit>
+     	<reference name="head">
+			<action method="addItem"><type>skin_js</type><name>googleshopping/js/observer.js</name></action>
+			<action method="addItem"><type>skin_css</type><name>googleshopping/css/styles.css</name></action>		
+		</reference>
+  </googleshopping_adminhtml_googleshopping_edit>
+</layout>
