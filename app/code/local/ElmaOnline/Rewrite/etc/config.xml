@@ -20,12 +20,12 @@
     <events>
 	  <controller_front_init_before> <!-- identifier of the event we want to catch -->
         <observers>
-          <controller_action_layout_load_before_handler> <!-- identifier of the event handler -->
+          <controller_action_after> <!-- identifier of the event handler -->
             <type>model</type> <!-- class method call type; valid are model, object and singleton -->
             <class>rewrite/observer</class> <!-- observers class alias -->
             <method>direction</method>  <!-- observer's method to be called -->
             <args></args> <!-- additional arguments passed to observer -->
-          </controller_action_layout_load_before_handler>
+          </controller_action_after>
         </observers>
       </controller_front_init_before>
     </events>

@@ -10,10 +10,14 @@ $dbname = 'hollandgold_margemod';
 // $dbpass = '43aXs#nm';
 // $dbname = 'hollandgold_margemod';
 
+
 // Database verbinding maken
 $link = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 if (!$link) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
+    $to = "support@elmaonline.nl , rratinov@gmail.com";
+    $subject = "Hollandgold error report";
+    $headers = "From: support@elmaonline.nl";
+    mail($to,$subject, mysqli_connect_error(), $headers);
     exit();
 }
 ?>

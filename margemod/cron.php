@@ -11,9 +11,6 @@ include ('includes/initialize.php');
 
 $startTime = microtime(true);	
 $numberOfProducts = 0;
-	
-// error alert
-include('includes/errors.php');
 
 if($silverRate > 10 && $goldRate > 500 && $platinumRate > 1 && $palladiumRate > 1)
 {
@@ -57,8 +54,17 @@ if($silverRate > 10 && $goldRate > 500 && $platinumRate > 1 && $palladiumRate > 
 		$call_array[] = array('product_tier_price.update', array($row['products_id'], $tier_prices));
 		
 		echo $row['products_name'].": &euro;".$item_price.";".PHP_EOL;
+		try {
+            $client->multiCall($session, $call_array);
+        }
+
+        catch(Exception $e) {
+            $to = "support@elmaonline.nl , rratinov@gmail.com";
+            $subject = "Hollandgold error report";
+            $headers = "From: support@elmaonline.nl";
+            mail($to,$subject,$e->getMessage(), $headers);
+        }
 		
-		$client->multiCall($session, $call_array);
 		
 		$pRunTime = microtime(true) - $pStartTime; 
 		print "[Elapsed time :: ".$pRunTime." seconds.]" . PHP_EOL;

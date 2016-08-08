@@ -32,28 +32,14 @@ class Plumrocket_AutoInvoice_Model_Observer
 
 		$dateModel	= Mage::getModel('core/date');
 		$time		= $dateModel->timestamp() - 60 * 60;
-		
-		// EDDY
-		$collection = Mage::getModel('sales/order')->getCollection()->join(
-																				array('payment' => 'sales/order_payment'),
-																				'main_table.entity_id=payment.parent_id',
-																				array('payment_method' => 'payment.method')
-																			);
-		$collection->addFieldToFilter('main_table.created_at', array('gt' => $dateModel->gmtDate('Y-m-d H:i:s', $time)))
-					->addFieldToFilter('main_table.state', array('in' => array(
-						Mage_Sales_Model_Order::STATE_NEW,
-						Mage_Sales_Model_Order::STATE_PROCESSING,
-					)))
-					->addFieldToFilter('payment.method', array(array('neq' => 'idealcheckoutideal')));
-		
-		/* EDDY uitgezet om iDeal uit te sluiten aan de query zie hierboven
+
 		$collection = Mage::getModel('sales/order')->getCollection()
 			->addFieldToFilter('main_table.created_at', array('gt' => $dateModel->gmtDate('Y-m-d H:i:s', $time)))
 			->addFieldToFilter('main_table.state', array('in' => array(
 				Mage_Sales_Model_Order::STATE_NEW,
 				Mage_Sales_Model_Order::STATE_PROCESSING,
 			)));
-		*/
+
 		$_resource = Mage::getSingleton('core/resource');
 		$collection->getSelect()
 			->joinLeft( array('invoice' => $_resource->getTableName('sales/invoice')), 'invoice.order_id = main_table.entity_id', array())

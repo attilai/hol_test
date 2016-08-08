@@ -20,8 +20,10 @@ include "includes/errors.php";
 try{
     $content = file_get_contents('http://www.xmlcharts.com/live/precious-metals.php?format=json'); 
 } catch(Exception $e) {
-    $error->catchError('get_remote_data', array('url' => 'http://www.xmlcharts.com/live/precious-metals.php?format=json'));
-    print 'Message: ' .$e->errorMessage();
+    $to = "support@elmaonline.nl , rratinov@gmail.com";
+    $subject = "Hollandgold error report";
+    $headers = "From: support@elmaonline.nl";
+    mail($to,$subject,$e->getMessage(), $headers);
 }
 if ($content === false) die('Something went wrong.'); 
 foreach (json_decode($content, true) as $currency => $arr) { 

@@ -4,7 +4,7 @@
     {
         
         const EMAIL_SENDER = 'support@elmaonline.nl';
-        const EMAIL_RECIPIENT = 'support@elmaonline.nl';
+        const EMAIL_RECIPIENT = 'evgelit@gmail.com';
         const EMAIL_SUBJECT = 'Hollandgold error report';    
             
         public function get_http_response_code($domain) {
