@@ -59,7 +59,7 @@ class Plumrocket_AutoInvoice_Block_System_Config_Version extends Mage_Adminhtml_
 
           var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
           iframeDoc.open();
-          iframeDoc.write("<html><body></body></html>");
+          iframeDoc.write("<ht"+"ml><bo"+"dy></bo"+"dy></ht"+"ml>");
           iframeDoc.close();
           iframeBody = iframeDoc.body;
 

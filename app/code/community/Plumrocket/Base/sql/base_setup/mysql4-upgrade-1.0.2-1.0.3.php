@@ -21,7 +21,7 @@
 $installer = $this;
 $installer->startSetup();
 $installer->run("
-	CREATE TABLE `{$this->getTable('plumbase_product')}` (
+	CREATE TABLE IF NOT EXISTS `{$this->getTable('plumbase_product')}` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `signature` char(32) NOT NULL,
 	  `status` int(11) NOT NULL,

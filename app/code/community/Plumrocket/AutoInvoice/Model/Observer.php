@@ -31,7 +31,7 @@ class Plumrocket_AutoInvoice_Model_Observer
 		}
 
 		$dateModel	= Mage::getModel('core/date');
-		$time		= $dateModel->timestamp() - 60 * 60;
+		$time		= $dateModel->timestamp() - 6 * 60 * 60;
 
 		$collection = Mage::getModel('sales/order')->getCollection()
 			->addFieldToFilter('main_table.created_at', array('gt' => $dateModel->gmtDate('Y-m-d H:i:s', $time)))
@@ -44,6 +44,9 @@ class Plumrocket_AutoInvoice_Model_Observer
 		$collection->getSelect()
 			->joinLeft( array('invoice' => $_resource->getTableName('sales/invoice')), 'invoice.order_id = main_table.entity_id', array())
 			->where('order_id IS NULL');
+
+
+		Mage::app()->loadArea('adminhtml');
 
 		foreach($collection as $order){
 
@@ -63,6 +66,7 @@ class Plumrocket_AutoInvoice_Model_Observer
 				$invoice = Mage::getModel('sales/service_order', $order)->prepareInvoice();
 
 				if ($invoice) {
+					Mage::register('current_invoice', $invoice, true);
 					$invoice->setRequestedCaptureCase($_helper->getCaptureAmount($order->getStoreId()));
 					$invoice->register();
 					$invoice->getOrder()->setCustomerNoteNotify(false);
@@ -73,7 +77,7 @@ class Plumrocket_AutoInvoice_Model_Observer
 						->addObject($invoice->getOrder())
 						->save();
 
-					$invoice->sendEmail(true);
+					//$invoice->sendEmail(true);
 
 					$order->addStatusHistoryComment('Auto Invoice: Order invoiced.', false)->save();
 				}
@@ -104,6 +108,8 @@ class Plumrocket_AutoInvoice_Model_Observer
 				return;
 			}
 
+			Mage::app()->loadArea('adminhtml');
+
 			try{
 
 				$qtys = array();
@@ -117,6 +123,7 @@ class Plumrocket_AutoInvoice_Model_Observer
 				$invoice = Mage::getModel('sales/service_order', $order)->prepareInvoice($qtys);
 
 				if ($invoice) {
+					Mage::register('current_invoice', $invoice);
 					$invoice->setRequestedCaptureCase($_helper->getCaptureAmount($order->getStoreId()));
 					$invoice->register();
 					$invoice->getOrder()->setCustomerNoteNotify(false);
@@ -127,7 +134,7 @@ class Plumrocket_AutoInvoice_Model_Observer
 						->addObject($invoice->getOrder())
 						->save();
 
-					$invoice->sendEmail(true);
+					//$invoice->sendEmail(true);
 
 					$order->addStatusHistoryComment('Auto Invoice: Order invoiced.', false)->save(); 
 				}
@@ -136,6 +143,25 @@ class Plumrocket_AutoInvoice_Model_Observer
             }
 
 		}
+	}
+
+	public function sendInvoiceEmail($observer)
+	{
+		if (!Mage::helper('autoinvoice')->moduleEnabled()){
+			return $this;
+		}
+
+		try {
+			$_invoice = $observer->getEvent()->getInvoice();
+			if ($_invoice->getEmailSent()){
+				return $this;
+			}
+			$_invoice->sendEmail(); 
+		} catch (Exception $e) {
+			 //echo $e->getMessage();
+		}
+
+		return $this;
 	}
 
 }

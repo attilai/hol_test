@@ -29,7 +29,7 @@ class Plumrocket_Base_Model_CronChecker
 
 		if(!$this->getCronStatus('plumrocket_'.$name.'_')) {
 			$session = Mage::getSingleton('adminhtml/session');
-			$message = Mage::helper('adminhtml')->__('Magento Cron Job is missing in your crontab. This magento extension requires to schedule custom tasks to be run periodically. Please read <a href="%s" target="_blank">How to setup a Cron Job in Magento</a> for more info.', 'http://wiki.plumrocket.com/wiki/How_to_setup_a_Cron_Job_in_Magento');
+			$message = Mage::helper('adminhtml')->__('Notice: You can disregard this message if the extension was installed less than 30 minutes ago.<br/>Magento Cron Job is missing in your crontab. This magento extension requires to schedule custom tasks to be run periodically. Please read <a href="%s" target="_blank">How to setup a Cron Job in Magento</a> for more info.', 'http://wiki.plumrocket.com/wiki/How_to_setup_a_Cron_Job_in_Magento');
 			$session->addUniqueMessages(Mage::getSingleton('core/message')->notice($message)->setIdentifier('plumrocket_cronChecker'));
 		}
 	}

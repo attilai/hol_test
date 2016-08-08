@@ -2,7 +2,7 @@
 <config>
 	<modules>
 		<Plumrocket_AutoInvoice>
-			<version>1.0.7</version>
+			<version>1.1.1</version>
 		</Plumrocket_AutoInvoice>
 	</modules>
 	<global>
@@ -32,6 +32,15 @@
 	          </autoinvoice_sales_order_shipment_save_after>
 	        </observers>
 	      </sales_order_shipment_save_after>
+	      <sales_order_invoice_save_after>
+				<observers>
+					<autoinvoice_sales_order_invoice_save_after>
+						<type>model</type>
+						<class>autoinvoice/observer</class>
+						<method>sendInvoiceEmail</method> 
+					</autoinvoice_sales_order_invoice_save_after>
+				</observers>
+			</sales_order_invoice_save_after>
 	    </events>
 	</global>
 	<crontab>

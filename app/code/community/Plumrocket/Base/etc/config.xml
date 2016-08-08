@@ -3,7 +3,7 @@
 
 	<modules>
 		<Plumrocket_Base>
-			<version>1.0.4</version>
+			<version>1.0.6</version>
 		</Plumrocket_Base>
 	</modules>
 
@@ -53,17 +53,23 @@
 						<class>plumbase/feed</class>
 						<method>checkUpdate</method>
 					</plumrocket_base_notitications>
-					<plumrocket_base_reindex>
-						<type>singleton</type>
-						<class>plumbase/product</class>
-						<method>reindex</method>
-					</plumrocket_base_reindex>
 					<plumrocket_base_permissionsCheck>
+						<type>singleton</type>
                         <class>plumbase/observer</class>
                         <method>permissionsCheck</method>
                     </plumrocket_base_permissionsCheck>
 				</observers>
 			</controller_action_predispatch>
+
+			<controller_action_postdispatch>
+				<observers>
+					<plumrocket_base_reindex>
+						<type>singleton</type>
+						<class>plumbase/product</class>
+						<method>reindex</method>
+					</plumrocket_base_reindex>
+				</observers>
+			</controller_action_postdispatch>
 
 			<controller_action_predispatch_adminhtml_system_config_edit>
                 <observers>
