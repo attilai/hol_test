@@ -46,6 +46,8 @@
 "Error while saving this tax rule. Please try again later.","Fout tijdens opslaan van deze BTW-regel. Probeer later nieuw."
 "Error while saving this tax rule. This product tax class, customer tax class and tax rate combination","Fout tijdens opslaan van deze BTW-regel. Deze combinatie van product- en klant-tariefgroepen en BTW-tarief"
 "Excl. Tax","Excl. BTW"
+"Grand Total (Excl.Tax)", "Totaal (excl. BTW)"
+"Grand Total (Incl.Tax)", "Totaal (incl. BTW)"
 "Excl. Tax:","Excl. BTW:"
 "Excluding tax","Exclusief BTW"
 "Export Tax Rates","Exporteer BTW-tarieven"

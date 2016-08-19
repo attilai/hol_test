@@ -40,6 +40,7 @@ q:after{content:''}
 small,big{font-size:1em}
 /* Lists */
 ul,ol{list-style:none;margin:0;padding:0}
+img {max-width: 100%;}
 
 /* Tools */
 .hidden{display:block !important;border:0 !important;margin:0 !important;padding:0 !important;font-size:0 !important;line-height:0 !important;width:0 !important;height:0 !important;overflow:hidden !important}

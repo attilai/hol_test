@@ -37,7 +37,7 @@ SetEnvIf X-Forwarded-Proto https HTTPS=on
 ##### Domain-specific PHP Settings #####
 
 <IfModule mod_php5.c>
-	php_value memory_limit 2048M
+	php_value memory_limit 12000M
 	php_value max_execution_time 18000
 	php_flag magic_quotes_gpc off
 	php_flag session.auto_start off
@@ -60,7 +60,7 @@ SetEnvIf X-Forwarded-Proto https HTTPS=on
 	RewriteCond %{REQUEST_URI}  !(downloader) [NC]
 	RewriteCond %{THE_REQUEST} ^.*/index.php
 	RewriteRule ^(.*)index.php$ https://www.hollandgold.nl/$1 [R=301,L]
-
+    RewriteRule ^api/([a-z][0-9a-z_]+)/?$ api.php?type=$1 [QSA,L]
   	##### Please note - http://www. if not using www simply use http://
 	redirect 301 /home https://www.hollandgold.nl
 

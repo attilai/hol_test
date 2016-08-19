@@ -59,7 +59,7 @@ if($silverRate > 10 && $goldRate > 500 && $platinumRate > 1 && $palladiumRate > 
         }
 
         catch(Exception $e) {
-            $to = "support@elmaonline.nl , rratinov@gmail.com";
+            $to = "support@elmaonline.nl , rratinov@gmail.com , evgelit@gmail.com";
             $subject = "Hollandgold error report";
             $headers = "From: support@elmaonline.nl";
             mail($to,$subject,$e->getMessage(), $headers);
