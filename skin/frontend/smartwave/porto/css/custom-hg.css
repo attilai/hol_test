@@ -44,7 +44,7 @@ i.icon-usp-security { background:url(../images/hg/icon-usp-security.png) no-repe
 .product-image-area { overflow:visible; }
 .product-name { margin:20px 0px; min-height:3em; }
 .product-name a { color:#074a8d; display:block; }
-.products-grid div.labeldirect { width:50px; height:50px; top:-2px; left:-2px; position:absolute; z-index:99; }
+.products-grid div.labeldirect { width:100px; height:100px; top:-2px; left:-2px; position:absolute; z-index:99; }
 a.addtocart { background:#ff9a0a; color:#fff; border:none; font-size:12px; padding:0px 20px; margin-bottom:20px; }
 .item:hover a.addtocart,
 .item:hover .details-area .actions a.addtocart,

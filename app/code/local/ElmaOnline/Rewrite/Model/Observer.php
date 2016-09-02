@@ -12,10 +12,11 @@ class ElmaOnline_Rewrite_Model_Observer
                     and strlen($path) > 1 
                     and substr($path, 1, 8) != 'ajaxcart' 
                     and substr($path, 1, 15) !='onestepcheckout' 
+                    and substr($path, 1, strlen('checkout')) !='checkout'
                     and substr($path, 1, strlen('index.php/admin')) !='index.php/admin'
                     and substr($path, 1, strlen('downlooader')) !='downlooader'
                     and substr($path, 1, strlen('api')) !='api'      
-                    and and substr($path, 1, strlen('index.php/api')) !='index.php/api'              
+                    and substr($path, 1, strlen('index.php/api')) !='index.php/api'              
                     ){
                     $url = Mage::getBaseUrl() . substr($path, 1, strlen($path)-2);
                     Mage::app()->getResponse()->setRedirect($url, 301)->sendResponse();

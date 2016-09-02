@@ -321,18 +321,20 @@ abstract class Fooman_PdfCustomiser_Model_Abstract extends Mage_Sales_Model_Orde
                                 );
                             }
                         } else {
+/*
                             $totals[$sortOrder][] = array(
                                 'label'     => Mage::helper('sales')->__('Tax') . ":",
                                 'amount'    => (float)$salesObject->getTaxAmount(),
                                 'baseAmount'=> (float)$salesObject->getBaseTaxAmount()
                             );
+*/
                         }
                     } elseif (Mage::getStoreConfig('tax/sales_display/zero_tax', $helper->getStoreId())) {
-                            $totals[$sortOrder][] = array(
+                           /* $totals[$sortOrder][] = array(
                                 'label'     => Mage::helper('sales')->__('Tax') . ":",
                                 'amount'    => (float)0,
                                 'baseAmount'=> (float)0
-                            );
+                            );*/
                     }                    
                     break;
                 case 'shipping_amount':
@@ -376,6 +378,13 @@ abstract class Fooman_PdfCustomiser_Model_Abstract extends Mage_Sales_Model_Orde
                                 'baseAmount'=> $salesObject->getBaseShippingAmount()
                             );
                         }
+                    }else{
+                        $totals[$sortOrder][] = array(
+                                'label'     => str_replace(' &amp; ', ' & ', Mage::helper('sales')->__('Shipping & Handling')) . ':',
+                                'amount'    => (float)0,
+                                'baseAmount'=> (float)0
+                        );
+
                     }                    
                     break;                 
                 case 'adjustment_positive':
