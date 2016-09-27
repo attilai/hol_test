@@ -115,6 +115,9 @@ class Idual_ExportOrders_IndexController extends Mage_Core_Controller_Front_Acti
 	 * @return output XML string
 	 */ 
 	private function _GetXMLNew($order_id) {
+        if($order_id == "15020") {
+            return;
+        }
 		$order = Mage::getModel('sales/order')->load($order_id);
 		// EDDY $order = Mage::getModel('sales/order')->loadByIncrementId($order_id);
 		// EDDY $order = Mage::getModel('sales/order')->loadByIncrementId('100011678');

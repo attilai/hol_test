@@ -14,9 +14,9 @@ $dbname = 'hollandgold_margemod';
 // Database verbinding maken
 $link = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 if (!$link) {
-    $to = "support@elmaonline.nl , rratinov@gmail.com";
+    $to = "contact@westpointdigital.nl , rratinov@gmail.com";
     $subject = "Hollandgold error report";
-    $headers = "From: support@elmaonline.nl";
+    $headers = "From: contact@westpointdigital.nl";
     mail($to,$subject, mysqli_connect_error(), $headers);
     exit();
 }

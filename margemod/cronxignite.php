@@ -20,9 +20,9 @@ include "includes/errors.php";
 try{
     $content = file_get_contents('http://www.xmlcharts.com/live/precious-metals.php?format=json'); 
 } catch(Exception $e) {
-    $to = "support@elmaonline.nl , rratinov@gmail.com";
+    $to = "contact@westpointdigital.nl , rratinov@gmail.com";
     $subject = "Hollandgold error report";
-    $headers = "From: support@elmaonline.nl";
+    $headers = "From: contact@westpointdigital.nl";
     mail($to,$subject,$e->getMessage(), $headers);
 }
 if ($content === false) die('Something went wrong.'); 

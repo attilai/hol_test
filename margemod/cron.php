@@ -59,9 +59,9 @@ if($silverRate > 10 && $goldRate > 500 && $platinumRate > 1 && $palladiumRate > 
         }
 
         catch(Exception $e) {
-            $to = "support@elmaonline.nl , rratinov@gmail.com , evgelit@gmail.com";
+            $to = "contact@westpointdigital.nl , rratinov@gmail.com , evgelit@gmail.com";
             $subject = "Hollandgold error report";
-            $headers = "From: support@elmaonline.nl";
+            $headers = "From: contact@westpointdigital.nl";
             mail($to,$subject,$e->getMessage(), $headers);
         }
 		
