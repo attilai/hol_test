@@ -18,7 +18,7 @@ $helper = Mage::helper('onestepcheckout/checkout');
     <?php endif; ?>
 <?php else: ?>
 
-<form id="onestepcheckout-form" method="post" action="<?php echo $this->getUrl('onestepcheckout', array('_secure'=>true)); ?>">
+<form autocomplete="off" id="onestepcheckout-form" method="post" action="<?php echo $this->getUrl('onestepcheckout', array('_secure'=>true)); ?>">
 <fieldset class="group-select" style="margin: 0;">
 
 <?php // Added Checkout Steps from CMS Block ?>
