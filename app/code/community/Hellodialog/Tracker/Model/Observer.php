@@ -227,16 +227,18 @@
 			Mage::log("Asserting existance of contact with email: ".$this->_value('email'), null, 'hellodialog.log');
 			$contact = $this->_createHellodialogContact();
 			$api     = new HDApi('contacts');
-			$result  = $api->data($contact)->post();
+			$result = json_decode(
+				json_encode((new HDApi('contacts'))->condition('email', $contact['email'])->get()),
+				true
+			);
 
-			// if duplicate, update:
-			if ($result->result->code == 612) {
-				$result = $api->data($contact)->put($result->result->data->id_of_duplicate);
+			if ($existingContact = array_shift($result)) {
+				$api->data($contact)->put($existingContact['id']);
 				Mage::log("... UPDATED (Contact already existed, updated information)", null, 'hellodialog.log');
 			} else {
+				$api->data($contact)->post();
 				Mage::log("... OK (Contact created)", null, 'hellodialog.log');
 			}
-
 
 			// eCommerce plugin
 			// ---------------------------------
@@ -282,7 +284,7 @@
 						if ($ordersResult->result->code == '200') {
 							Mage::log("... OK (Orders created)", null, 'hellodialog.log');
 						} else {
-							Mage::log("... FAILED (".$ordersResult->result->data->errors[0]->message.")", null, 'hellodialog.log');
+							Mage::log("... FAILED (".$ordersResult->result->data->errors[0]->message.") -- Errors: " . json_encode($ordersResult->data->errors), null, 'hellodialog.log');
 						}
 					} else {
 						Mage::log("... FAILED (unexpected response)", null, 'hellodialog.log');

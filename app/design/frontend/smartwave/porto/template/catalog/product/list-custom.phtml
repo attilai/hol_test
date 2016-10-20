@@ -356,6 +356,8 @@ $_coreHelper = $this->helper('core');
             jQuery('.col-main .products-grid li:nth-child(7n+1)').addClass('nth-child-7np1');
             jQuery('.col-main .products-grid li:nth-child(8n)').addClass('nth-child-8n');
             jQuery('.col-main .products-grid li:nth-child(8n+1)').addClass('nth-child-8np1');
+            if(jQuery(".category-description").length > 1)
+                jQuery(".category-description:first").remove();
         </script>
     <?php endif; ?>
     <div class="toolbar-bottom">

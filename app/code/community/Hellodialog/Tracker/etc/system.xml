@@ -17,7 +17,7 @@
 			<show_in_store>1</show_in_store>
 			<groups>
 				<general>
-					<label>Hellodialog Magento plugin v2.0.3</label>
+					<label>Hellodialog Magento plugin v2.0.5</label>
 					<frontend_type>text</frontend_type>
 					<sort_order>1</sort_order>
 					<show_in_default>1</show_in_default>
@@ -28,7 +28,7 @@
 						<![CDATA[
 						<img src='http://www.hellodialog.com/img/magento_plugin_assets/logo.png' style='float: left; width: 100px;'/>
 						<div style='margin-left: 130px; padding-top: 6px; line-height: 25px;'>
-							<strong>Hellodialog Magento Plugin v2.0.3</strong><br/>
+							<strong>Hellodialog Magento Plugin v2.0.5</strong><br/>
 							This plugin connects your Magento shop to Hellodialog. Your customers will automatically be subscribed to your Hellodialog account.
 							<br/>
 							Optionally use the Hellodialog eCommerce Plugin to target groups of customers based on their purchase history.

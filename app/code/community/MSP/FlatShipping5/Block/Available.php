@@ -27,4 +27,11 @@ class MSP_FlatShipping5_Block_Available extends Mage_Checkout_Block_Onepage_Ship
         }
         return '';
 	}
+	protected function getDetailText($carrierCode, $number)
+	{
+		if ($text = Mage::getStoreConfig('carriers/'.$carrierCode.'/details'.$number)) {
+            return $text;
+        }
+        return '';
+	}
 }
