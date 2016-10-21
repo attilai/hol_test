@@ -45,7 +45,7 @@
 					{
 						// $sReturnUrl = idealcheckout_getRootUrl(1) . 'idealcheckout/return.php?transaction_id=' . $this->oRecord['transaction_id'] . '&transaction_code=' . $this->oRecord['transaction_code'];
 						$sReturnUrl = idealcheckout_getRootUrl(1) . 'idealcheckout/return.php?order_id=' . $this->oRecord['order_id'] . '&order_code=' . $this->oRecord['order_code'];
-						$sReportUrl = $sReturnUrl;
+						$sReportUrl = idealcheckout_getRootUrl(1) . 'idealcheckout/report.php?order_id=' . $this->oRecord['order_id'] . '&order_code=' . $this->oRecord['order_code'];
 						$sLanguageCode = (empty($this->oRecord['language_code']) ? 'nl' : $this->oRecord['language_code']);
 
 

@@ -1,0 +1,105 @@
+
+TEXT: cURL Retrieved SSL Certificate:
+      * Hostname was NOT found in DNS cache
+      *   Trying 2a00:1e28:3:2526::1...
+      * Connected to www.ideal-checkout.nl (2a00:1e28:3:2526::1) port 443 (#0)
+      * successfully set certificate verify locations:
+      *   CAfile: none
+        CApath: /etc/ssl/certs
+      * SSL connection using TLSv1.2 / ECDHE-RSA-AES256-GCM-SHA384
+      * --- Certificate chain
+      *  0 Subject: CN=www.ideal-checkout.nl
+      *    Issuer: C=US; O=GeoTrust Inc.; CN=RapidSSL SHA256 CA
+      *    Version: 3 (0x2)
+      *    Serial Number: 
+      *    Signature Algorithm: sha256WithRSAEncryption
+      *    Start date: 2016-10-04 00:00:00 GMT
+      *    Expire date: 2017-12-03 23:59:59 GMT
+      *    Public Key Algorithm: rsaEncryption
+      *    RSA Public Key (2048 bits)
+      *    rsa(n): b6:ee:23:22:56:50:34:5e:db:3a:f1:5f:b7:0d:7f:d4:80:5c:fd:27:fd:01:04:a6:57:bb:3c:58:0c:54:9e:d5:d5:e8:df:bf:15:2d:e3:74:a3:f0:c3:40:3d:e1:fb:2e:d4:58:2a:29:09:15:70:23:7b:ff:32:0e:74:5c:99:c0:bb:73:eb:35:d2:c9:49:ae:19:07:68:54:47:82:b8:a4:37:a2:d2:f0:cf:01:6e:f5:7f:8e:dd:37:11:7c:97:8e:1c:03:34:93:7a:26:8e:10:02:b0:74:47:8d:e2:0b:73:f2:29:c6:13:ea:0d:f0:bc:1a:a0:ea:15:69:36:b3:0c:f5:8a:90:71:3b:f6:5b:b1:31:84:a0:b8:77:31:3f:c8:bd:a4:46:e9:e7:9d:8a:89:23:51:80:bf:04:c4:b8:78:c7:bd:6c:c8:93:fe:38:b2:98:4a:60:a9:1d:e4:07:aa:b9:f0:c5:70:69:d6:d0:8d:e3:66:29:57:c9:0a:b0:20:80:41:f0:74:fd:9b:7a:b5:b9:9b:6f:f3:d4:84:93:b0:37:4e:a0:c1:68:9e:8c:ea:d4:51:32:54:40:9a:1e:9f:f3:f4:a3:79:f4:10:72:7e:1c:b2:27:ab:d0:92:6d:c6:a3:05:b2:2e:dc:67:14:32:09:bd:06:4f:cd:63:42:03:
+      *    rsa(e): 01:00:01:
+      * X509v3 Subject Alternative Name: 
+      *   DNS:www.ideal-checkout.nl,DNS:ideal-checkout.nl
+      * X509v3 Basic Constraints: 
+      *   CA:FALSE
+      * X509v3 CRL Distribution Points: 
+      *   , FullName:, URI:http://gp.symcb.com/gp.crl
+      * X509v3 Certificate Policies: 
+      *   Policy:2.23.140.1.2.1, CPS:https://www.rapidssl.com/legal, UserNotice:, ExplicitText:https://www.rapidssl.com/legal
+      * X509v3 Authority Key Identifier: 
+      *   keyid:97:C2:27:50:9E:C2:C9:EC:0C:88:32:C8:7C:AD:E2:A6:01:4F:DA:6F
+      * X509v3 Key Usage: (critical)
+      *   DigitalSignature,KeyEncipherment
+      * X509v3 Extended Key Usage: 
+      *   TLSWebServerAuthentication,TLSWebClientAuthentication
+      * Authority Information Access: 
+      *   OCSP-URI:http://gp.symcd.com, CAIssuers-URI:http://gp.symcb.com/gp.crt
+      * 1.3.6.1.4.1.11129.2.4.2: 
+      *   ......w....+zO.....hp~.....\..=..........W.........H0F.!...^/..KN}...L.......&#`s..*K`....!...d.!.E.=R..f.u..........3.Mf...v.h....d..:...(.L.qQ]g..D., g..OO.....W.........G0E.!...>.......k9"|...;]A......Z..!,m.n:..Y..i......r.t...-...T..~....
+      *  Signature: 76:3f:02:9b:1b:f3:37:39:37:87:80:39:62:c6:6d:4a:5f:83:2c:f8:de:ca:cc:af:38:ed:bb:6e:48:03:5a:d2:b9:d6:ff:a3:8d:ce:7e:8b:f3:93:2c:7a:7e:ad:80:d3:5b:f8:ed:77:75:db:91:02:cb:a5:56:f6:1b:8c:e1:c9:9f:56:19:b5:02:89:f4:10:8d:fc:14:0d:f2:cb:b1:1d:66:ed:0d:f3:0a:b4:a5:41:10:1a:95:c5:19:da:78:6b:e5:f0:cc:f0:94:65:d5:53:5e:b6:52:ce:81:48:94:97:fb:c1:f6:2f:be:ee:2d:18:82:ec:54:45:59:ae:84:b8:30:f3:79:5d:45:6f:d3:97:c7:b0:87:5d:72:94:60:8c:7e:92:f3:28:10:1b:d9:65:69:b7:f5:34:68:46:7e:05:b1:fb:8b:0d:a8:c0:36:72:d0:29:b7:d0:36:54:9e:b8:25:e5:db:70:14:11:de:99:b1:0b:8b:56:e3:61:12:bf:f0:99:2e:e3:d5:58:1f:80:58:6c:c7:9e:a4:03:48:e3:9c:65:a5:f3:53:9a:d6:07:17:9b:9d:51:56:0a:40:da:6a:1a:77:8c:1d:62:a0:3a:e1:34:12:6f:ce:91:43:6d:f6:e2:43:8d:7a:35:9e:09:2c:0c:75:c1:eb:41:2b:30:
+      *  1 Subject: C=US; O=GeoTrust Inc.; CN=RapidSSL SHA256 CA
+      *    Issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust Global CA
+      *    Version: 3 (0x2)
+      *    Serial Number: 146033 (0x23a71)
+      *    Signature Algorithm: sha256WithRSAEncryption
+      *    Start date: 2013-12-11 23:45:51 GMT
+      *    Expire date: 2022-05-20 23:45:51 GMT
+      *    Public Key Algorithm: rsaEncryption
+      *    RSA Public Key (2048 bits)
+      *    rsa(n): bb:58:c1:12:01:2e:97:d8:7d:18:aa:c8:c2:e5:85:e2:17:6c:60:2e:c9:8d:31:05:39:1a:06:98:56:dd:54:d7:11:8c:59:5b:3d:b1:54:ae:4b:21:85:32:16:5f:54:86:e6:d9:b1:d8:60:89:6b:58:be:72:da:a0:00:42:76:b1:27:59:4c:cd:e3:ba:d4:5c:d9:a6:7f:bb:2b:75:d5:46:44:bd:ec:40:5c:59:b7:dd:59:9f:f1:6a:f7:06:fc:d6:2f:19:8a:95:12:ba:9a:ca:d5:30:d2:38:fc:19:3b:5b:15:3b:36:d0:43:4d:d1:65:a1:d4:8b:c1:60:41:b3:d6:70:17:cc:39:c0:9c:0c:a0:3d:b7:11:22:4e:ce:d9:a9:7a:d2:2a:62:9c:a0:0b:4e:2a:d7:c3:61:5a:85:dd:5c:10:b9:54:3d:2d:03:f8:49:f0:bc:92:b7:b7:9c:31:c7:e9:b8:aa:82:0b:05:b9:31:cd:08:5b:bb:22:0b:f6:9c:8e:8a:55:1c:76:43:76:f0:e2:6e:f0:df:a8:29:75:e7:c8:a4:87:8b:6a:f1:bb:08:c9:36:18:65:ee:50:43:b8:5d:72:d5:28:39:e1:53:3e:25:2c:da:2b:4f:dd:8a:9e:50:50:e0:6f:9a:c4:d5:19:26:89:01:75:73:09:9b:3b:
+      *    rsa(e): 01:00:01:
+      * X509v3 Authority Key Identifier: 
+      *   keyid:C0:7A:98:68:8D:89:FB:AB:05:64:0C:11:7D:AA:7D:65:B8:CA:CC:4E
+      * X509v3 Subject Key Identifier: 
+      *   97:C2:27:50:9E:C2:C9:EC:0C:88:32:C8:7C:AD:E2:A6:01:4F:DA:6F
+      * X509v3 Basic Constraints: (critical)
+      *   CA:TRUE,pathlen:0
+      * X509v3 Key Usage: (critical)
+      *   CertificateSign,CRLSign
+      * X509v3 CRL Distribution Points: 
+      *   , FullName:, URI:http://g1.symcb.com/crls/gtglobal.crl
+      * Authority Information Access: 
+      *   OCSP-URI:http://g2.symcb.com
+      * X509v3 Certificate Policies: 
+      *   Policy:2.16.840.1.113733.1.7.54, CPS:http://www.geotrust.com/resources/cps
+      * X509v3 Subject Alternative Name: 
+      *   DirName:/CN=SymantecPKI-1-569
+      *  Signature: 35:eb:e1:8b:20:56:94:ba:7a:bd:79:a9:f6:e3:fe:6e:38:b4:32:c1:a3:db:58:56:20:3e:7d:c7:3a:b1:67:69:d5:79:14:1b:f6:fa:ec:60:f2:79:cd:0a:0c:60:8a:74:4c:a3:93:2a:a0:f0:51:7f:cd:e9:f9:92:fd:96:ab:45:f5:62:3d:3f:60:46:50:13:3d:20:13:18:2e:94:46:ae:d5:21:fe:43:a1:c9:23:fe:53:c4:bf:1a:d8:ac:3a:ca:de:66:97:23:ae:d3:df:4a:4d:73:1f:6f:31:a2:51:04:16:6a:00:eb:f9:8d:43:81:f0:50:a1:1f:a6:ca:3a:f3:28:3c:5f:51:ac:d7:0a:45:77:4b:0e:52:62:1b:d8:38:51:a0:92:2d:3f:90:6e:c8:7e:40:9f:20:46:15:5d:e0:50:7c:e1:76:af:5e:ed:11:d3:2f:13:b9:b8:25:a4:af:58:09:af:35:b4:62:54:85:e3:48:de:bc:d2:90:7a:7a:a4:84:0d:a3:42:f2:51:c0:d4:ad:53:65:5d:6c:f8:3f:1f:06:f2:4f:cb:97:a0:4a:59:c6:78:d1:e8:03:b9:85:6d:2c:ba:e1:5f:b6:ad:2b:3e:25:79:c5:8b:56:d5:e3:09:80:ea:c1:27:c2:d9:0e:ec:47:0a:e9:d0:ca:fc:d8:
+      * Server certificate:
+      * 	 subject: CN=www.ideal-checkout.nl
+      * 	 start date: 2016-10-04 00:00:00 GMT
+      * 	 expire date: 2017-12-03 23:59:59 GMT
+      * 	 subjectAltName: www.ideal-checkout.nl matched
+      * 	 issuer: C=US; O=GeoTrust Inc.; CN=RapidSSL SHA256 CA
+      * 	 SSL certificate verify ok.
+      > POST /ping.php HTTP/1.1
+      Host: www.ideal-checkout.nl
+      Accept: */*
+      Content-Length: 76
+      Content-Type: application/x-www-form-urlencoded
+      
+      * upload completely sent off: 76 out of 76 bytes
+      < HTTP/1.1 200 OK
+      < Date: Fri, 21 Oct 2016 08:34:53 GMT
+      * Server Apache/2 is not blacklisted
+      < Server: Apache/2
+      < X-Powered-By: PHP/7.0.10
+      < Vary: User-Agent
+      < Content-Length: 2
+      < Content-Type: text/html; charset=UTF-8
+      < 
+      * Connection #0 to host www.ideal-checkout.nl left intact
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/includes/library.php
+LINE: 685
+
+
+TEXT: Done testing firewall through httpRequest to www.ideal-checkout.nl, returned:OK
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/install/includes/install.php
+LINE: 492
+
+
+TEXT: Firewall check completed, status: OK
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/install/includes/install.php
+LINE: 497
+

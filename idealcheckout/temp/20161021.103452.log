@@ -1,0 +1,26 @@
+
+TEXT: Trying to connect to the database using mysqli with credentials:
+      localhost admin **password**
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/install/includes/install.php
+LINE: 538
+
+
+TEXT: Succesfully established connection to the database with mysqli
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/install/includes/install.php
+LINE: 545
+
+
+TEXT: Database check completed, status: OK
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/install/includes/install.php
+LINE: 558
+
+
+TEXT: Testing firewall through httpRequest to www.ideal-checkout.nl
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/install/includes/install.php
+LINE: 485
+
+
+TEXT: Fetching peer certificate for: https://www.ideal-checkout.nl:443
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/includes/library.php
+LINE: 821
+

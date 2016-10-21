@@ -290,24 +290,16 @@ select, input
 				<tr>
 					<td width="150"><b>Betaalmethode</b></td>
 					<td width="600"><select name="gateway_code" style="width: 450px;">
-						<option' . (($sGatewayCode == 'afterpay') ? ' selected="selected"' : '') . ' value="afterpay">AfterPay - /idealcheckout/configuration/afterpay.php</option>
 						<option' . (($sGatewayCode == 'authorizedtransfer') ? ' selected="selected"' : '') . ' value="authorizedtransfer">Eenmalige machtiging - /idealcheckout/configuration/authorizedtransfer.php</option>
-						<option' . (($sGatewayCode == 'cartebleue') ? ' selected="selected"' : '') . ' value="cartebleue">Carte Bleue - /idealcheckout/configuration/cartebleue.php</option>
-						<option' . (($sGatewayCode == 'clickandbuy') ? ' selected="selected"' : '') . ' value="clickandbuy">Click and Buy - /idealcheckout/configuration/clickandbuy.php</option>
 						<option' . (($sGatewayCode == 'creditcard') ? ' selected="selected"' : '') . ' value="creditcard">Creditcard - /idealcheckout/configuration/creditcard.php</option>
 						<option' . (($sGatewayCode == 'directebanking') ? ' selected="selected"' : '') . ' value="directebanking">Direct E-Banking - /idealcheckout/configuration/directebanking.php</option>
-						<option' . (($sGatewayCode == 'ebon') ? ' selected="selected"' : '') . ' value="ebon">E-Bon - /idealcheckout/configuration/ebon.php</option>
-						<option' . (($sGatewayCode == 'fasterpay') ? ' selected="selected"' : '') . ' value="fasterpay">FasterPay - /idealcheckout/configuration/fasterpay.php</option>
-						<option' . (($sGatewayCode == 'giropay') ? ' selected="selected"' : '') . ' value="giropay">GiroPay - /idealcheckout/configuration/giropay.php</option>
 						<option' . (($sGatewayCode == 'ideal') ? ' selected="selected"' : '') . ' value="ideal">iDEAL - /idealcheckout/configuration/ideal.php</option>
 						<option' . (($sGatewayCode == 'maestro') ? ' selected="selected"' : '') . ' value="maestro">Maestro - /idealcheckout/configuration/maestro.php</option>
 						<option' . (($sGatewayCode == 'mastercard') ? ' selected="selected"' : '') . ' value="mastercard">Mastercard - /idealcheckout/configuration/mastercard.php</option>
-						<option' . (($sGatewayCode == 'minitix') ? ' selected="selected"' : '') . ' value="minitix">MiniTix - /idealcheckout/configuration/minitix.php</option>
 						<option' . (($sGatewayCode == 'mistercash') ? ' selected="selected"' : '') . ' value="mistercash">MisterCash - /idealcheckout/configuration/mistercash.php</option>
 						<option' . (($sGatewayCode == 'manualtransfer') ? ' selected="selected"' : '') . ' value="manualtransfer">Handmatige overboeking - /idealcheckout/configuration/manualtransfer.php</option>
 						<option' . (($sGatewayCode == 'paypal') ? ' selected="selected"' : '') . ' value="paypal">PayPal - /idealcheckout/configuration/paypal.php</option>
 						<option' . (($sGatewayCode == 'paysafecard') ? ' selected="selected"' : '') . ' value="paysafecard">PaySafeCard - /idealcheckout/configuration/paysafecard.php</option>
-						<option' . (($sGatewayCode == 'postepay') ? ' selected="selected"' : '') . ' value="postepay">PostePay - /idealcheckout/configuration/postepay.php</option>
 						<option' . (($sGatewayCode == 'visa') ? ' selected="selected"' : '') . ' value="visa">Visa - /idealcheckout/configuration/visa.php</option>
 						<option' . (($sGatewayCode == 'vpay') ? ' selected="selected"' : '') . ' value="vpay">VPAY - /idealcheckout/configuration/vpay.php</option>
 					</select></td>

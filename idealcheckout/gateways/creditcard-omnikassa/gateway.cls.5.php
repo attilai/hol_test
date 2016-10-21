@@ -41,7 +41,7 @@
 							$oOmniKassa->setKeyVersion($this->aSettings['KEY_VERSION']);
 						}
 
-						$oOmniKassa->setMerchant($this->aSettings['MERCHANT_ID'], $this->aSettings['SUB_ID']);
+						$oOmniKassa->setMerchant($this->aSettings['MERCHANT_ID'], ($this->aSettings['SUB_ID'] ? $this->aSettings['SUB_ID'] : '0'));
 						$oOmniKassa->setAquirer($this->aSettings['GATEWAY_NAME'], $this->aSettings['TEST_MODE']);
 
 						if(!empty($this->oRecord['language_code']))

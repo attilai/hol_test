@@ -212,7 +212,7 @@
 			{
 				// echo $aSettings[$i] . ' = ' . $this->$aSettings[$i] . '<br>';
 
-				if(isset($this->$aSettings[$i]) == false)
+				if(isset($this->{$aSettings[$i]}) == false)
 				{
 					$bOk = false;
 					$this->setError('Setting ' . $aSettings[$i] . ' was not configurated.', false, __FILE__, __LINE__);
@@ -223,49 +223,22 @@
 		}
 
 
-
 		// Send GET/POST data through sockets
-		protected function postToHost($url, $data, $timeout = 30)
+		protected function postToHost($sUrl, $aData, $iTimeout = 30)
 		{
-			$__url = $url;
-			$idx = strrpos($url, ':');
-			$host = substr($url, 0, $idx);
-			$url = substr($url, $idx + 1);
-			$idx = strpos($url, '/');
-			$port = substr($url, 0, $idx);
-			$path = substr($url, $idx);
+			$sResponse = idealcheckout_doHttpRequest($sUrl, $aData, false, $iTimeout, false, false);
 
-			$fsp = fsockopen($host, $port, $errno, $errstr, $timeout);
-			$res = '';
-			
-			if($fsp)
+			if(empty($sResponse))
 			{
-				// echo "\n\nSEND DATA: \n\n" . $data . "\n\n";
-
-				fputs($fsp, 'POST ' . $path . ' HTTP/1.0' . $this->CRLF);
-				fputs($fsp, 'Host: ' . substr($host, 6) . $this->CRLF);
-				fputs($fsp, 'Accept: text/xml' . $this->CRLF);
-				fputs($fsp, 'Accept: charset=ISO-8859-1' . $this->CRLF);
-				fputs($fsp, 'Content-Length:' . strlen($data) . $this->CRLF);
-				fputs($fsp, 'Content-Type: text/xml' . $this->CRLF . $this->CRLF);
-				fputs($fsp, $data, strlen($data));
-
-				while(!feof($fsp))
-				{
-					$res .= @fgets($fsp, 128);
-				}
-
-				fclose($fsp);
-
-				// echo "\n\nRECIEVED DATA: \n\n" . $res . "\n\n";
+				idealcheckout_log('Error while connecting to: ' . $sUrl, __FILE__, __LINE__);
+				return '';
 			}
 			else
 			{
-				$this->setError('Error while connecting to ' . $__url, false, __FILE__, __LINE__);
+				return $sResponse;
 			}
-
-			return $res;
 		}
+
 
 		// Get value within given XML tag
 		protected function parseFromXml($key, $xml)
@@ -273,7 +246,7 @@
 			$begin = 0;
 			$end = 0;
 			$begin = strpos($xml, '<' . $key . '>');
-			
+
 			if($begin === false)
 			{
 				return false;
@@ -320,20 +293,33 @@
 		}
 
 
-		
+
 		protected function getMessageDigest($sMessage)
 		{
             return base64_encode(hash('sha256', $sMessage, true));
 		}
 
 
-		protected function getSignature($sMessage, $sKeyPath, $sKeyPassword = false)
+		protected function getSignature($sMessage, $sKeyName, $sKeyPassword = false)
 		{
-			$sKeyData = file_get_contents($sKeyPath);
-
+			$aDatabaseSettings = idealcheckout_getDatabaseSettings();
+		
+			$sql = "SELECT `file_content` FROM `" . $aDatabaseSettings['prefix'] . "idealcheckout_ssl` WHERE (`file_name` = '" . idealcheckout_escapeSql($sKeyName) . "') AND (`enabled` = '1') LIMIT 1;";
+						
+			$sKeyData = idealcheckout_database_getRecord($sql);
+				
+			if(!empty($sKeyData))
+			{
+				$sKeyData = $sKeyData['file_content'];
+			}
+			else
+			{	
+				$sKeyData = file_get_contents($this->sSecurePath . $sKeyName);
+			}
+			
 			if(empty($sKeyData))
 			{
-				idealcheckout_die('File "' . $sKeyPath . '" is empty or does not exist.', __FILE__, __LINE__);
+				idealcheckout_die('File "' . $sKeyName . '" is empty or does not exist.', __FILE__, __LINE__);
 			}
 
 			if($sKeyPassword === false)
@@ -342,7 +328,7 @@
 
 				if(empty($oKeyData))
 				{
-					idealcheckout_die('File "' . $sKeyPath . '" is an invalid publickey file.', __FILE__, __LINE__);
+					idealcheckout_die('File "' . $sKeyName . '" is an invalid publickey file.', __FILE__, __LINE__);
 				}
 			}
 			else
@@ -351,7 +337,7 @@
 
 				if(empty($oKeyData))
 				{
-					idealcheckout_die('File "' . $sKeyPath . '" is an invalid privatekey file, or privatekey file doesn\'t match private keypass.', __FILE__, __LINE__);
+					idealcheckout_die('File "' . $sKeyName . '" is an invalid privatekey file, or privatekey file doesn\'t match private keypass.', __FILE__, __LINE__);
 				}
 			}
 
@@ -401,36 +387,48 @@
 			return (strcmp($this->getMessageDigest($sMessage), $sDigest) === 0);
 		}
 
-		protected function getCertificateFingerprint($sFilePath)
-		{
-			if(!$sFilePath || !is_file($sFilePath))
+		protected function getCertificateFingerprint($sCertificateName)
+		{	
+			$aDatabaseSettings = idealcheckout_getDatabaseSettings();
+		
+			$sql = "SELECT `file_content` FROM `" . $aDatabaseSettings['prefix'] . "idealcheckout_ssl` WHERE (`file_name` = '" . idealcheckout_escapeSql($sCertificateName) . "') AND (`enabled` = '1') LIMIT 1;";
+						
+			$aData = idealcheckout_database_getRecord($sql);
+			
+			if(!empty($aData))
 			{
-				idealcheckout_die('Invalid certificate file: ' . $sFilePath . '.', __FILE__, __LINE__);
+				$sData = $aData['file_content'];		
 			}
-
-			$sData = file_get_contents($sFilePath);
-
+			elseif(is_file($this->sSecurePath . $sCertificateName))
+			{	
+				$sData = file_get_contents($this->sSecurePath . $sCertificateName);
+			}
+			else
+			{
+				idealcheckout_die('Invalid certificate file: ' . $sCertificateName . '.', __FILE__, __LINE__);
+			}		
+			
 			if(empty($sData))
 			{
-				idealcheckout_die('Invalid certificate file: ' . $sFilePath . '.', __FILE__, __LINE__);
+				idealcheckout_die('Invalid certificate file: ' . $sCertificateName . '.', __FILE__, __LINE__);
 			}
 
 			$oData = openssl_x509_read($sData);
-
+			
 			if($oData == false)
-			{
-				idealcheckout_die('Invalid certificate file: ' . $sFilePath . '.', __FILE__, __LINE__);
+			{			
+				idealcheckout_die('Invalid certificate file: ' . $sCertificateName . '.', __FILE__, __LINE__);
 			}
 			elseif(!openssl_x509_export($oData, $sData))
-			{
-				idealcheckout_die('Invalid certificate file: ' . $sFilePath . '.', __FILE__, __LINE__);
+			{							
+				idealcheckout_die('Invalid certificate file: ' . $sCertificateName . '.', __FILE__, __LINE__);
 			}
-
+			
 			// Remove any ASCII armor
 			$sData = str_replace('-----BEGIN CERTIFICATE-----', '', $sData);
 			$sData = str_replace('-----END CERTIFICATE-----', '', $sData);
 
-			$sData = base64_decode($sData);
+			$sData = base64_decode($sData);			
 			$sFingerprint = sha1($sData);
 			$sFingerprint = strtoupper($sFingerprint);
 
@@ -480,7 +478,7 @@
 			// Test each certificate with given fingerprint
 			foreach($aCertificateFiles as $sCertificateFile)
 			{
-				$sFingerprint = $this->getCertificateFingerprint($this->sSecurePath . $sCertificateFile);
+				$sFingerprint = $this->getCertificateFingerprint($sCertificateFile);
 
 				if(strcmp($sFingerprint, $sCertificateFingerprint) === 0)
 				{
@@ -648,7 +646,7 @@
 
 
 				$sTimestamp = gmdate('Y-m-d\TH:i:s.000\Z');
-				$sCertificateFingerprint = $this->getCertificateFingerprint($this->sSecurePath . $this->sPrivateCertificateFile);
+				$sCertificateFingerprint = $this->getCertificateFingerprint($this->sPrivateCertificateFile);
 
 				$sXml  = '<DirectoryReq xmlns="http://www.idealdesk.com/ideal/messages/mer-acq/3.3.1" version="3.3.1">';
 				$sXml .= '<createDateTimestamp>' . $sTimestamp . '</createDateTimestamp>';
@@ -674,7 +672,7 @@
 				$sXml .= '</SignedInfo>';
 
 				// Calculate <SignatureValue>
-				$sSignatureValue = $this->getSignature($sXml, $this->sSecurePath . $this->sPrivateKeyFile, $this->sPrivateKeyPass);
+				$sSignatureValue = $this->getSignature($sXml, $this->sPrivateKeyFile, $this->sPrivateKeyPass);
 
 				$sXml  = '<' . '?' . 'xml version="1.0" encoding="UTF-8"' . '?' . '>' . "\n";
 				$sXml .= '<DirectoryReq xmlns="http://www.idealdesk.com/ideal/messages/mer-acq/3.3.1" version="3.3.1">';
@@ -813,7 +811,7 @@
 			if($this->checkConfiguration() && $this->checkConfiguration(array('sOrderId', 'sOrderDescription', 'fOrderAmount', 'sReturnUrl', 'sReturnUrl', 'sIssuerId', 'sEntranceCode')))
 			{
 				$sTimestamp = gmdate('Y-m-d\TH:i:s.000\Z');
-				$sCertificateFingerprint = $this->getCertificateFingerprint($this->sSecurePath . $this->sPrivateCertificateFile);
+				$sCertificateFingerprint = $this->getCertificateFingerprint($this->sPrivateCertificateFile);
 
 				$sXml  = '<AcquirerTrxReq xmlns="http://www.idealdesk.com/ideal/messages/mer-acq/3.3.1" version="3.3.1">';
 				$sXml .= '<createDateTimestamp>' . $sTimestamp . '</createDateTimestamp>';
@@ -852,7 +850,7 @@
 				$sXml .= '</SignedInfo>';
 
 				// Calculate <SignatureValue>
-				$sSignatureValue = $this->getSignature($sXml, $this->sSecurePath . $this->sPrivateKeyFile, $this->sPrivateKeyPass);
+				$sSignatureValue = $this->getSignature($sXml, $this->sPrivateKeyFile, $this->sPrivateKeyPass);
 
 				$sXml  = '<' . '?' . 'xml version="1.0" encoding="UTF-8"' . '?' . '>' . "\n";
 				$sXml .= '<AcquirerTrxReq xmlns="http://www.idealdesk.com/ideal/messages/mer-acq/3.3.1" version="3.3.1">';
@@ -988,7 +986,7 @@
 			if($this->checkConfiguration() && $this->checkConfiguration(array('sTransactionId')))
 			{
 				$sTimestamp = gmdate('Y-m-d\TH:i:s.000\Z');
-				$sCertificateFingerprint = $this->getCertificateFingerprint($this->sSecurePath . $this->sPrivateCertificateFile);
+				$sCertificateFingerprint = $this->getCertificateFingerprint($this->sPrivateCertificateFile);
 
 				$sXml  = '<AcquirerStatusReq xmlns="http://www.idealdesk.com/ideal/messages/mer-acq/3.3.1" version="3.3.1">';
 				$sXml .= '<createDateTimestamp>' . $sTimestamp . '</createDateTimestamp>';
@@ -1017,7 +1015,7 @@
 				$sXml .= '</SignedInfo>';
 
 				// Calculate <SignatureValue>
-				$sSignatureValue = $this->getSignature($sXml, $this->sSecurePath . $this->sPrivateKeyFile, $this->sPrivateKeyPass);
+				$sSignatureValue = $this->getSignature($sXml, $this->sPrivateKeyFile, $this->sPrivateKeyPass);
 
 				$sXml  = '<' . '?' . 'xml version="1.0" encoding="UTF-8"' . '?' . '>' . "\n";
 				$sXml .= '<AcquirerStatusReq xmlns="http://www.idealdesk.com/ideal/messages/mer-acq/3.3.1" version="3.3.1">';

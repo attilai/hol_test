@@ -115,7 +115,7 @@
 				$this->aTransaction = array('error' => array('message' => 'No amount found.'));
 				return false;
 			}
-			elseif($this->fAmount < 1.00)
+			elseif($this->fAmount < 0.29)
 			{
 				idealcheckout_log('Amount ' . number_format($this->fAmount, 2, ',', '') . ' is to small to process order #' . $this->sOrderId . '.', __FILE__, __LINE__);
 

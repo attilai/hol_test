@@ -18,6 +18,11 @@
 		include_once(dirname(__FILE__) . '/update.order.status.php');
 	}
 
+	if(is_file(dirname(__FILE__) . '/webshop-library.php'))
+	{
+		include_once(dirname(__FILE__) . '/webshop-library.php');
+	}
+
 
 	// Create a random code with N digits.
 	function idealcheckout_getRandomCode($iLength = 64)
@@ -334,12 +339,7 @@
 	// Serialize data
 	function idealcheckout_serialize($mData)
 	{
-		if(idealcheckout_serialize_hasInjection($mData))
-		{
-			idealcheckout_die('Found serialize injection in data.', __FILE__, __LINE__, false);
-		}
-
-		return serialize($mData);
+		return json_encode($mData);
 	}
 
 	// See if data contains serialized strings (possible injection?!)
@@ -374,14 +374,27 @@
 		// $sString = preg_replace_callback('/s:(\d+):"(.*?)";/', 'idealcheckout_unserialize_callback', $sString);
 		// return unserialize($sString);
 
-		$aData = @unserialize($sString);
-
-		if(is_array($aData))
+		if(empty($sString))
 		{
-			return $aData;
+			idealcheckout_log('String is empty.', __FILE__, __LINE__);
+			return array();
+			
 		}
+			
+		if(substr($sString, 0, 2) == 'a:') // Treat as SERIALIZED string
+		{
+			// Recalculate multibyte strings
+			if(PHP_VERSION < 7)
+			{
+				$sString = preg_replace('!s:(\d+):"(.*?)";!se', "'s:'.strlen('$2').':\"$2\";'", $sString);
+			}
 
-		idealcheckout_die('Error in serialized data (multi-byte calculation error?).', __FILE__, __LINE__, false);
+			return unserialize($sString);
+		}
+		else // Treat as JSON string
+		{
+			return json_decode($sString, true);
+		}
 	}
 
 	function idealcheckout_unserialize_callback($aMatch)

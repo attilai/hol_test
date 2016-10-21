@@ -1,0 +1,24 @@
+{
+	"name": "paycheckout/paycheckout-api-php",
+	"description": "This library contains all functionality available to interface a webshop to the payment service provider PayCheckout B.V. located in the Netherlands.",
+	"keywords": [ "PSP", "PaymentServiceProvider", "Payments", "API", "iDEAL", "CreditCard", "PayPal" ],
+	"homepage": "https://www.paycheckout.com",
+	"license": "Apache-2.0",
+	"support": {
+		"email": "support@paycheckout.com",
+		"issues": "https://www.paycheckout.com/helpdesk",
+		"wiki": "https://developer.paycheckout.com"
+	},
+	"require": {
+		"php": ">=5.4.0",
+		"ext-curl": "*"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "4.6.*"
+	},
+	"autoload": {
+		"psr-0": {
+			"PayCheckout\\": "src/"
+		}
+	}
+}

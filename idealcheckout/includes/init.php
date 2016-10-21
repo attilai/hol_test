@@ -33,7 +33,7 @@
 
 		if(empty($sStoreCode) || !preg_match('/^([a-zA-Z0-9_\-]+)$/', $sStoreCode))
 		{
-			$sStoreCode = '';
+			$sStoreCode = idealcheckout_getStoreCode();
 		}
 
 		if(!in_array($sGatewayCode, array('afterpay', 'authorizedtransfer', 'cartebleue', 'clickandbuy', 'creditcard', 'directebanking', 'ebon', 'fasterpay', 'giropay', 'ideal', 'maestro', 'manualtransfer', 'mastercard', 'minitix', 'mistercash', 'paypal', 'paysafecard', 'postepay', 'visa', 'vpay', 'webshopgiftcard')))

@@ -92,7 +92,7 @@
 						// Add auto-submit button
 						if(($this->aSettings['TEST_MODE'] == false) && !idealcheckout_getDebugMode())
 						{
-							$sHtml .= '<script type="text/javascript"> function doAutoSubmit() { document.forms[0].submit(); } setTimeout(\'doAutoSubmit()\', 100); </script>';
+							$sHtml = '<div style="display: none;">' . $sHtml . '</div><script type="text/javascript"> function doAutoSubmit() { document.forms[0].submit(); } setTimeout(\'doAutoSubmit()\', 100); </script>';
 						}
 					}
 				}

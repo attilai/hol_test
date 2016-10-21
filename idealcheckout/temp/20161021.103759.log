@@ -1,0 +1,76 @@
+
+TEXT: array (
+        'order_id' => '100015438',
+        'order_code' => 'cP02ubYqsIlwYcCcNk8h1NcXug3rYGk1',
+      )
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/includes/init.php
+LINE: 21
+
+
+TEXT: array (
+      )
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/includes/init.php
+LINE: 22
+
+
+TEXT: Found record by $_GET[order_id] and $_GET[order_code]
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/includes/init.php
+LINE: 114
+
+
+TEXT: Found record in #_idealcheckout table
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/includes/init.php
+LINE: 249
+
+
+TEXT: array (
+        'id' => '2304',
+        'order_id' => '100015438',
+        'order_code' => 'cP02ubYqsIlwYcCcNk8h1NcXug3rYGk1',
+        'order_params' => '{"order":{"id":"15591"},"customer":{"shipment_company":"West Point Digital","shipment_name":"Maikel Maikel","shipment_first_name":"Maikel","shipment_last_name":"Straayer","shipment_gender":"","shipment_date_of_birth":"","shipment_phone":"0611216240","shipment_email":"maikel@westpointdigital.nl","shipment_address":"TT Neveritaweg\\n15","shipment_street_name":"TT Neveritaweg","shipment_street_number":"15","shipment_zipcode":"1033WB","shipment_city":"Amsterdam","shipment_country_code":"NL","shipment_country_name":"Nederland","payment_company":"West Point Digital","payment_name":"Maikel Maikel","payment_first_name":"Maikel","payment_last_name":"Straayer","payment_gender":"","payment_date_of_birth":"","payment_phone":"0611216240","payment_email":"maikel@westpointdigital.nl","payment_address":"TT Neveritaweg\\n15","payment_street_name":"TT Neveritaweg","payment_street_number":"15","payment_zipcode":"1033WB","payment_city":"Amsterdam","payment_country_code":"NL","payment_country_name":"Nederland"},"products":[{"code":"23609","description":"Umicore 50 gram Zilverbaar","quantity":"1.0000","price_incl":"56.2000","price_excl":"56.2000","vat":"21.0000"},{"code":"SHIPPING","description":"Verzendkosten","quantity":"1","price_incl":9,"price_excl":7.44,"vat":21}]}',
+        'store_code' => '87d8a69f8301ca7207d3722eff723e01',
+        'gateway_code' => 'ideal',
+        'language_code' => 'nl',
+        'country_code' => NULL,
+        'currency_code' => 'EUR',
+        'transaction_id' => 'ldTHcH0wgdU7dnbTA92rM5f9dbr2HDTU',
+        'transaction_code' => 'GCsKci9jmUgr9idzi6TX10X51eYzJHkg',
+        'transaction_params' => NULL,
+        'transaction_date' => '1477039079',
+        'transaction_amount' => '65.20',
+        'transaction_description' => 'Webshop order #100015438',
+        'transaction_status' => NULL,
+        'transaction_url' => NULL,
+        'transaction_payment_url' => 'https://www.hollandgold.nl/idealcheckoutideal/idealcheckoutideal/return/order_id/100015438/order_code/cP02ubYqsIlwYcCcNk8h1NcXug3rYGk1/',
+        'transaction_success_url' => 'https://www.hollandgold.nl/idealcheckoutideal/idealcheckoutideal/return/order_id/100015438/order_code/cP02ubYqsIlwYcCcNk8h1NcXug3rYGk1/',
+        'transaction_pending_url' => 'https://www.hollandgold.nl/idealcheckoutideal/idealcheckoutideal/return/order_id/100015438/order_code/cP02ubYqsIlwYcCcNk8h1NcXug3rYGk1/',
+        'transaction_failure_url' => 'https://www.hollandgold.nl/idealcheckoutideal/idealcheckoutideal/return/order_id/100015438/order_code/cP02ubYqsIlwYcCcNk8h1NcXug3rYGk1/',
+        'transaction_log' => NULL,
+      )
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/includes/init.php
+LINE: 250
+
+
+TEXT: Loading gateway: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/gateways/ideal-professional-v3/gateway.cls.php
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/includes/init.php
+LINE: 265
+
+
+TEXT: array (
+        'order_id' => '100015438',
+        'order_code' => 'cP02ubYqsIlwYcCcNk8h1NcXug3rYGk1',
+      )
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/setup.php
+LINE: 8
+
+
+TEXT: array (
+      )
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/setup.php
+LINE: 9
+
+
+TEXT: Fetching peer certificate for: https://ideal.secure-ing.com:443
+FILE: /home/hollandgold/domains/hollandgold.nl/public_html/idealcheckout/includes/library.php
+LINE: 821
+

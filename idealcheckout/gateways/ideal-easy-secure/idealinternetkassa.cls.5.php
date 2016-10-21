@@ -83,7 +83,7 @@
 			}
 
 			$html = '
-<form method="post" action="' . $this->getActionUrl() . '" id="ogone" name="ogone">';
+<form method="post" action="' . $this->getActionUrl() . '">';
 
 			if(!empty($this->aValues['SHA1_IN_KEY']))
 			{
