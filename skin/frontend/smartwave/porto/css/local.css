@@ -491,7 +491,27 @@ tr.summary-details-excluded{font-style:italic}
 .header-container{background-color:#fff;border-top-width:4px;border-top-style:solid}
 .top-links-container{background-color:#f0f0ed;padding:5px 0;position:relative;z-index:200}
 .header{position:relative;z-index:101;text-align:left}
-.header>.logo{margin:30px 40px 30px 0;text-decoration:none !important;max-width:100%;display:inline-block;vertical-align:middle;max-width:170px;position:relative;z-index:2;transition:none}
+.header>.logo{
+	margin: 30px 40px 30px 0;
+	text-decoration: none !important;
+	max-width: 100%;
+	display: inline-block;
+	vertical-align: middle;
+	max-width: 170px;
+	position: relative;
+	z-index: 2;
+	transition: none;
+	float: left;
+}
+.searchautocomplete{
+	position: static;
+}
+.searchautocomplete .nav{
+	width: 300px;
+}
+.searchautocomplete .nav-submit-button .button{
+	width: 65px;
+}
 .header>.logo>.logo{margin:0 !important;padding:0 !important;width:100%}
 .header .logo strong{position:absolute;top:-999em;left:-999em;width:0;height:0;font-size:0;line-height:0;text-indent:-999em;overflow:hidden}
 .header .logo img{max-width:100%}
@@ -569,7 +589,7 @@ tr.summary-details-excluded{font-style:italic}
 .icon-group i{font-size:20px;color:#fff;float:left;border-radius:50%;width:40px;height:40px;text-align:center;line-height:40px;background-color:#000}
 .icon-group h3{color:#000;font-size:14px;margin:0;line-height:1.5;margin-left:48px}
 .icon-group p{font-size:11px;margin:0;margin-left:48px;line-height:1;color:#878787}
-.search-area{position:absolute;top:50%;margin-top:-20px;z-index:1;display:inline-block;height:40px;left:20px;vertical-align:middle}
+.search-area{position:absolute;top:50%;margin-top:-20px;z-index:1;display:inline-block;/*height:40px;*/left:20px;vertical-align:middle}
 .cart-area{position:absolute;top:50%;margin-top:-20px;z-index:1;display:inline-block;height:40px;right:15px;text-align:right;vertical-align:middle}
 .header-container .header .custom-block span.split{height:14px;width:1px;border-right:1px solid #ccc;margin:0 13px}
 .header-container .top-links-icon{display:none;vertical-align:middle;font-size:11px;padding:7px 20px 7px 10px;position:relative}
@@ -647,7 +667,13 @@ tr.summary-details-excluded{font-style:italic}
 .header-container.type3 .top-links ul.links a{color:#fff}
 .header-container.type3 .top-links-icon{color:#fff}
 .header-container.type3 .welcome-msg{color:#fff}
-.header-container.type3 .search-area{position:static;margin:0}
+.header-container.type3 .search-area{
+	position: static;
+	margin: 0;
+	float: left;
+	width: 400px;
+	padding-top: 28px;
+}
 .header-container.type3 .header{color:#fff}
 .header-container.type3 .header a{color:inherit}
 .header-container.type3 .header .form-search{border-color:transparent;background-color:#006393}
@@ -682,7 +708,13 @@ tr.summary-details-excluded{font-style:italic}
 .header-container.type4 .selectbox .select{color:#777}
 .header-container.type4 .header{display:block;vertical-align:middle;padding:28px 0}
 .header-container.type4 .header > .logo{display:inline-block;vertical-align:middle;padding:0 15px;margin:0 40px 0 0}
-.header-container.type4 .search-area{position:static;margin:0}
+.header-container.type4 .search-area{
+	position: static;
+	margin: 0;
+	float: left;
+	width: 400px;
+	padding-top: 28px;
+}
 .header-container.type4 .header #search_mini_form{width:450px}
 .header-container.type4 .header .custom-block{display:inline-block;text-align:center;height:40px;line-height:40px}
 .header-container.type4 .mini-cart{display:inline-block;position:static;padding:0;margin:0;vertical-align:middle}
@@ -3839,6 +3871,23 @@ img.category-icon{margin-right:10px;max-height:11px;vertical-align:middle}
 .featured_product .labeldirect img {max-width: 100%}
 .featured_product a:hover {text-decoration: none;}
 .featured_product:hover a.addtocart {background-color: #ffc471;}
+.searchautocomplete .searchautocomplete-placeholder{
+	right: 12px;
+}
+.searchautocomplete{
+	position: relative;
+	width: 100%;
+}
+.searchautocomplete .searchautocomplete-placeholder ul li{
+	color: #444;
+}
 @media only screen and (max-width: 479px) {
 	.featured_product>div {width: 100%;}
+}
+.searchautocomplete .nav-submit-button .button{
+	background: #2c659e;
+	border: 0;
+}
+.searchautocomplete .nav-submit-button .button:hover{
+	background: #548ac0;
 }
