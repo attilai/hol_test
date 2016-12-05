@@ -8,17 +8,21 @@
  * Please refer to http://www.magentocommerce.com for more information.
  *
  * @category  Mirasvit
- * @package   Full Page Cache
- * @version   1.0.5.2
- * @build     509
+ * @package   Sphinx Search Ultimate
+ * @version   2.3.4
+ * @build     1364
  * @copyright Copyright (C) 2016 Mirasvit (http://mirasvit.com/)
  */
 
 
 class Mirasvit_MstCore_Block_Adminhtml_Toolbar extends Mirasvit_MstCore_Block_Adminhtml_Validator
 {
+    /**
+     * @return bool
+     */
     public function isToolbarAllowed()
     {
-        return in_array($_SERVER['REMOTE_ADDR'], Mage::helper('mstcore/config')->getDeveloperIp());
+        $ip = Mage::helper('mstcore')->getRemoteIP();
+        return in_array($ip, Mage::helper('mstcore/config')->getDeveloperIp());
     }
 }

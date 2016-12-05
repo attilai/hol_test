@@ -53,7 +53,7 @@
 						<validate>
 							<label></label>
 							<frontend_type>button</frontend_type>
-							<frontend_model>hellodialog_tracker_block_validator</frontend_model>
+							<frontend_model>Hellodialog_Tracker_Block_Validator</frontend_model>
 							<sort_order>3</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
@@ -62,7 +62,7 @@
 						<fieldmapping translate="label comment">
 							<label>Fields</label>
 							<frontend_type>button</frontend_type>
-							<frontend_model>hellodialog_tracker_block_fieldmapping</frontend_model>
+							<frontend_model>Hellodialog_Tracker_Block_Fieldmapping</frontend_model>
 							<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
 							<sort_order>5</sort_order>
 							<show_in_default>1</show_in_default>
@@ -139,7 +139,7 @@
 								<![CDATA[This represents the number of orders in Magento that have been synchronized to Hellodialog.]]>
 							</comment>
 							<frontend_type>button</frontend_type>
-							<frontend_model>hellodialog_tracker_block_syncstatus</frontend_model>
+							<frontend_model>Hellodialog_Tracker_Block_Syncstatus</frontend_model>
 							<sort_order>2</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
@@ -151,7 +151,7 @@
 								<![CDATA[Whenever you encounter problems during your sync, these numbers might help our team to identify the issue.]]>
 							</comment>
 							<frontend_type>button</frontend_type>
-							<frontend_model>hellodialog_tracker_block_cronprogress</frontend_model>
+							<frontend_model>Hellodialog_Tracker_Block_Cronprogress</frontend_model>
 							<sort_order>3</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>

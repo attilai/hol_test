@@ -8,9 +8,9 @@
  * Please refer to http://www.magentocommerce.com for more information.
  *
  * @category  Mirasvit
- * @package   Full Page Cache
- * @version   1.0.5.2
- * @build     509
+ * @package   Sphinx Search Ultimate
+ * @version   2.3.4
+ * @build     1364
  * @copyright Copyright (C) 2016 Mirasvit (http://mirasvit.com/)
  */
 

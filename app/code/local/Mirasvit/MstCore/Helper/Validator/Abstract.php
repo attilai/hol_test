@@ -8,9 +8,9 @@
  * Please refer to http://www.magentocommerce.com for more information.
  *
  * @category  Mirasvit
- * @package   Full Page Cache
- * @version   1.0.5.2
- * @build     509
+ * @package   Sphinx Search Ultimate
+ * @version   2.3.4
+ * @build     1364
  * @copyright Copyright (C) 2016 Mirasvit (http://mirasvit.com/)
  */
 
@@ -68,7 +68,8 @@ class Mirasvit_MstCore_Helper_Validator_Abstract extends Mage_Core_Helper_Abstra
 
         foreach ($tables as $table) {
             if (!$this->dbTableExists($table)) {
-                $description[] = "Table '$table' doesn't exist";
+                $tableName = $this->_dbRes()->getTableName($table);
+                $description[] = "Table '$tableName' doesn't exist";
                 $result = self::FAILED;
                 continue;
             }
@@ -163,7 +164,6 @@ class Mirasvit_MstCore_Helper_Validator_Abstract extends Mage_Core_Helper_Abstra
      */
     protected function getHandleNodesFromLayout($layoutName, $handleName)
     {
-        $container = array();
         $appEmulation = Mage::getSingleton('core/app_emulation');
         $initialEnvironmentInfo = $appEmulation->startEnvironmentEmulation(
             Mage::app()->getDefaultStoreView()->getId(),

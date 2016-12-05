@@ -8,9 +8,9 @@
  * Please refer to http://www.magentocommerce.com for more information.
  *
  * @category  Mirasvit
- * @package   Full Page Cache
- * @version   1.0.5.2
- * @build     509
+ * @package   Sphinx Search Ultimate
+ * @version   2.3.4
+ * @build     1364
  * @copyright Copyright (C) 2016 Mirasvit (http://mirasvit.com/)
  */
 
@@ -19,7 +19,9 @@ class Mirasvit_MstCore_Model_Feed_Updates extends Mirasvit_MstCore_Model_Feed_Ab
 {
     public function check()
     {
-        if (time() - intval(Mage::app()->loadCache(Mirasvit_MstCore_Helper_Config::UPDATES_FEED_URL)) > 12 * 60 * 60) {
+        if (Mage::helper('mstcore/config')->isNotificationsEnabled() &&
+            time() - intval(Mage::app()->loadCache(Mirasvit_MstCore_Helper_Config::UPDATES_FEED_URL)) > 12 * 60 * 60
+        ) {
             $this->refresh();
         }
     }
@@ -50,7 +52,9 @@ class Mirasvit_MstCore_Model_Feed_Updates extends Mirasvit_MstCore_Model_Feed_Ab
                 }
             }
 
-            Mage::getModel('adminnotification/inbox')->parse($items);
+            if (Mage::getModel('adminnotification/inbox')) {
+                Mage::getModel('adminnotification/inbox')->parse($items);
+            }
         } catch (Exception $ex) {
             Mage::logException($ex);
         }
