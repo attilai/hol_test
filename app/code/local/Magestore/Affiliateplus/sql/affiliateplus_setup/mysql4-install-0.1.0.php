@@ -155,16 +155,16 @@ ALTER TABLE {$this->getTable('sales/order')}
 ");
 
 $content = '
-<p>Our program is free to join, it\'s easy to sign-up and requires no technical knowledge. Affiliate program is common throughout the Internet and offers website owners an additional way to profit from their websites. Affiliate generates traffic and sales for commercial website and in return receives a commission payment.</p>
+<p>Affiliate programs are common throughout the Internet and offer website owners an additional way to spread the word about their websites. Among others, our program is free to join, easy to sign up and requires no technical knowledge! As our affiliates, you will generate traffic and sales for our website and receive attractive commissions in return.</p>
 <h3>How Does It Work?</h3>
-<p>When you join our affiliate program, you will be supplied with a range of banners and textual links that you place within your site. When a user clicks on one of your links, they will be brought to our website and their activity will be tracked by our affiliate software. Once a purchase is completed from the traffic you send us, you earn commission!</p>
-<h3>Real-Time Statistics and Reporting!</h3>
-<p>Login 24 hours a day to check our sales, traffic, account balance and see how your banners are performing.</p>';
+<p>When you join our affiliate program, you will be supplied with a range of banners and text links to place wherever you like. When a user clicks on one of your links, they will be brought to our website and their activities will be tracked by our affiliate program. Once this user completes a purchase, you earn commission!</p>
+<h3>Real-Time Statistics and Reports!</h3>
+<p>Log in anytime to check your performance with data of sales, traffic generated and your commission balance.</p>';
 
 $cmsPage = array(
 	'title' 		=> Mage::helper('affiliateplus')->__('Affiliate'),
 	'identifier' 	=> 'affiliate-home',
-	'content_heading' => Mage::helper('affiliateplus')->__('Welcome To Our Affiliate Program!'),
+	'content_heading' => Mage::helper('affiliateplus')->__('Welcome To Our Affiliate Network!'),
 	'content' 		=> $content,
 	'is_active' 	=> 1,
 	'sort_order' 	=> 0,

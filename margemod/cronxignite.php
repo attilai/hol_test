@@ -21,9 +21,9 @@ try{
     $content = file_get_contents('http://www.xmlcharts.com/live/precious-metals.php?format=json'); 
 } catch(Exception $e) {
     $to = "contact@westpointdigital.nl , rratinov@gmail.com";
-    $subject = "Hollandgold error report";
+    $subject = "Hollandgold error report" . date(DATE_RFC822);
     $headers = "From: contact@westpointdigital.nl";
-    mail($to,$subject,$e->getMessage(), $headers);
+    mail($to,$subject,date(DATE_RFC822) . ": " . $e->getMessage(), $headers);
 }
 if ($content === false) die('Something went wrong.'); 
 foreach (json_decode($content, true) as $currency => $arr) { 

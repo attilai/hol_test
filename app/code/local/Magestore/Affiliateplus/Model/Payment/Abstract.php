@@ -99,4 +99,11 @@ abstract class Magestore_Affiliateplus_Model_Payment_Abstract extends Mage_Core_
 		$html .= '<strong>'.$this->getFeePrice(true).'</strong><br />';
 		return $html;
 	}
+    
+    public function getPaymentHelper() {
+        if ($class = $this->_getPaymentConfig('helper')) {
+            return Mage::helper($class);
+        }
+        return false;
+    }
 }

@@ -9,15 +9,16 @@ class Magestore_Affiliateplusstatistic_Block_Grids_Referers extends Mage_Adminht
     }
     
     protected function _prepareCollection(){
-    	$collection = Mage::getResourceModel('affiliateplusstatistic/statistic_collection');
+    	$collection = Mage::getResourceModel('affiliateplus/action_collection');
     	
     	$collection->getSelect()->reset(Zend_Db_Select::COLUMNS)
     		->columns(array(
-    			'referer',
-    			'clicks'	=> 'COUNT(id)',
-    			'uniques'	=> 'COUNT(DISTINCT ip_address)',
+    			'referer'   => 'domain',
+    			'clicks'	=> 'SUM(totals)',
+    			'uniques'	=> 'SUM(is_unique)',
     		))
-    		->group('referer');
+    		->group('referer')
+            ->order('clicks DESC');
     	
     	if ($storeId = $this->getRequest()->getParam('store'))
 			$collection->addFieldToFilter('store_id',$storeId);
@@ -28,7 +29,7 @@ class Magestore_Affiliateplusstatistic_Block_Grids_Referers extends Mage_Adminht
     
     protected function _prepareColumns(){
       $this->addColumn('referer', array(
-          'header'    => Mage::helper('affiliateplus')->__('Referer'),
+          'header'    => Mage::helper('affiliateplus')->__('Traffic Source'),
           'index'     => 'referer',
 		  'sortable'  => false,
 		  'renderer'  => 'affiliateplusstatistic/grids_renderer_referer',

@@ -34,11 +34,13 @@ class Magestore_Affiliateplus_Block_Account_Edit extends Mage_Core_Block_Templat
     }
     
     public function requiredAddress(){
-    	return Mage::helper('affiliateplus/config')->getGeneralConfig('required_address');
+        $store = Mage::app()->getStore();
+    	return Mage::helper('affiliateplus/config')->getSharingConfig('required_address', $store);
     }
     
     public function requiredPaypal(){
-    	return Mage::helper('affiliateplus/config')->getGeneralConfig('required_paypal');
+        $store = Mage::app()->getStore();
+    	return Mage::helper('affiliateplus/config')->getSharingConfig('required_paypal', $store);
     }
     
     public function getFormattedAddress(){
@@ -168,5 +170,27 @@ class Magestore_Affiliateplus_Block_Account_Edit extends Mage_Core_Block_Templat
     
     public function getCheckCustomerEmailUrl(){
     	return $this->getUrl('affiliateplus/account/checkemailregister');
+    }
+    
+    /*Changed By Adam 12/09/2014: check referred by email before register*/
+    public function getCheckReferredEmailUrl(){
+    	return $this->getUrl('affiliateplus/account/checkreferredemail');
+    }
+
+    /**
+     * Changed By Adam (27/08/2016):
+     */
+    public function getCheckKeyShopUrl() {
+        return $this->getUrl('affiliateplus/account/checkkeyshop');
+    }
+
+    /**
+     * @author Adam (27/08/2016)
+     * @return mixed
+     */
+    public function getAffiliateUrl(){
+        $homeUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+
+        return Mage::helper('affiliateplus/url')->addAccToSubstore($homeUrl);
     }
 }

@@ -9,10 +9,12 @@ class Magestore_Affiliateplus_Block_Adminhtml_Transaction_Renderer_Customer
 			return sprintf('
 				<a href="%s" title="%s">%s</a>',
 				$this->getUrl('adminhtml/customer/edit/', array('_current'=>true, 'id' => $row->getCustomerId())),
-				Mage::helper('affiliateplus')->__('View Customer Detail'),
+				Mage::helper('affiliateplus')->__('View Customer Details'),
 				$row->getCustomerEmail()
 			);
-		else
+		else if($row->getCustomerEmail())
 			return sprintf('%s', $row->getCustomerEmail());	
+        else
+            return sprintf('%s', 'N/A');	
 	}
 }

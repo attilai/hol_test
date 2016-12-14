@@ -48,13 +48,40 @@ class Magestore_Affiliateplus_Block_Account_Banner extends Mage_Core_Block_Templ
     		$storeId = Mage::app()->getStore()->getId();
     		$bannerCollection = Mage::getModel('affiliateplus/banner')->getCollection()
 	    		->setStoreId($storeId)
-	    		->addFieldToFilter('banner_id',array('in' => $this->_ids));
+	    		->addFieldToFilter('main_table.banner_id',array('in' => $this->_ids));
 	    	if ($type = $this->getRequest()->getParam('type'))
-	    		$bannerCollection->addFieldToFilter('type_id',$type);
+	    		$bannerCollection->addFieldToFilter('main_table.type_id',$type);
 	    	if ($width = $this->getRequest()->getParam('w'))
-	    		$bannerCollection->addFieldToFilter('width',$width);
+	    		$bannerCollection->addFieldToFilter('main_table.width',$width);
 	    	if ($height = $this->getRequest()->getParam('h'))
-	    		$bannerCollection->addFieldToFilter('height',$height);
+	    		$bannerCollection->addFieldToFilter('main_table.height',$height);
+            
+            $clickSelect = clone $bannerCollection->getSelect();
+            $viewsSelect = clone $clickSelect;
+            $clickSelect->reset()
+                ->from(array('ct' => $bannerCollection->getTable('affiliateplus/action')),array(
+                    'banner_id' => 'banner_id',
+                    'raw_click' => 'SUM(totals)',
+                    'uni_click' => 'SUM(is_unique)'
+                ))->group('banner_id')
+                ->where('type = ?', 2);
+            $viewsSelect->reset()
+                ->from(array('vt' => $bannerCollection->getTable('affiliateplus/action')),array(
+                    'banner_id' => 'banner_id',
+                    'raw_view' => 'SUM(totals)',
+                    'uni_view' => 'SUM(is_unique)'
+                ))->group('banner_id')
+                ->where('type = ?', 1);
+            
+            $bannerCollection->getSelect()
+                ->joinLeft(array('c' => new Zend_Db_Expr("({$clickSelect->__toString()})")),
+                    'main_table.banner_id = c.banner_id',
+                    array('raw_click', 'uni_click')
+                )->joinLeft(array('v' => new Zend_Db_Expr("({$viewsSelect->__toString()})")),
+                    'main_table.banner_id = v.banner_id',
+                    array('raw_view', 'uni_view')
+                );
+            
 	    	$this->setBannerCollection($bannerCollection);
     	}
     	return $this->_banner_collection;
@@ -143,12 +170,24 @@ class Magestore_Affiliateplus_Block_Account_Banner extends Mage_Core_Block_Templ
     }
     
     public function getStoreCode(){
-    	if (Mage::app()->getStore()->getId() != Mage::app()->getDefaultStoreView()->getId())
+        // Changed By Adam: 10/11/2014: Fix loi khi chay multiple website nhung ko co default store view
+    	if (Mage::app()->getDefaultStoreView() && Mage::app()->getStore()->getId() != Mage::app()->getDefaultStoreView()->getId())
     		return Mage::app()->getStore()->getCode();
     	return false;
     }
     
     public function getAffiliateUrl(){
     	return Mage::helper('affiliateplus/url')->addAccToUrl($this->getBaseUrl());
+    }
+    
+    public function getImageUrl($params = array())
+    {
+        if (!Mage::getStoreConfig('affiliateplus/action/use_magento_link')) {
+            $url = $this->getJsUrl() . 'magestore/affiliateplus/image.php?';
+            $url .= http_build_query($params);
+        } else {
+            $url = $this->getUrl('affiliateplus/banner/image', $params);
+        }
+        return $url;
     }
 }

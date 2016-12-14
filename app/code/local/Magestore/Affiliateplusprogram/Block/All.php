@@ -1,17 +1,6 @@
 <?php
-class Magestore_Affiliateplusprogram_Block_All extends Mage_Core_Block_Template
+class Magestore_Affiliateplusprogram_Block_All extends Magestore_Affiliateplusprogram_Block_Abstract
 {
-	protected $_is_empty = true;
-	
-	/**
-	 * get Account helper
-	 *
-	 * @return Magestore_Affiliateplus_Helper_Account
-	 */
-	protected function _getAccountHelper(){
-		return Mage::helper('affiliateplus/account');
-	}
-	
 	/**
 	 * get Module helper
 	 *
@@ -26,32 +15,32 @@ class Magestore_Affiliateplusprogram_Block_All extends Mage_Core_Block_Template
 		
 		$collection = Mage::getResourceModel('affiliateplusprogram/program_collection')
 			->setStoreId(Mage::app()->getStore()->getId())
-			->addFieldToFilter('program_id',array('nin' => $this->_getHelper()->getJoinedProgramIds()));
+			->addFieldToFilter('main_table.program_id',array('nin' => $this->_getHelper()->getJoinedProgramIds()));
 		
 		$group = Mage::getSingleton('customer/session')->getCustomer()->getGroupId();
 		$collection->getSelect()
 			->where("scope = 0 OR (scope = 1 AND FIND_IN_SET($group,customer_groups) )");
 		
-		//if ($name = $this->getRequest()->getParam('name'))
-		//	$collection->getSelect()->where('name LIKE ?',"%$name%");
-		
-		$name = $this->getRequest()->getParam('name');
-		foreach ($collection as $item)
-			if ($item->getStatus() != 1 || ($name && strpos($item->getName(),$name) ===  false))
-				$item->setIsContinueNextRow(true);
-			elseif ($this->_is_empty)
-				$this->_is_empty = false;
+		// join program name and filter status
+        $collection->getSelect()
+            ->joinLeft(array('n' => $collection->getTable('affiliateplusprogram/value')),
+                "main_table.program_id = n.program_id AND n.attribute_code = 'name' AND n.store_id = ".
+                    Mage::app()->getStore()->getId(),
+                array('program_name' => 'IF (n.value IS NULL, main_table.name, n.value)')
+            )->joinLeft(array('s' => $collection->getTable('affiliateplusprogram/value')),
+                "main_table.program_id = s.program_id AND s.attribute_code = 'status' AND s.store_id = ".
+                    Mage::app()->getStore()->getId(),
+                array()
+            )->where('IF(s.value IS NULL, main_table.status, s.value) = 1');
 		
 		$this->setCollection($collection);
 	}
 	
-	public function isEmpty(){
-		return $this->_is_empty;
-	}
-	
 	public function _prepareLayout(){
 		parent::_prepareLayout();
-		$pager = $this->getLayout()->createBlock('page/html_pager','programs_pager')->setCollection($this->getCollection());
+		$pager = $this->getLayout()->createBlock('page/html_pager','programs_pager')
+                ->setTemplate('affiliateplus/html/pager.phtml')
+                ->setCollection($this->getCollection());
 		$this->setChild('programs_pager',$pager);
 		
 		$grid = $this->getLayout()->createBlock('affiliateplus/grid','programs_grid');
@@ -70,18 +59,31 @@ class Magestore_Affiliateplusprogram_Block_All extends Mage_Core_Block_Template
 		$grid->addColumn('program_name',array(
 			'header'	=> $this->__('Program Name'),
 			'render'	=> 'getProgramName',
+            'filter_index'  => 'IF (n.value IS NULL, main_table.name, n.value)',
+            'searchable'    => true,
 		));
 		
 		$grid->addColumn('details',array(
-			'header'	=> $this->__('Details'),
+			'header'	=> $this->__('Information'),
 			'render'	=> 'getProgramDetails'
 		));
 		
 		$grid->addColumn('created_date',array(
-			'header'	=> $this->__('Created Date'),
+			'header'	=> $this->__('Date Created'),
 			'type'		=> 'date',
 			'format'	=> 'medium',
-			'index'		=> 'created_date'
+			'index'		=> 'created_date',
+            'searchable'    => true,
+		));
+                
+                
+                /*Changed By Adam: show priority 22/07/2014*/
+                $grid->addColumn('priority',array(
+			'header'	=> $this->__('Priority'),
+			'index'		=> 'priority',
+			'searchable'    => true,
+                        'filter_index'  => 'IF (n.value IS NULL, main_table.priority, n.value)',
+			'width'		=> '50px'
 		));
 		
 		$grid->addColumn('action',array(
@@ -102,64 +104,4 @@ class Magestore_Affiliateplusprogram_Block_All extends Mage_Core_Block_Template
 	public function getSelectProgram($row){
 		return '<input type="checkbox" name="program_ids[]" value="'.$row->getId().'" />';
 	}
-	
-	public function getNoNumber($row){
-    	return sprintf('#%d',$row->getId());
-    }
-    
-    public function getProgramName($row){
-    	return sprintf('<a href="%s" title="%s">%s</a>'
-    		,$this->getUrl('affiliateplusprogram/index/detail',array('id' => $row->getId()))
-    		,$this->__('View Program Product List')
-    		,$row->getName()
-    	);
-    }
-    
-    public function getProgramDetails($row){
-    	$standardCommission = $row->getCommission();
-		
-    	$discount = ($row->getDiscountType() == 'fixed') ? Mage::helper('core')->currency($row->getDiscount()) : rtrim(rtrim(sprintf("%.2f",$row->getDiscount()),'0'),'.').'%';
-    	$commission = ($row->getCommissionType() == 'fixed') ? Mage::helper('core')->currency($standardCommission) : rtrim(rtrim(sprintf("%.2f",$standardCommission),'0'),'.').'%';
-    	
-    	$html = $this->__('Discount: ').'<strong>'.$discount.'</strong><br />';
-    	$html .= $this->__('Pay-per-sales: '). '<strong>'.$commission.'</strong>';
-    	
-    	Mage::dispatchEvent('affiliateplus_prepare_program',array('info' => $row));
-    	if ($row->getLevelCount()){
-    		$popHtml  = '<table class="data-table"><tr><td><strong>'.$this->__('Level %d',1).'</strong></td><td>';
-    		if ($row->getCommissionType() == 'fixed')
-    			$popHtml .= $this->__('%s per sale',$commission);
-    		else
-    			$popHtml .= $this->__('%s of sales amount',$commission);
-    		$popHtml .= '</td></tr>';
-    		foreach($row->getTierCommission() as $tierCommission){
-    			$popHtml .= '<tr><td><strong>'.$tierCommission['level'].'</strong></td><td>';
-    			$popHtml .= $tierCommission['commission'].'</td></tr>';
-    		}
-			$popHtml .= '</table>';
-			
-			$html .= '<script type="text/javascript">var popHtml'.$row->getId().'= \''.$this->jsQuoteEscape($popHtml).'\';</script>';
-    		$html .= '<br /><a href="" title="'.$this->__('View tier level commission amounts').'" onclick="TINY.box.show(popHtml'.$row->getId().',0,0,0,0);return false;">'.$this->__('Tier Commission').'?</a>';
-    	}
-    	
-    	if ($row->getValidFrom())
-			$html .= '<br />'.$this->__('From: ').'<strong>'.$this->formatDate($row->getValidFrom(),'medium',false).'</strong>';
-		if ($row->getValidTo())
-			$html .= '<br />'.$this->__('To: ').'<strong>'.$this->formatDate($row->getValidTo(),'medium',false).'</strong>';
-    	
-    	return $html;
-    }
-	
-	public function getPagerHtml(){
-    	return $this->getChildHtml('programs_pager');
-    }
-    
-    public function getGridHtml(){
-    	return $this->getChildHtml('programs_grid');
-    }
-    
-    protected function _toHtml(){
-    	$this->getChild('programs_grid')->setCollection($this->getCollection());
-    	return parent::_toHtml();
-    }
 }

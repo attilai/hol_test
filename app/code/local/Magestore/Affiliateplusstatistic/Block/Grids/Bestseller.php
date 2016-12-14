@@ -7,41 +7,29 @@ class Magestore_Affiliateplusstatistic_Block_Grids_Bestseller extends Mage_Admin
     }
     
     protected function _prepareCollection(){
-    	$collection = Mage::getResourceModel('catalog/product_collection')
-    		->addAttributeToSelect('sku')
-			->addAttributeToSelect('name')
-			->addAttributeToSelect('type_id');
-    	
-    	$transactionTable = $collection->getTable('affiliateplus/transaction');
-    	$collection->getSelect()->join(
-    		array('ts'	=> $transactionTable),
-    		'FIND_IN_SET(e.entity_id,ts.order_item_ids)',
-    		array('num_order_placed' => 'COUNT(ts.transaction_id)')
-    	)->where('ts.status = 1')
-    	->group('e.entity_id')
-    	->order('num_order_placed DESC');
-    	
-    	if ($storeId = $this->getRequest()->getParam('store')){
-			$collection->addStoreFilter($storeId);
-			$collection->getSelect()->where("ts.store_id = $storeId");
-			$collection->joinAttribute('custom_name', 'catalog_product/name', 'entity_id', null, 'inner', $storeId);
-			$collection->joinAttribute('status', 'catalog_product/status', 'entity_id', null, 'inner', $storeId);
-			$collection->joinAttribute('price', 'catalog_product/price', 'entity_id', null, 'left', $storeId);
-    	}else{
-    		$collection->addAttributeToSelect('price');
-    		$collection->joinAttribute('status', 'catalog_product/status', 'entity_id', null, 'inner');
-    	}
-    	
+        $collection = Mage::getResourceModel('affiliateplus/transaction_collection');
+        $collection->setModel('adminhtml/report_item');
+        $itemTable = $collection->getTable('sales/order_item');
+        $collection->getSelect()->join(array('i' => $itemTable),
+            'main_table.order_id = i.order_id AND FIND_IN_SET(i.product_id, main_table.order_item_ids)',
+            array('name', 'product_id', 'product_type', 'sku', 'base_price',
+                'num_order_placed'  => 'SUM(i.qty_ordered)'
+            )
+        )->where('type = 3')
+        ->group('product_id')
+        ->order('num_order_placed DESC')
+        ->order('base_price DESC');
+        
 		$this->setCollection($collection);
 		return parent::_prepareCollection();
     }
     
     protected function _prepareColumns(){
-      $this->addColumn('entity_id', array(
+      $this->addColumn('product_id', array(
           'header'    => Mage::helper('affiliateplus')->__('ID'),
           'align'     =>'right',
           'width'     => '50px',
-          'index'     => 'entity_id',
+          'index'     => 'product_id',
 		  'type'	  => 'number',
 		  'sortable'  => false,
       ));
@@ -49,14 +37,6 @@ class Magestore_Affiliateplusstatistic_Block_Grids_Bestseller extends Mage_Admin
       $storeId = $this->getRequest()->getParam('store');
       $store = Mage::app()->getStore($storeId);
       
-      if ($storeId)
-      	$this->addColumn('custom_name', array(
-          'header'    => Mage::helper('affiliateplus')->__('Name in %s',$store->getName()),
-          'align'     =>'left',
-          'index'     => 'custom_name',
-          'sortable'  => false,
-      	));
-      else
       	$this->addColumn('name', array(
           'header'    => Mage::helper('affiliateplus')->__('Name'),
           'align'     =>'left',
@@ -64,39 +44,28 @@ class Magestore_Affiliateplusstatistic_Block_Grids_Bestseller extends Mage_Admin
           'sortable'  => false,
       	));
       
-      
-      $this->addColumn('type', array(
-          'header'    => Mage::helper('affiliateplus')->__('Type'),
-          'align'     => 'left',
-          'index'     => 'type_id',
-          'type'      => 'options',
-          'options'   =>  Mage::getSingleton('catalog/product_type')->getOptionArray(),
-		  'sortable'  => false,
-      ));
-      
-      $this->addColumn('sku', array(
+        $this->addColumn('sku', array(
 			'header'    => Mage::helper('affiliateplus')->__('SKU'),
 			'index'     => 'sku',
 			'sortable'  => false,
-      ));
+        ));
       
-      $this->addColumn('price', array(
+        $this->addColumn('base_price', array(
 			'header'    => Mage::helper('affiliateplus')->__('Price'),
-			'index'     => 'price',
+			'index'     => 'base_price',
 			'type'		=> 'price',
 			'currency_code'	=> $store->getBaseCurrencyCode(),
 			'sortable'  => false,
-      ));
+        ));
       
-      $this->addColumn('status', array(
-          'header'    => Mage::helper('affiliateplus')->__('Status'),
-          'align'     => 'right',
-          'width'     => '80px',
-          'index'     => 'status',
-          'type'      => 'options',
-          'options'   => Mage::getSingleton('catalog/product_status')->getOptionArray(),
-		  'sortable'  => false,
-      ));
+        $this->addColumn('num_order_placed', array(
+            'header'    => Mage::helper('affiliateplus')->__('Quantity Ordered'),
+            'align'     => 'right',
+            'width'     => '80px',
+            'index'     => 'num_order_placed',
+            'type'      => 'number',
+            'sortable'  => false,
+        ));
     }
     
     public function getRowUrl($row){

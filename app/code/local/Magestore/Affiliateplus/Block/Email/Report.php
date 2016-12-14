@@ -7,9 +7,9 @@ class Magestore_Affiliateplus_Block_Email_Report extends Mage_Core_Block_Templat
 		$transaction = 0;
 		$commission = 0;
 		foreach ($statistic as $sta){
-			$sales += $sta['sales'];
-			$transaction += $sta['transactions'];
-			$commission += $sta['commissions'];
+			$sales += isset($sta['sales']) ? $sta['sales'] : 0;
+			$transaction += isset($sta['transactions']) ? $sta['transactions'] : 0;
+			$commission += isset($sta['transactions']) ? $sta['commissions'] : 0;
 		}
 		return array('sales' => $sales, 'transaction' => $transaction, 'commission' => $commission);
 	}

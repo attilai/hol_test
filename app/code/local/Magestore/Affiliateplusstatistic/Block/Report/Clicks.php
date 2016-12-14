@@ -4,7 +4,7 @@ class Magestore_Affiliateplusstatistic_Block_Report_Clicks extends Mage_Adminhtm
 	public function __construct(){
 		$this->_blockGroup = 'affiliateplusstatistic';
 		$this->_controller = 'report_clicks';
-		$this->_headerText = $this->__('Total Clicks Reports');
+		$this->_headerText = $this->__('Click Reports');
 		parent::__construct();
 		$this->setTemplate('report/grid/container.phtml');
 		$this->_removeButton('add');

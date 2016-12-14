@@ -55,7 +55,7 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Grid extends Mage_A
       ));
 
       $this->addColumn('total_sales_amount', array(
-          'header'    => Mage::helper('affiliateplusprogram')->__('Total Amount'),
+          'header'    => Mage::helper('affiliateplusprogram')->__('Total Sales Amount'),
           'align'     => 'left',
           'type'      => 'price',
           'index'     => 'total_sales_amount',
@@ -63,11 +63,22 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Grid extends Mage_A
       ));
       
       $this->addColumn('created_date', array(
-          'header'    => Mage::helper('affiliateplusprogram')->__('Created Date'),
+          'header'    => Mage::helper('affiliateplusprogram')->__('Date Created'),
           'align'     => 'right',
           'type'      => 'date',
           'index'     => 'created_date',
       ));
+      
+      /* Added By Adam to add Priority for program 22/07/2014 */
+	  $this->addColumn('priority', array(
+          'header'    => Mage::helper('affiliateplusprogram')->__('Priority'),
+          'align'     =>'left',
+          'index'     => 'priority',
+          'type'      => 'number',
+            'width'     => '80px',
+      ));
+	  /* End Code */
+	 
 
       $this->addColumn('status', array(
           'header'    => Mage::helper('affiliateplusprogram')->__('Status'),

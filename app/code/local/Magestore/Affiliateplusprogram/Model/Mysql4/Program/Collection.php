@@ -26,4 +26,28 @@ class Magestore_Affiliateplusprogram_Model_Mysql4_Program_Collection extends Mag
     	}
     	return $this;
     }
+    
+    public function addFieldToFilter($field, $condition=null) {
+        if ($storeId = $this->getStoreId()) {
+            $model = Mage::getSingleton($this->getModelName());
+            $attributes = array_merge(
+                    $model->getStoreAttributes(),
+                    $model->getTotalAttributes()
+                );
+            if (in_array($field, $attributes)) {
+                if (!in_array($field, $this->_addedTable)) {
+                    $this->getSelect()
+                        ->joinLeft(array($field => $this->getTable('affiliateplusprogram/value')),
+                            "main_table.program_id = $field.program_id" .
+                            " AND $field.store_id = $storeId" .
+                            " AND $field.attribute_code = '$field'",
+                            array()
+                        );
+                    $this->_addedTable[] = $field;
+                }
+                return parent::addFieldToFilter("IF($field.value_id IS NULL, main_table.$field, $field.value)", $condition);
+            }
+        }
+        return parent::addFieldToFilter($field, $condition);
+    }
 }

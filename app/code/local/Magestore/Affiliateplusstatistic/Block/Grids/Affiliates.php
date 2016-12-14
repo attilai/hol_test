@@ -12,8 +12,11 @@ class Magestore_Affiliateplusstatistic_Block_Grids_Affiliates extends Mage_Admin
     	$transactionTable = $collection->getTable('affiliateplus/transaction');
     	$collection->getSelect()->joinLeft(
     		array('ts' => $transactionTable),
-    		'main_table.account_id = ts.account_id',
-    		array('amount' => 'SUM(ts.total_amount)')
+    		'main_table.account_id = ts.account_id AND ts.type = 3',
+    		array(
+                'amount' => 'SUM(ts.total_amount)',
+                'num_order_placed'  => 'COUNT(ts.transaction_id)'
+            )
     	)->where('ts.status = 1')
     	->group('ts.account_id')
     	->order('amount DESC');
@@ -60,6 +63,14 @@ class Magestore_Affiliateplusstatistic_Block_Grids_Affiliates extends Mage_Admin
 			'sortable'  => false,
       ));
       
+      $this->addColumn('num_order_placed', array(
+          'header'    => Mage::helper('affiliateplus')->__('Number of Orders'),
+          'align'     => 'right',
+          'width'     => '80px',
+          'index'     => 'num_order_placed',
+		  'sortable'  => false,
+      ));
+      
       $this->addColumn('balance', array(
 			'header'    => Mage::helper('affiliateplus')->__('Balance'),
 			'align'     =>'right',
@@ -92,7 +103,8 @@ class Magestore_Affiliateplusstatistic_Block_Grids_Affiliates extends Mage_Admin
     }
     
     public function getRowUrl($row){
-    	return $this->getUrl('affiliateplusadmin/adminhtml_account/edit',array(
+        //Changed By Adam 29/10/2015: Fix issue of SUPEE 6788 - in Magento 1.9.2.2
+    	return $this->getUrl('adminhtml/affiliateplus_account/edit',array(
     		'id' => $row->getId(),
     		'store' => $this->getRequest()->getParam('store')
     	));

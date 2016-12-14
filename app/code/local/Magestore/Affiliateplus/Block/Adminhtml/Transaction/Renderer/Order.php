@@ -5,11 +5,17 @@ class Magestore_Affiliateplus_Block_Adminhtml_Transaction_Renderer_Order
 	/* Render Grid Column*/
 	public function render(Varien_Object $row) 
 	{
-		return sprintf('
-			<a href="%s" title="%s">%s</a>',
-			$this->getUrl('adminhtml/sales_order/view/', array('_current'=>true, 'order_id' => $row->getOrderId())),
-			Mage::helper('catalog')->__('View Order Detail'),
-			$row->getOrderNumber()
-		);
+        if($row->getOrderId()){
+            return sprintf('
+                <a href="%s" title="%s">%s</a>',
+                $this->getUrl('adminhtml/sales_order/view/', array('_current'=>true, 'order_id' => $row->getOrderId())),
+                Mage::helper('catalog')->__('View Order Details'),
+                $row->getOrderNumber()
+            );
+        }else{
+//            return sprintf('%s', $row->getOrderNumber());
+            /*Changed By Adam: 08/10/2014*/
+            return sprintf('%s', 'N/A');
+        }
 	}
 }

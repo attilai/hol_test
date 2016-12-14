@@ -28,6 +28,7 @@ class Magestore_Affiliateplusstatistic_Block_Report_Grid_Abstract extends Mage_A
 		if (is_null($this->_collection)) {
 			$this->setCollection(Mage::getModel('reports/grouped_collection'));
 		}
+        
 		return $this->_collection;
 	}
 
@@ -110,7 +111,6 @@ class Magestore_Affiliateplusstatistic_Block_Report_Grid_Abstract extends Mage_A
 
 	protected function _prepareCollection(){
 		$filterData = $this->getFilterData();
-
 		if ($filterData->getData('from') == null || $filterData->getData('to') == null) {
 			$this->setCountTotals(false);
 			$this->setCountSubTotals(false);
@@ -132,7 +132,6 @@ class Magestore_Affiliateplusstatistic_Block_Report_Grid_Abstract extends Mage_A
 			->addStoreFilter($storeIds)
 			->addOrderStatusFilter($filterData->getData('order_statuses'))
 			->setAggregatedColumns($this->_getAggregatedColumns());
-
 		if ($this->_isExport) {
 			$this->setCollection($resourceCollection);
 			return $this;

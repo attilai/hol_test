@@ -5,7 +5,8 @@ class Magestore_Affiliateplusstatistic_Block_Diagrams_Graph extends Mage_Adminht
 		'cht'  => 'lc',
 		'chf'  => 'bg,s,f4f4f4|c,lg,90,ffffff,0.1,ededed,0',
 		'chm'  => 'B,f4d4b2,0,0,0',
-		'chco' => 'db4814'
+		'chco' => 'db4814',
+        
 	);
 	
     /**
@@ -16,7 +17,6 @@ class Magestore_Affiliateplusstatistic_Block_Diagrams_Graph extends Mage_Adminht
 	 */
 	public function getChartUrl($directUrl = true){
 		$params = $this->_google_chart_params;
-
 		$this->_allSeries = $this->getRowsData($this->_dataRows);
 
 		foreach ($this->_axisMaps as $axis => $attr){
@@ -25,7 +25,7 @@ class Magestore_Affiliateplusstatistic_Block_Diagrams_Graph extends Mage_Adminht
 
 		$timezoneLocal = Mage::app()->getStore()->getConfig(Mage_Core_Model_Locale::XML_PATH_DEFAULT_TIMEZONE);
 
-		list ($dateStart, $dateEnd) = Mage::getResourceModel('reports/order_collection')
+		list ($dateStart, $dateEnd) = Mage::getResourceModel('affiliateplusstatistic/sales_collection')
 			->getDateRange($this->getDataHelper()->getParam('period'), '', '', true);
 
 		$tzDateStart = clone $dateStart;
@@ -34,7 +34,7 @@ class Magestore_Affiliateplusstatistic_Block_Diagrams_Graph extends Mage_Adminht
 		$dates = array();
 		$datas = array();
 
-		while($dateStart->compare($dateEnd) < 0){
+		while($dateStart->compare($dateEnd) <= 0){
 			switch ($this->getDataHelper()->getParam('period')) {
 				case '24h':
 					$d = $dateStart->toString('yyyy-MM-dd HH:00');
@@ -44,17 +44,18 @@ class Magestore_Affiliateplusstatistic_Block_Diagrams_Graph extends Mage_Adminht
 					break;
 				case '7d':
 				case '1m':
-					$d = $dateStart->toString('yyyy-MM-dd');
+					// $d = $dateStart->toString('yyyy-MM-dd');
 					$dLabel = $tzDateStart->toString('yyyy-MM-dd');
+                    $d = $dLabel;
 					$dateStart->addDay(1);
 					$tzDateStart->addDay(1);
 					break;
 				case '1y':
 				case '2y':
 					$d = $dateStart->toString('yyyy-MM');
-					$dLabel = $tzDateStart->toString('yyyy-MM');
+					$dLabel = $dateStart->toString('yyyy-MM'); // $tzDateStart->toString('yyyy-MM');
 					$dateStart->addMonth(1);
-					$tzDateStart->addMonth(1);
+					// $tzDateStart->addMonth(1);
 					break;
 			}
 			foreach ($this->getAllSeries() as $index=>$serie) {
@@ -201,7 +202,8 @@ class Magestore_Affiliateplusstatistic_Block_Diagrams_Graph extends Mage_Adminht
 		$rangeBuffer = "";
 
 		if (sizeof($this->_axisLabels) > 0) {
-			$params['chxt'] = implode(',', array_keys($this->_axisLabels));
+            if(!isset($params['chxt']))
+                $params['chxt'] = implode(',', array_keys($this->_axisLabels));
 			$indexid = 0;
 			foreach ($this->_axisLabels as $idx=>$labels){
 				if ($idx == 'x') {
@@ -256,7 +258,12 @@ class Magestore_Affiliateplusstatistic_Block_Diagrams_Graph extends Mage_Adminht
 				}
 				$indexid++;
 			}
-			$params['chxl'] = implode('|', $valueBuffer);
+            $params['chxl'] = implode('|', $valueBuffer);
+            if(isset($params['chxlexpend']))
+                if($params['chxlexpend'] == 'currency')
+                    $params['chxl'] .= '|2:|||('.Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol().')';
+                else
+                    $params['chxl'] .= $params['chxlexpend'];
 		};
 
 		// chart size
@@ -265,7 +272,10 @@ class Magestore_Affiliateplusstatistic_Block_Diagrams_Graph extends Mage_Adminht
 		if (isset($deltaX) && isset($deltaY)) {
 			$params['chg'] = $deltaX . ',' . $deltaY . ',1,0';
 		}
-
+        
+        // fix bug encoded url
+        $directUrl = true;
+        
 		// return the encoded data
 		if ($directUrl) {
 			$p = array();

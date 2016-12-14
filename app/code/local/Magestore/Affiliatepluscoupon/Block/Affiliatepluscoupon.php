@@ -7,29 +7,52 @@ class Magestore_Affiliatepluscoupon_Block_Affiliatepluscoupon extends Magestore_
 	}
 	
 	public function getListProgram(){
-		$listProgram = parent::getListProgram();
-		$correctPrograms = array();
-		
-		$programCoupons = Mage::registry('program_coupon_codes');
-		foreach ($listProgram as $pId => $program){
-			if ($pId == 'default'){
-				if (floatval($this->_getConfigHelper()->getGeneralConfig('discount')) > 0){
-					$program->setCouponCode($this->getAccount()->getCouponCode());
-					$correctPrograms[$pId] = $program;
-				}
-			} else {
-				if (!is_array($programCoupons)) continue;
-				if (!isset($programCoupons[$pId])) continue;
-				if ($programCoupons[$pId]){
-					$program->setCouponCode($programCoupons[$pId]);
-					$correctPrograms[$pId] = $program;
-				}
-			}
-		}
-		return $correctPrograms;
+        $listProgram = array();
+        if (floatval($this->_getConfigHelper()->getDiscountConfig('discount')) > 0) {
+            $listProgram['default'] = new Varien_Object(array(
+                'name'				=> $this->__('Affiliate Program'),
+				'commission_type'	=> $this->_getConfigHelper()->getCommissionConfig('commission_type'),
+				'commission'		=> $this->_getConfigHelper()->getCommissionConfig('commission'),
+                'sec_commission'    => $this->_getConfigHelper()->getCommissionConfig('use_secondary'),
+                'sec_commission_type'   => $this->_getConfigHelper()->getCommissionConfig('secondary_type'),
+                'secondary_commission'  => $this->_getConfigHelper()->getCommissionConfig('secondary_commission'),
+				'discount_type'		=> $this->_getConfigHelper()->getDiscountConfig('discount_type'),
+				'discount'			=> $this->_getConfigHelper()->getDiscountConfig('discount'),
+                'sec_discount'      => $this->_getConfigHelper()->getDiscountConfig('use_secondary'),
+                'sec_discount_type' => $this->_getConfigHelper()->getDiscountConfig('secondary_type'),
+                'secondary_discount'=> $this->_getConfigHelper()->getDiscountConfig('secondary_discount'),
+                'coupon_code'       => $this->getAccount()->getCouponCode()
+            ));
+        }
+        if ($this->isMultiProgram() && Mage::helper('core')->isModuleEnabled('Magestore_Affiliateplusprogram')) {
+            $collection = Mage::getResourceModel('affiliateplusprogram/program_collection')
+                ->setStoreId(Mage::app()->getStore()->getId());
+            $programCoupons = Mage::registry('program_coupon_codes');
+            foreach ($collection as $item) {
+                if ($item->getStatus() && isset($programCoupons[$item->getId()])) {
+                    $item->setCouponCode($programCoupons[$item->getId()]);
+                    $listProgram[$item->getId()] = $item;
+                }
+            }
+        }
+        return $listProgram;
 	}
 	
 	public function isMultiProgram(){
 		return Mage::helper('affiliatepluscoupon')->isMultiProgram();
 	}
+    
+    public function hasSecondaryCommission($program) {
+        return ($program->getData('sec_commission')
+            && ($program->getData('sec_commission_type') != $program->getData('commission_type')
+                || $program->getData('secondary_commission') != $program->getData('commission')
+        ));
+    }
+    
+    public function hasSecondaryDiscount($program) {
+        return ($program->getData('sec_discount')
+            && ($program->getData('sec_discount_type') != $program->getData('discount_type')
+                || $program->getData('secondary_discount') != $program->getData('discount')
+        ));
+    }
 }

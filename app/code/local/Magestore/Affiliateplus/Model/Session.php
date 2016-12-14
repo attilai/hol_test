@@ -4,15 +4,19 @@ class Magestore_Affiliateplus_Model_Session extends Mage_Core_Model_Session
 {
 	public function getAccount(){
 		if (!Mage::registry('load_account')){
-			$customer = $this->getCustomer();
+			// $customer = $this->getCustomer();
+//            $customerId = Mage::getSingleton('customer/session')->getCustomerId();
+			$customerId = Mage::getSingleton('customer/session')->isLoggedIn() ? Mage::getSingleton('customer/session')->getCustomerId() : null;
 			$account = Mage::getModel('affiliateplus/account')
 				->setStoreId(Mage::app()->getStore()->getId());
 			if (Mage::helper('affiliateplus/config')->getSharingConfig('balance') == 'global')
 				$account->setBalanceIsGlobal(true);
-			$account->loadByCustomer($customer);
+			if ($customerId) {
+                $account->loadByCustomerId($customerId);
+            }
 			$this->setData('account',$account);
 			Mage::register('load_account',true);
-		}
+		} 
 		return $this->getData('account');
 	}
 	

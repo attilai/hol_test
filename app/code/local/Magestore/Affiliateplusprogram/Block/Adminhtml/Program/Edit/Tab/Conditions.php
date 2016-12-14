@@ -20,6 +20,8 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tab_Conditions
 	  $form = new Varien_Data_Form();
       $form->setHtmlIdPrefix('affiliateplusprogram_');
       
+      // $form->addFieldset('conditions_description_fieldset',array('legend' => 'legend'))->setRenderer($this->getLayout()->createBlock('adminhtml/widget_form_renderer_fieldset')->setTemplate('affiliateplusprogram/descriptions.phtml'));
+      
       $renderer = Mage::getBlockSingleton('adminhtml/widget_form_renderer_fieldset')
             ->setTemplate('promo/fieldset.phtml')
             ->setNewChildUrl($this->getUrl('adminhtml/promo_quote/newConditionHtml/form/affiliateplusprogram_conditions_fieldset'));
@@ -36,5 +38,13 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tab_Conditions
       $form->setValues($data);
       $this->setForm($form);
       return parent::_prepareForm();
+  }
+  
+  protected function _toHtml() {
+    $html = $this->getLayout()->createBlock('adminhtml/template')
+        ->setTemplate('affiliateplusprogram/descriptions.phtml')->toHtml();
+    $html .= $this->getLayout()->createBlock('affiliateplusprogram/adminhtml_program_edit_tab_categories')->toHtml();
+    $html .= parent::_toHtml();
+    return $html;
   }
 }

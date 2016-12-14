@@ -59,10 +59,11 @@ if($silverRate > 10 && $goldRate > 500 && $platinumRate > 1 && $palladiumRate > 
         }
 
         catch(Exception $e) {
+            print $e->getMessage();
             $to = "contact@westpointdigital.nl , rratinov@gmail.com , evgelit@gmail.com";
-            $subject = "Hollandgold error report";
+            $subject = "Hollandgold error report " . date(DATE_RFC822);
             $headers = "From: contact@westpointdigital.nl";
-            mail($to,$subject,$e->getMessage(), $headers);
+            mail($to,$subject,date(DATE_RFC822) . ": " . $e->getMessage(), $headers);
         }
 		
 		

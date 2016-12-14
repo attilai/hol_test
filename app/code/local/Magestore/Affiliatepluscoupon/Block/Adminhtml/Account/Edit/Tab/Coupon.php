@@ -15,7 +15,9 @@ class Magestore_Affiliatepluscoupon_Block_Adminhtml_Account_Edit_Tab_Coupon exte
 		$accountId = $this->getRequest()->getParam('id');
 		$collection = Mage::getResourceModel('affiliatepluscoupon/coupon_collection');
 		
-		if (Mage::helper('affiliatepluscoupon')->isMultiProgram()){
+		if (Mage::helper('affiliatepluscoupon')->isMultiProgram()
+            && Mage::helper('core')->isModuleEnabled('Magestore_Affiliateplusprogram')
+        ){
 			$collection->getSelect()->joinLeft(
 				array('p'	=> $collection->getTable('affiliateplusprogram/account')),
 				'main_table.program_id = p.program_id AND main_table.account_id = p.account_id',
@@ -25,7 +27,9 @@ class Magestore_Affiliatepluscoupon_Block_Adminhtml_Account_Edit_Tab_Coupon exte
 				'main_table.program_id = r.program_id',
 				array('status' => 'IF (main_table.program_id = 0, 1, IF(p.id AND r.use_coupon, 1, 0))')
 			);
-		}
+		} else {
+            $collection->addFieldToFilter('program_id', array('eq'=>0));
+        }
 		$collection->addFieldToFilter('main_table.account_id',$accountId);
 		
 		$this->setCollection($collection);
@@ -83,7 +87,8 @@ class Magestore_Affiliatepluscoupon_Block_Adminhtml_Account_Edit_Tab_Coupon exte
 			$this->addColumn('coupons_status',array(
 				'header'	=> Mage::helper('affiliatepluscoupon')->__('Status'),
 				'index'		=> 'status',
-				'filter_index'	=> 'IF (main_table.program_id = 0, 1, IF(p.id AND r.use_coupon, 1, 0))',
+//				'filter_index'	=> 'IF (main_table.program_id = 0, 1, IF(p.id AND r.use_coupon, 1, 0))',
+                            'filter_condition_callback' => array($this, '_filterCouponCondition'),
 				'type'		=> 'options',
 				'options'	=> array(
 					'0'	=> Mage::helper('affiliatepluscoupon')->__('Disable'),
@@ -94,8 +99,19 @@ class Magestore_Affiliatepluscoupon_Block_Adminhtml_Account_Edit_Tab_Coupon exte
 		
 		return parent::_prepareColumns();
 	}
-	
-	protected function _getSelectedCoupons(){
+        
+        /**
+         * Fixed issue of sql: IF(main_table.program_id = 0, 1, IF(p.id AND r.use_coupon, 1, 0)
+         * @param type $collection
+         * @param type $column
+         */
+        protected  function _filterCouponCondition($collection, $column) {
+            $value = $column->getFilter()->getValue();
+            $collection->getSelect()->where("IF(main_table.program_id = 0, 1, IF(p.id AND r.use_coupon, 1, 0)) = $value");
+        }
+
+
+        protected function _getSelectedCoupons(){
 		$coupons = $this->getCoupons();
 		if (!is_array($coupons))
 			return array();

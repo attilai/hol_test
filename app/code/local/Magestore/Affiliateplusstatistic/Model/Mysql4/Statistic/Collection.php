@@ -4,56 +4,56 @@ class Magestore_Affiliateplusstatistic_Model_Mysql4_Statistic_Collection extends
 {
     public function _construct(){
         parent::_construct();
-        $this->_init('affiliateplusstatistic/statistic');
+        $this->_init('affiliateplus/action');
     }
     
-    public function prepareSummary($range, $customStart, $customEnd, $isFilter = 0){
-    	$this->setMainTable('affiliateplusstatistic/statistic');
+    public function prepareSummary($range, $customStart, $customEnd, $isFilter = 0, $type = 2){
+    	// $this->setMainTable('affiliateplus/action');
     	$adapter = $this->getConnection();
     	
     	$this->getSelect()->reset(Zend_Db_Select::COLUMNS);
     	
     	$this->getSelect()->columns(array(
-    		'clicks'	=> 'COUNT(id)',
-    		'uniques'	=> 'COUNT(DISTINCT ip_address)',
-    	));
+    		'clicks'	=> 'SUM(totals)',
+    		'uniques'	=> 'SUM(is_unique)',
+    	))->where('type = ?', $type);
     	
     	$dateRange = $this->getDateRange($range,$customStart,$customEnd);
     	//$tzRangeOffsetExpression = $this->_getTZRangeOffsetExpression($range,'visit_at',$dateRange['from'], $dateRange['to']);
     	
-    	$this->getSelect()->columns(array('range' => $this->_getRangeExpressionForAttribute($range,'visit_at')))//$tzRangeOffsetExpression))
+    	$this->getSelect()->columns(array('range' => $this->_getRangeExpressionForAttribute($range,'updated_time')))//$tzRangeOffsetExpression))
     		->order('range',Zend_Db_Select::SQL_ASC)
     		->group('range');//$tzRangeOffsetExpression);
     	
-    	$this->addFieldToFilter('visit_at', $dateRange);
+    	$this->addFieldToFilter('updated_time', $dateRange);
     	return $this;
     }
     
-    public function prepareTotal($range, $customStart, $customEnd, $isFilter = 0){
-    	$this->setMainTable('affiliateplusstatistic/statistic');
+    public function prepareTotal($range, $customStart, $customEnd, $isFilter = 0, $type = 2){
+    	// $this->setMainTable('affiliateplus/action');
     	$adapter = $this->getConnection();
     	
     	$this->getSelect()->reset(Zend_Db_Select::COLUMNS);
     	
     	$this->getSelect()->columns(array(
-    		'total_clicks'	=> 'COUNT(id)',
-    		'total_uniques'	=> 'COUNT(DISTINCT ip_address)',
-    	));
+    		'total_clicks'	=> 'SUM(totals)',
+    		'total_uniques'	=> 'SUM(is_unique)',
+    	))->where('type = ?', $type);
     	
     	$dateRange = $this->getDateRange($range,$customStart,$customEnd);
     	
-    	$this->addFieldToFilter('visit_at',$dateRange);
+    	$this->addFieldToFilter('updated_time',$dateRange);
     	return $this;
     }
     
-    public function prepareLifeTimeTotal(){
-    	$this->setMainTable('affiliateplusstatistic/statistic');
+    public function prepareLifeTimeTotal($type = 2){
+    	// $this->setMainTable('affiliateplus/action');
     	$this->getSelect()->reset(Zend_Db_Select::COLUMNS);
     	
     	$this->getSelect()->columns(array(
-    		'total_clicks'	=> 'COUNT(id)',
-    		'total_uniques'	=> 'COUNT(DISTINCT ip_address)',
-    	));
+    		'total_clicks'	=> 'SUM(totals)',
+    		'total_uniques'	=> 'SUM(is_unique)',
+    	))->where('type = ?', $type);
     	
     	return $this;
     }
@@ -177,6 +177,9 @@ class Magestore_Affiliateplusstatistic_Model_Mysql4_Statistic_Collection extends
                 if ($range == '2y') {
                     $dateStart->subYear(1);
                 }
+                $dateEnd->setDay(1);
+                $dateEnd->addMonth(1);
+                $dateEnd->subDay(1);
                 break;
         }
 

@@ -8,11 +8,11 @@ class Magestore_Affiliateplusstatistic_Model_Mysql4_Report_Clicks_Collection ext
 	public function __construct(){
 		parent::_construct();
 		$this->setModel('adminhtml/report_item');
-		$this->_resource = Mage::getResourceModel('sales/report')->init('affiliateplusstatistic/statistic','id');
+		$this->_resource = Mage::getResourceModel('sales/report')->init('affiliateplus/action','action_id');
 		$this->setConnection($this->getResource()->getReadConnection());
 		
 		$this->_applyFilters = true;
-		$this->_period_column = 'visit_at';
+		$this->_period_column = 'created_date';
 	}
 	
 	/**
@@ -28,20 +28,23 @@ class Magestore_Affiliateplusstatistic_Model_Mysql4_Report_Clicks_Collection ext
 				$this->_selectedColumns = $this->getAggregatedColumns();
 			else {
 				//$this->_periodFormat = $adapter->getDateFormatSql('visit_at', '%Y-%m-%d');
-				$this->_periodFormat = "DATE_FORMAT(visit_at, '%Y-%m-%d')";
+				$this->_periodFormat = "DATE_FORMAT(created_date, '%Y-%m-%d')";
 				if ('year' == $this->_period)
 					//$this->_periodFormat = $adapter->getDateFormatSql('visit_at', '%Y');
-					$this->_periodFormat = "DATE_FORMAT(visit_at, '%Y')";
+					$this->_periodFormat = "DATE_FORMAT(created_date, '%Y')";
 				elseif ('month' == $this->_period)
 					//$this->_periodFormat = $adapter->getDateFormatSql('visit_at', '%Y-%m');
-					$this->_periodFormat = "DATE_FORMAT(visit_at, '%Y-%m')";
+					$this->_periodFormat = "DATE_FORMAT(created_date, '%Y-%m')";
 				
 				$this->_selectedColumns = array(
-					'visit_at'			=>  $this->_periodFormat,
+					'visit_at'			=> $this->_periodFormat,
+                    'account_email'     => 'account_email',
 					'referer'			=> 'referer',
-					'url_path'			=> 'url_path',
-					'referer_id'		=> 'COUNT(referer_id)',
-					'ip_address'		=> 'COUNT(DISTINCT ip_address)',
+                    'banner_id'         => 'banner_id',
+                    'banner_title'      => 'banner_title',
+					'url_path'			=> 'landing_page',
+					'totals'            => 'SUM(totals)',
+					'is_unique'         => 'SUM(is_unique)',
 				);
 			}
 		}
@@ -54,10 +57,12 @@ class Magestore_Affiliateplusstatistic_Model_Mysql4_Report_Clicks_Collection ext
      * @return Mage_Sales_Model_Resource_Report_Order_Collection
      */
 	protected function _initSelect(){
-		$this->getSelect()->from($this->getResource()->getMainTable(), $this->_getSelectedColumns());
+		$this->getSelect()
+            ->from($this->getResource()->getMainTable(), $this->_getSelectedColumns())
+            ->where('type = 2');
 		if (!$this->isTotals())
 			$this->getSelect()
-				->group(array('referer','url_path',$this->_periodFormat))
+				->group(array('referer','landing_page',$this->_periodFormat,'account_email','banner_id'))
 				->order($this->_periodFormat.' ASC');
 		return $this;
 	}

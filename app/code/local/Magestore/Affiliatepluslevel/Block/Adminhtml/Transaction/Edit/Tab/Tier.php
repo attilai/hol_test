@@ -6,7 +6,8 @@ class Magestore_Affiliatepluslevel_Block_Adminhtml_Transaction_Edit_Tab_Tier ext
     {
         parent::__construct();
         $this->setId('tiergrid');
-        $this->setDefaultSort('tier_id');
+        $this->setDefaultSort('real_level');
+        $this->setDefaultDir('ASC');
         $this->setUseAjax(true);
     }
 
@@ -74,13 +75,9 @@ class Magestore_Affiliatepluslevel_Block_Adminhtml_Transaction_Edit_Tab_Tier ext
 			'currency_code' => $currencyCode,
       	));	
 	  	
-		$this->addColumn('commission_plus', array(
-			'header'    => Mage::helper('affiliatepluslevel')->__('Additional Commission'),
-			'align'     => 'right',
-			'index'     => 'commission_plus',
-			'type'		=> 'price',
-			'currency_code' => $currencyCode,
-      	));	
+        Mage::dispatchEvent('affiliatepluslevel_transaction_prepare_columns', array(
+            'grid'  => $this->setData('affiliatepluslevel_currency_code', $currencyCode)
+        ));	
 		
     }
 
@@ -97,7 +94,8 @@ class Magestore_Affiliatepluslevel_Block_Adminhtml_Transaction_Edit_Tab_Tier ext
 	
 	public function getRowUrl($row) {
 		$id = $row->getAccountId();
-		return $this->getUrl('affiliateplusadmin/adminhtml_account/edit', array(
+                //Changed By Adam 29/10/2015: Fix issue of SUPEE 6788 - in Magento 1.9.2.2
+		return $this->getUrl('adminhtml/affiliateplus_account/edit', array(
 			'id' => $id,
 		));
 	}

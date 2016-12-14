@@ -28,7 +28,10 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tab_Transactio
     	
 		if ($storeId = $this->getStore()->getId())
 			$collection->addFieldToFilter('transaction.store_id',$storeId);
-		
+		$collection	->getSelect()
+					->columns(array('order_number'=>'if (transaction.order_number="", "N/A", transaction.order_number)'))
+                    ->columns(array('order_item_names'=>'if (transaction.order_item_names IS NULL, "N/A", transaction.order_item_names)'))
+					;
 		$this->setCollection($collection);
 		return parent::_prepareCollection();
     }
@@ -53,21 +56,21 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tab_Transactio
 		));
 		
 		$this->addColumn('transaction_customer_email', array(
-			'header'    => Mage::helper('affiliateplus')->__('Customer Email'),
+			'header'    => Mage::helper('affiliateplus')->__('Customer Email Address'),
 			'width'     => '150px',
 			'align'     =>'right',
 			'index'     => 'customer_email',
 			'renderer'  => 'affiliateplus/adminhtml_transaction_renderer_customer',
-			'filter_index'	=> 'transaction.customer_email'
+			'filter_index'	=> 'if (transaction.customer_email="", "N/A", transaction.customer_email)'
 		));
 	
 		$this->addColumn('transaction_order_number', array(
-			'header'    => Mage::helper('affiliateplus')->__('Order'),
+			'header'    => Mage::helper('affiliateplus')->__('Order ID'),
 			'width'     => '150px',
 			'align'     =>'right',
 			'index'     => 'order_number',
 			'renderer'  => 'affiliateplus/adminhtml_transaction_renderer_order',
-            'filter_index'	=> 'main_table.order_number',
+            'filter_index'	=> 'if (transaction.order_number="", "N/A", transaction.order_number)',
 		));
 	
 		$this->addColumn('transaction_order_item_names', array(
@@ -75,11 +78,11 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tab_Transactio
 			'align'     =>'left',
 			'index'     => 'order_item_names',
 			'renderer'  => 'affiliateplus/adminhtml_transaction_renderer_product',
-            'filter_index'	=> 'main_table.order_item_names',
+            'filter_index'	=> 'if (transaction.order_item_names="", "N/A", transaction.order_item_names)',
 		));
 	
 		$this->addColumn('transaction_total_amount', array(
-			'header'    => Mage::helper('affiliateplus')->__('Total Amount'),
+			'header'    => Mage::helper('affiliateplus')->__('Order Subtotal'),
 			'width'     => '150px',
 			'align'     =>'right',
 			'index'     => 'total_amount',
@@ -97,23 +100,27 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tab_Transactio
 		  	'currency_code' => $currencyCode,
             'filter_index'	=> 'main_table.commission',
 		));
-		
+                /* thanhpv 18/10/2012 */
+		//add event to add more column 
+                
+                /* hainh 17/04/2014 remove dispatchEvent because of useless for now and making error when filter */
+	  	//Mage::dispatchEvent('affiliateplus_adminhtml_add_column_transaction_grid', array('grid' => $this));
 		$this->addColumn('transaction_status', array(
-			'header'    => Mage::helper('affiliateplus')->__('Status'),
+			'header'    => Mage::helper('affiliateplus')->__('Order Status'),
 			'width'     => '150px',
 			'align'     =>'right',
 			'index'     => 'status',
 			'type'  	=> 'options',
 		  	'options'   => array(
-				1 => 'Completed',
+				1 => 'Complete',
 				2 => 'Pending',
-				3 => 'Cancel',
+				3 => 'Canceled',
 			),
 			'filter_index'	=> 'transaction.status'
 		));
 		
 		$this->addColumn('transaction_created_time', array(
-			'header'    => Mage::helper('affiliateplus')->__('Created Date'),
+			'header'    => Mage::helper('affiliateplus')->__('Date Created'),
 			'width'     => '150px',
 			'align'     =>'right',
 			'index'     => 'created_time',
@@ -123,8 +130,9 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tab_Transactio
     }
     
     public function getRowUrl($row){
-		return $this->getUrl('affiliateplusadmin/adminhtml_transaction/view', array('id' => $row->getTransactionId()));
-	}
+        //Changed By Adam 29/10/2015: Fix issue of SUPEE 6788 - in Magento 1.9.2.2
+        return $this->getUrl('adminhtml/affiliateplus_transaction/view', array('id' => $row->getTransactionId()));
+    }
 	
 	public function getGridUrl(){
         return $this->getUrl('*/*/transactionGrid',array(

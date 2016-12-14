@@ -11,21 +11,21 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tabs extends M
 
   protected function _beforeToHtml(){
       $this->addTab('form_section', array(
-          'label'     => Mage::helper('affiliateplusprogram')->__('Program Detail'),
-          'title'     => Mage::helper('affiliateplusprogram')->__('Program Detail'),
+          'label'     => Mage::helper('affiliateplusprogram')->__('Program Details'),
+          'title'     => Mage::helper('affiliateplusprogram')->__('Program Details'),
           'content'   => $this->getLayout()->createBlock('affiliateplusprogram/adminhtml_program_edit_tab_form')->toHtml(),
       ));
       
-      $this->addTab('category_section',array(
-      	  'label'     => Mage::helper('affiliateplusprogram')->__('Applied Categories'),
-          'title'     => Mage::helper('affiliateplusprogram')->__('Applied Categories'),
-          'url'       => $this->getUrl('*/*/categories',array(
-        	  '_current'	=> true,
-        	  'id'			=> $this->getRequest()->getParam('id'),
-        	  'store'		=> $this->getRequest()->getParam('store')
-    	  )),
-          'class'     => 'ajax',
-      ));
+//      $this->addTab('category_section',array(
+//      	  'label'     => Mage::helper('affiliateplusprogram')->__('Applied Categories'),
+//          'title'     => Mage::helper('affiliateplusprogram')->__('Applied Categories'),
+//          'url'       => $this->getUrl('*/*/categories',array(
+//        	  '_current'	=> true,
+//        	  'id'			=> $this->getRequest()->getParam('id'),
+//        	  'store'		=> $this->getRequest()->getParam('store')
+//    	  )),
+//          'class'     => 'ajax',
+//      ));
       
       $this->addTab('condition', array(
           'label'     => Mage::helper('affiliateplusprogram')->__('Conditions'),
@@ -34,15 +34,15 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tabs extends M
       ));
       
       $this->addTab('action', array(
-          'label'     => Mage::helper('affiliateplusprogram')->__('Actions'),
-          'title'     => Mage::helper('affiliateplusprogram')->__('Actions'),
+          'label'     => Mage::helper('affiliateplusprogram')->__('Commissions & Discounts'),
+          'title'     => Mage::helper('affiliateplusprogram')->__('Commissions & Discounts'),
           'content'   => $this->getLayout()->createBlock('affiliateplusprogram/adminhtml_program_edit_tab_actions')->toHtml(),
       ));
       
       if ($this->getRequest()->getParam('id'))
 	      $this->addTab('transaction_section',array(
-	      	  'label'     => Mage::helper('affiliateplusprogram')->__('View Transactions'),
-	          'title'     => Mage::helper('affiliateplusprogram')->__('View Transactions'),
+	      	  'label'     => Mage::helper('affiliateplusprogram')->__('Transactions'),
+	          'title'     => Mage::helper('affiliateplusprogram')->__('Transactions'),
 	          'url'       => $this->getUrl('*/*/transaction',array(
 	        	  '_current'	=> true,
 	        	  'id'			=> $this->getRequest()->getParam('id'),

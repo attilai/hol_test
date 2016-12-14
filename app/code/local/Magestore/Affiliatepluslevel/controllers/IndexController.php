@@ -6,6 +6,10 @@ class Magestore_Affiliatepluslevel_IndexController extends Mage_Core_Controller_
 	}
 
     public function listTierTransactionAction(){
+                /* hainh edit 25-04-2014 */
+        if (!Mage::helper('affiliatepluslevel')->isPluginEnabled()) {
+            return $this->_redirect('affiliateplus/index/index');
+        }
 		if(!Mage::helper('magenotification')->checkLicenseKeyFrontController($this)){ return; }
 		if ($this->_getAccountHelper()->accountNotLogin())
     		return $this->_redirect('affiliateplus/account/login');
@@ -15,6 +19,10 @@ class Magestore_Affiliatepluslevel_IndexController extends Mage_Core_Controller_
     }
 	
 	public function listTierAction(){
+                            /* hainh edit 25-04-2014 */
+        if (!Mage::helper('affiliatepluslevel')->isPluginEnabled()) {
+            return $this->_redirect('affiliateplus/index/index');
+        }
 		if(!Mage::helper('magenotification')->checkLicenseKeyFrontController($this)){ return; }
 		if ($this->_getAccountHelper()->accountNotLogin())
     		return $this->_redirect('affiliateplus/account/login');

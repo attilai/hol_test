@@ -4,6 +4,7 @@
         <Magestore_Affiliatepluslevel>
             <active>true</active>
             <codePool>local</codePool>
+            <aliasName>Affiliate Plus Tier Commission</aliasName>
 			<depends>
                 <Magestore_Affiliateplus />
             </depends>

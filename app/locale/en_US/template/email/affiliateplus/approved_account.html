@@ -19,37 +19,37 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                 <!-- [ header starts here] -->
                 <table cellspacing="0" cellpadding="0" border="0" width="650">
                     <tr>
-                        <td valign="top">
-                            <a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
-                    </tr>
+                        <td valign="top"> <!--edit by Sally-->
+                            <a href="{{store url=""}}"><img src="{{var logo_url}}"  alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
+                    </tr> <!--end by Sally-->
                 </table>
 
                 <!-- [ middle starts here] -->
                 <table cellspacing="0" cellpadding="0" border="0" width="650">
                     <tr>
                         <td valign="top">
-                            <p><strong>Dear {{htmlescape var=$account.getName()}}</strong>,<br/>
-							We would like to inform that your Affiliate account has been successfully approved on {{var store.getFrontendName()}}.<br/>
-							To login the Affiliate system, please click <a href="{{store url="affiliateplus/index/login"}}" style="color:#1E7EC8;">Login</a> or <a href="{{store url="affiliateplus/index/"}}" style="color:#1E7EC8;">My Account</a> at the top of each page, and then enter your e-mail address and password.</p>
+                            <p><strong>Hi {{htmlescape var=$account.getName()}}</strong>,<br/>
+                                We are glad to inform you that your affiliate account at {{var store.getFrontendName()}} has been approved.<br/>
+                                To log in to our system, please click on <a href="{{store url="affiliateplus/account/login"}}">Login</a> or <a href="{{store url="affiliateplus/index/"}}">My Account</a> at the top right of every page in our shop.</p>
                             <br/>
                             <p style="border:1px solid #BEBCB7; padding:13px 18px; background:#F8F7F5; ">
-                                Use the following values when prompted to log in:<br/>
+                                Then use the account email and password you set earlier to log in:<br/>
                                 E-mail: {{var account.getEmail()}}<br/>
                                 Password: {{var account.getPassword()}}
-							</p>
+                            </p>
                             <br/>
-							<p>Account information is below.</p>
-							<br/>
+                            <p>Your account information is below. Thank you for choosing to work with {{var store.getFrontendName()}}.</p>
+                            <br/>
                             <p style="border:1px solid #BEBCB7; padding:13px 18px; background:#F8F7F5; ">
                                 Account Name: {{var account.getName()}}<br/>
-                                Paypal email: {{var account.getPaypalEmail()}}
-							</p>
+                                PayPal Email: {{var account.getPaypalEmail()}}
+                            </p>
                             <br/>
                             <p>
-								If you have any questions about your account or any other matter, please feel free to contact us at <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> or call us at <span class="nobr">{{config path='general/store_information/phone'}}</span> Monday - Friday, 8am - 5pm PST.
-						    </p>
-							<br/>
-							<p>Thank you again,<br/><strong>{{var store.getFrontendName()}}</strong></p>
+                                If you have any questions about your account, or any other matters, please feel free to contact us at <a href="mailto:{{config path='trans_email/ident_support/email'}}">{{config path='trans_email/ident_support/email'}}</a>.
+                            </p>
+                            <br/>
+                            <p>Thanks again,<br/><strong>{{var sender_name}}</strong></p>
                         </td>
                     </tr>
                 </table>

@@ -56,10 +56,11 @@ class Magestore_Affiliateplusstatistic_Model_Mysql4_Report_Sales_Collection exte
      * @return Magestore_Affiliateplusstatistic_Model_Mysql4_Report_Sales_Collection
      */
 	protected function _initSelect(){
-		$this->getSelect()->from($this->getResource()->getMainTable(), $this->_getSelectedColumns());
+		$this->getSelect()->from($this->getResource()->getMainTable(), $this->_getSelectedColumns())
+            ->where('type = 3');
 		if (!$this->isTotals())
 			$this->getSelect()
-				->group(array('order_item_ids',$this->_periodFormat))
+				->group(array('order_item_ids',$this->_periodFormat,'account_email'))
 				->order($this->_periodFormat.' ASC');
 		return $this;
 	}

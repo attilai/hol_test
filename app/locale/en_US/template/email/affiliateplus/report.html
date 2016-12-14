@@ -17,7 +17,8 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
         <!-- [ header starts here] -->
         <table cellspacing="0" cellpadding="0" border="0" width="650">
             <tr>
-                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
+                <!--edit by Sally-->
+                <td valign="top"><a href="{{store url=""}}"><img src="{{var logo_url}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
             </tr>
         </table>
         <!-- [ middle starts here] -->
@@ -25,15 +26,15 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
             <tr>
                 <td valign="top">
                     <p>
-                    	<strong>Hello {{htmlescape var=$account.getName()}}</strong>,<br/>
-                    	Below is your affiliate statistic from {{var from}} to {{var to}}:
+                    	<strong>Hi {{htmlescape var=$account.getName()}}</strong>,<br/>
+                    	Here are your affiliate stats for {{var from}} to {{var to}}:
 					</p>
 					{{layout handle="affiliateplus_email_report" account=$account statistic=$statistic store=$store}}
 					<p>
-						To view more details, please <a href="{{store url="affiliateplus/account/login"}}">login</a> your account.<br />
-						To unsubscribe this email, please go to Account Information then uncheck Receive Notification Email.
+						If you'd like to see more details, please <a href="{{store url="affiliates/account/edit"}}">login</a> your account.<br />
+						To unsubscribe these emails, please go to your <a href="{{store url="affiliateplus/account/login"}}">account information</a> page and uncheck 'Send me Notification Emails'.
 					</p>
-					<p>Thank you again,<br/><strong>{{var store.getFrontendName()}}</strong></p>
+					<p>Thanks,<br/><strong>{{var sender_name}}</strong></p>
                 </td>
             </tr>
         </table>

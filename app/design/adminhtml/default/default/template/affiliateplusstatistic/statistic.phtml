@@ -7,6 +7,7 @@
 //<![CDATA[
 function changeDiagramsPeriod(periodObj) {
 	periodParam = periodObj.value ? 'period/' + periodObj.value + '/' : '';
+<?php if(count($this->getChild('diagrams')->getTabsIds())): ?>
 <?php foreach ($this->getChild('diagrams')->getTabsIds() as $tabId): ?>
 	ajaxBlockParam = 'block/diagrams_<?php echo $tabId ?>/';
 	ajaxBlockUrl = '<?php echo $this->getUrl('*/*/ajaxBlock', array('_current' => true, 'block' => '', 'period' => '')) ?>' + ajaxBlockParam + periodParam;
@@ -33,6 +34,7 @@ function changeDiagramsPeriod(periodObj) {
 		}
 	});
 <?php endforeach; ?>
+<?php endif; ?>
 	ajaxBlockUrl = '<?php echo $this->getUrl('*/*/ajaxBlock', array('_current' => true, 'block' => 'diagrams_totals', 'period' => '')) ?>' + periodParam;
 	new Ajax.Request(ajaxBlockUrl, {
 		parameters: {isAjax: 'true', form_key: FORM_KEY},
@@ -63,7 +65,7 @@ function changeDiagramsPeriod(periodObj) {
 <div class="content-header">
     <table cellspacing="0">
         <tr>
-            <td><h3 class="head-dashboard affiliateplus-statistic-head"><?php echo $this->__('Affiliate Plus Statistic') ?></h3></td>
+            <td><h3 class="head-dashboard affiliateplus-statistic-head"><?php echo $this->__('Affiliate Plus Dashboard') ?></h3></td>
         </tr>
     </table>
 </div>
@@ -96,7 +98,10 @@ function changeDiagramsPeriod(periodObj) {
                     <div style="margin:20px;">
                         <?php echo $this->getChildHtml('totals') ?>
                     </div>
-                    <div style="margin:20px;">
+                </div>
+                <br/>
+                <div class="entry-edit" style="border:1px solid #ccc;">
+                    <div>
                         <?php echo $this->getChildHtml('grids') ?>
                         <div id="grid_tab_content"></div>
                     </div>

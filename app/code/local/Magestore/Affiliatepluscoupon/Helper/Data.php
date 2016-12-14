@@ -41,7 +41,7 @@ class Magestore_Affiliatepluscoupon_Helper_Data extends Mage_Core_Helper_Data
 	}
 	
 	public function couponIsDisable(){
-		return !Mage::getStoreConfig('affiliateplus/coupon/enable') || Mage::helper('affiliateplus/account')->accountNotLogin();
+            return !Mage::getStoreConfig('affiliateplus/coupon/enable') || Mage::helper('affiliateplus/account')->accountNotLogin();
 	}
 	
 	public function isMultiProgram(){
@@ -54,4 +54,18 @@ class Magestore_Affiliatepluscoupon_Helper_Data extends Mage_Core_Helper_Data
 				$this->_helpData['is_multi_program'] = $modulesArray['Magestore_Affiliateplusprogram']->is('active');
 		return $this->_helpData['is_multi_program'];
 	}
+        
+        
+        /**
+     * @author Adam
+     * @date    03/08/2014
+     * @return boolean
+     */
+        public function isPluginEnabled(){
+            // Changed By Adam 28/07/2014
+            if(!Mage::helper('affiliateplus')->isAffiliateModuleEnabled()) return false;
+            $storeId = Mage::app()->getStore()->getId();
+            return Mage::getStoreConfig('affiliateplus/coupon/enable');
+        }
+                
 }

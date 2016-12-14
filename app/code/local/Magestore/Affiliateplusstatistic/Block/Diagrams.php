@@ -26,9 +26,14 @@ class Magestore_Affiliateplusstatistic_Block_Diagrams extends Mage_Adminhtml_Blo
     	));
     	
     	$this->addTab('traffics',array(
-    		'label'		=> $this->__('Traffics'),
+    		'label'		=> $this->__('Clicks'),
     		'content'	=> $this->getLayout()->createBlock('affiliateplusstatistic/diagrams_traffics')->toHtml(),
     	));
+        
+        $this->addTab('impressions', array(
+            'label'     => $this->__('Impressions'),
+            'content'   => $this->getLayout()->createBlock('affiliateplusstatistic/diagrams_impressions')->toHtml(),
+        ));
     	
     	return parent::_prepareLayout();
     }

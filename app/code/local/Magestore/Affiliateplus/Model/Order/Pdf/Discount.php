@@ -11,9 +11,14 @@ class Magestore_Affiliateplus_Model_Order_Pdf_Discount extends Mage_Sales_Model_
 				$discount = $this->getAmountPrefix().$discount;
 			}		
 			
+            $label = Mage::helper('affiliateplus')->__('Affiliate Discount');
+            if ($this->getOrder()->getAffiliateplusCoupon()) {
+                $label .= ' (' . $this->getOrder()->getAffiliateplusCoupon() . ')';
+            }
+            
 			$totals = array(
 				array(
-					'label' => Mage::helper('affiliateplus')->__('Affiliate Discount'),
+					'label' => $label,
 					'amount' => $discount,
 					'font_size' => $fontSize,
 				)
@@ -24,6 +29,9 @@ class Magestore_Affiliateplus_Model_Order_Pdf_Discount extends Mage_Sales_Model_
 	}
 	
     public function getAmount(){
+        if ($this->getSource()->getAffiliateplusDiscount()) {
+            return $this->getSource()->getAffiliateplusDiscount();
+        }
         return $this->getOrder()->getAffiliateplusDiscount();
     }	
 }

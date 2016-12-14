@@ -1,12 +1,13 @@
 <?php
 
+/* @var $installer Mage_Core_Model_Resource_Setup */
 $installer = $this;
 
 $installer->startSetup();
 
-$installer->run("
+if (!$installer->tableExists($installer->getTable('affiliateplusstatistic'))) {
+    $installer->run("
 
-DROP TABLE IF EXISTS {$this->getTable('affiliateplusstatistic')};
 CREATE TABLE {$this->getTable('affiliateplusstatistic')} (
   `id` int(10) unsigned NOT NULL auto_increment,
   `referer_id` int(10) unsigned NOT NULL,
@@ -21,5 +22,6 @@ CREATE TABLE {$this->getTable('affiliateplusstatistic')} (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
     ");
+}
 
 $installer->endSetup(); 

@@ -7,15 +7,16 @@ error_reporting(E_ERROR);*/
 
 //https://www.hollandgold.nl/api/?wsdl
 try {
-    $client = new SoapClient('https://www.hollandgold.nl/api/?wsdl');
+    $client = new SoapClient('https://www.hollandgold.nl/api/soap/?wsdl');
     $session = $client->login('margemod', '8675394');
+    print $session . PHP_EOL;
 }
 
 catch(Exception $e) {
     $to = "contact@westpointdigital.nl , rratinov@gmail.com , evgelit@gmail.com";
-    $subject = "Hollandgold error report";
+    $subject = "Hollandgold error report" . date(DATE_RFC822);
     $headers = "From: contact@westpointdigital.nl";
-    mail($to,$subject,$e->getMessage(), $headers);
+    mail($to,$subject,date(DATE_RFC822) . ": " . $e->getMessage(), $headers);
 }
 
 ?> 

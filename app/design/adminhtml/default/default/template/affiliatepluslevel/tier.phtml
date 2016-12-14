@@ -9,7 +9,7 @@
 <?php $_helper = Mage::helper('affiliatepluslevel/tier') ?>
 <?php $_arrayRows = $this->getArrayRows() ?>
 
-<div class="grid" id="grid<?php echo $_htmlId ?>">
+<div class="grid" id="<?php echo $_htmlId ?>">
 	<table cellpadding="0" cellspacing="0" class="border">
 		<tbody>
 			<tr class="headings" id="headings<?php echo $_htmlId ?>">
@@ -46,6 +46,6 @@
 
 <?php if ($this->getElement()->getDisabled()): ?>
 <script type="text/javascript">
-toggleValueElements({checked:true},$('grid<?php echo $_htmlId ?>').parentNode);
+toggleValueElements({checked:true},$('<?php echo $_htmlId ?>').parentNode);
 </script>
 <?php endif ?>

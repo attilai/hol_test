@@ -30,9 +30,10 @@ class Magestore_Affiliateplus_Block_Payment_View extends Mage_Core_Block_Templat
     
     public function getStatusArray(){
     	return array(
-			1	=> $this->__('Waiting'),
+			1	=> $this->__('Pending'),
 			2	=> $this->__('Processing'),
 			3	=> $this->__('Complete'),
+            4	=> $this->__('Canceled'),
 		);
     }
     
@@ -46,5 +47,19 @@ class Magestore_Affiliateplus_Block_Payment_View extends Mage_Core_Block_Templat
 		}
 		
 		return $this;
+    }
+    
+    public function getFullHistory() {
+        if (!$this->hasData('collection')) {
+            $collection = Mage::getResourceModel('affiliateplus/payment_history_collection')
+                ->addFieldToFilter('payment_id', $this->getPayment()->getId());
+            $collection->getSelect()->order('created_time DESC');
+            $this->setData('collection', $collection);
+        }
+        return $this->getData('collection');
+    }
+    
+    public function getCollection() {
+        return $this->getFullHistory();
     }
 }

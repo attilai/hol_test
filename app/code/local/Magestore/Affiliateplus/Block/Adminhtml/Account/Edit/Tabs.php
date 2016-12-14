@@ -28,10 +28,16 @@ class Magestore_Affiliateplus_Block_Adminhtml_Account_Edit_Tabs extends Mage_Adm
 		//event to add more tab
 		Mage::dispatchEvent('affiliateplus_adminhtml_add_account_tab', array('form' => $this, 'id' => $id));
 		
-		$this->addTab('form_section', array(
+		$this->addTab('general_section', array(
 			'label'     => Mage::helper('affiliateplus')->__('General Information'),
 			'title'     => Mage::helper('affiliateplus')->__('General Information'),
 			'content'   => $this->getLayout()->createBlock('affiliateplus/adminhtml_account_edit_tab_form')->toHtml(),
+		));
+        
+        $this->addTab('form_section', array(
+			'label'     => Mage::helper('affiliateplus')->__('Payment Information'),
+			'title'     => Mage::helper('affiliateplus')->__('Payment Information'),
+			'content'   => $this->getLayout()->createBlock('affiliateplus/adminhtml_account_edit_tab_paymentinfo')->toHtml(),
 		));
 		
 		if($id){
@@ -48,9 +54,25 @@ class Magestore_Affiliateplus_Block_Adminhtml_Account_Edit_Tabs extends Mage_Adm
 				'url'		=> $this->getUrl('*/*/payment',array('_current'=>true)),
 		  		'class'     => 'ajax',
 			));
+
+//			$this->addTab('product_section', array(
+//				'label' => Mage::helper('affiliateplus')->__('Products'),
+//				'title' => Mage::helper('affiliateplus')->__('Products'),
+//				'url' => $this->getUrl('*/*/product', array('_current' => true)),
+//				'class' => 'ajax',
+//			));
+
+			/*customize by adam 27/08/2016: add lifetime customer tab */
+			if(Mage::helper('affiliateplus/config')->getCommissionConfig('life_time_sales'))
+				$this->addTab('lifetimecustomer_section', array(
+					'label'     => Mage::helper('affiliateplus')->__('Lifetime Customer'),
+					'title'     => Mage::helper('affiliateplus')->__('Lifetime Customer'),
+					'url'		=> $this->getUrl('*/*/lifetimecustomer',array('_current'=>true)),
+					'class'     => 'ajax',
+				));
 		}
 		
-		$this->setActiveTab('form_section');
+		$this->setActiveTab('general_section');
 		return parent::_beforeToHtml();
 	}
 	

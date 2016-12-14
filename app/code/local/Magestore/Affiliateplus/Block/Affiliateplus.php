@@ -16,7 +16,8 @@ class Magestore_Affiliateplus_Block_Affiliateplus extends Mage_Core_Block_Templa
     
     public function addFooterLink(){
     	$footerBlock = $this->getParentBlock();
-    	if ($footerBlock && $this->_getHelper()->getGeneralConfig('show_affiliate_link_on_frontend'))
+        // Changed By Adam 28/07/2014
+    	if ($footerBlock && $this->_getHelper()->getGeneralConfig('show_affiliate_link_on_frontend') && Mage::helper('affiliateplus')->isAffiliateModuleEnabled())
     		$footerBlock->addLink(
     			$this->__('Affiliates'),
     			'affiliateplus',

@@ -31,7 +31,12 @@ class Magestore_Affiliateplus_Block_Payment_Request extends Mage_Core_Block_Temp
     }
     
     public function getAmount(){
-    	return $this->getRequest()->getParam('amount');
+        if($this->getRequest()->getParam('amount'))
+            return $this->getRequest()->getParam('amount');
+        $paymentSession = Mage::getSingleton('affiliateplus/session')->getPayment();
+        if($paymentSession)
+            if($paymentSession->getAmount())
+                return $paymentSession->getAmount();
     }
     
     /**
@@ -44,14 +49,88 @@ class Magestore_Affiliateplus_Block_Payment_Request extends Mage_Core_Block_Temp
     }
     
     public function getBalance(){
+        /*Changed By Adam 15/09/2014: to fix the issue of request withdrawal when scope is website*/
+        $balance = 0;
+        if(Mage::getStoreConfig('affiliateplus/account/balance') == 'website') {
+            $website = Mage::app()->getStore()->getWebsite();
+            
+            $stores = $website->getStores();
+            
+            foreach($stores as $store) {
+                $account = Mage::getModel('affiliateplus/account')->setStoreId($store->getId())->load($this->getAccount()->getId());
+                $balance += $account->getBalance();
+            }
+        } else {
+            $balance = $this->getAccount()->getBalance();
+        }
+        $balance = Mage::app()->getStore()->convertPrice($balance);
+        return floor($balance * 100) / 100;
     	return round(Mage::app()->getStore()->convertPrice($this->getAccount()->getBalance()),2);
     }
     
     public function getFormatedBalance(){
-    	return Mage::helper('core')->currency($this->getAccount()->getBalance());
+        /*Changed By Adam 15/09/2014: to fix the issue of request withdrawal when scope is website*/
+        $balance = 0;
+        if(Mage::getStoreConfig('affiliateplus/account/balance') == 'website') {
+            $website = Mage::app()->getStore()->getWebsite();
+            
+            $stores = $website->getStores();
+            
+            foreach($stores as $store) {
+                $account = Mage::getModel('affiliateplus/account')->setStoreId($store->getId())->load($this->getAccount()->getId());
+                $balance += $account->getBalance();
+            }
+            return Mage::helper('core')->currency($balance);
+        } else {
+            return Mage::helper('core')->currency($this->getAccount()->getBalance());
+        }
     }
     
     public function getFormActionUrl(){
-    	return $this->getUrl('affiliateplus/index/requestPayment');
+        $url = $this->getUrl('affiliateplus/index/confirmRequest');
+        return $url;
     }
+    
+    /**
+     * get Tax rate when withdrawal
+     * 
+     * @return float
+     */
+    public function getTaxRate() {
+        if (!$this->hasData('tax_rate')) {
+            $this->setData('tax_rate', Mage::helper('affiliateplus/payment_tax')->getTaxRate());
+        }
+        return $this->getData('tax_rate');
+    }
+    
+    public function includingFee() {
+        return (Mage::getStoreConfig('affiliateplus/payment/who_pay_fees') != 'payer');
+    }
+    
+    public function getPriceFormatJs() {
+        $priceFormat = Mage::app()->getLocale()->getJsPriceFormat();
+        return Mage::helper('core')->jsonEncode($priceFormat);
+    }
+    
+    /*add by blanka*/
+    /**
+     * get default payment method
+     * @return type
+     */
+    protected function _getDefaultPaymentMethod(){
+        return Mage::getStoreConfig('affiliateplus/payment/default_method');
+    }
+    
+    /**
+     * check a method is default or not
+     * @param type $code
+     * @return boolean
+     */
+    public function methodSelected($code){
+        if($code == $this->_getDefaultPaymentMethod()){
+            return true;
+        }
+        return false;
+    }
+    /*end add by blanka*/
 }

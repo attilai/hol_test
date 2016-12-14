@@ -10,13 +10,13 @@ class Magestore_Affiliateplusstatistic_Block_Grids extends Mage_Adminhtml_Block_
     
     protected function _prepareLayout(){
     	$this->addTab('accounts',array(
-    		'label'		=> $this->__('New Account'),
+    		'label'		=> $this->__('New Accounts'),
     		'content'	=> $this->getLayout()->createBlock('affiliateplusstatistic/grids_accounts')->toHtml(),
     		'active'	=> true,
     	));
     	
     	$this->addTab('bestseller',array(
-    		'label'		=> $this->__('Bestseller Product'),
+    		'label'		=> $this->__('Bestseller Products'),
     		'url'		=> $this->getUrl('*/*/bestseller',array('_current' => true)),
     		'class'		=> 'ajax',
     	));
@@ -28,7 +28,7 @@ class Magestore_Affiliateplusstatistic_Block_Grids extends Mage_Adminhtml_Block_
     	));
     	
     	$this->addTab('referers',array(
-    		'label'		=> $this->__('Top Referers'),
+    		'label'		=> $this->__('Top Traffic Sources'),
     		'url'		=> $this->getUrl('*/*/referers',array('_current' => true)),
     		'class'		=> 'ajax',
     	));

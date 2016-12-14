@@ -12,6 +12,7 @@ class Magestore_Affiliateplus_Model_System_Config_Source_Scope
     {
         return array(
 			array('value' => 'global', 'label'=>Mage::helper('affiliateplus')->__('Global')),
+            array('value' => 'website', 'label'=>Mage::helper('affiliateplus')->__('Website')),
             array('value' => 'store', 'label'=>Mage::helper('affiliateplus')->__('Store')),
         );
     }

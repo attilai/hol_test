@@ -44,12 +44,25 @@ class Magestore_Affiliateplus_Block_Adminhtml_Account_Grid extends Mage_Adminhtm
           'index'     => 'name',
 		  'filter_index'	=> 'main_table.name'
       ));
+      
+//      $this->addColumn('identify_code', array(
+//          'header'    => Mage::helper('affiliateplus')->__('Identify Code'),
+//          'align'     =>'left',
+//          'index'     => 'identify_code',            // Day la dong de lay du lieu tu field identify_code
+//		  'filter_index'	=> 'main_table.identify_code'
+//      ));
 
 	  
       $this->addColumn('email', array(
-			'header'    => Mage::helper('affiliateplus')->__('Email'),
+			'header'    => Mage::helper('affiliateplus')->__('Email Address'),
 			'index'     => 'email',
 			'filter_index'	=> 'main_table.email'
+      ));
+
+      $this->addColumn('key_shop', array(
+          'header'    => Mage::helper('affiliateplus')->__('Key shop'),
+          'index'     => 'key_shop',
+          'filter_index'	=> 'main_table.key_shop'
       ));
 	  
 	  $this->addColumn('balance', array(
@@ -63,7 +76,7 @@ class Magestore_Affiliateplus_Block_Adminhtml_Account_Grid extends Mage_Adminhtm
       ));
 	  
 	  $this->addColumn('total_commission_received', array(
-			'header'    => Mage::helper('affiliateplus')->__('Total Received'),
+			'header'    => Mage::helper('affiliateplus')->__('Commission Paid'),
 			'width'     => '100px',
 			'align'     =>'right',
 			'index'     => 'total_commission_received',
@@ -118,7 +131,7 @@ class Magestore_Affiliateplus_Block_Adminhtml_Account_Grid extends Mage_Adminhtm
           'type'      => 'options',
           'options'   => array(
               1 => 'Yes',
-              0 => 'No',
+              2 => 'No',
           ),
       ));
 	  

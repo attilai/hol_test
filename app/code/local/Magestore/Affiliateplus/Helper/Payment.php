@@ -13,11 +13,11 @@ class Magestore_Affiliateplus_Helper_Payment extends Mage_Core_Helper_Abstract
 	 */
 	public function getPaymentMethod($paymentMethodCode, $storeId = null){
 		$modelPath = Mage::getStoreConfig(self::XML_PAYMENT_METHODS.'/'.$paymentMethodCode.'/model',$storeId);
-		if (!$modelPath) throw new Mage_Core_Exception($this->__('Cannot find payment method configure!'));
+		if (!$modelPath) throw new Mage_Core_Exception($this->__('Cannot find any payment method to configure'));
 		
 		$paymentMethod = Mage::getModel($modelPath);
 		if (!($paymentMethod instanceof Magestore_Affiliateplus_Model_Payment_Abstract))
-			throw new Mage_Core_Exception($this->__('Payment model need is an abstract of class %s!','Magestore_Affiliateplus_Model_Payment_Abstract'));
+			throw new Mage_Core_Exception($this->__('The required payment model is an abstract of class %s!','Magestore_Affiliateplus_Model_Payment_Abstract'));
 		
 		if ($storeId)
 			$paymentMethod->setStoreId($storeId);
@@ -34,7 +34,7 @@ class Magestore_Affiliateplus_Helper_Payment extends Mage_Core_Helper_Abstract
     	$allPaymentConfig = Mage::getStoreConfig(self::XML_PAYMENT_METHODS,$storeId);
     	$paymentCode = array();
     	foreach ($allPaymentConfig as $code => $config)
-    		if ($config['active'])
+    		if (isset($config['active']) && $config['active'])
     			$paymentCode[] = $code;
     	
     	return $paymentCode;
@@ -63,16 +63,64 @@ class Magestore_Affiliateplus_Helper_Payment extends Mage_Core_Helper_Abstract
      *
      * @return array
      */
-    public function getPaymentOption(){
-    	$allPaymentConfig = Mage::getStoreConfig(self::XML_PAYMENT_METHODS,$storeId);
+    public function getPaymentOption($id = null) {
+        $allPaymentConfig = Mage::getStoreConfig(self::XML_PAYMENT_METHODS);
+        $payments = array();
+        foreach ($allPaymentConfig as $code => $config)
+//            Changed By Adam to solve the problem 02/05/2015: Tao withdrawal cho Paypal sau day disable phuong thuc Paypal di thi khi vao view withdrawal se nhin thay phuong thuc khac chu ko phai la paypal nua
+//          if (isset($config['active']) && $config['active'])
+            if (!$id) {
+                if (isset($config['active']) && $config['active'])
+                    $payments[] = array(
+                        'value' => $code,
+                        'label' => $config['label'],
+                    );
+            }else {
+                if (isset($config['active']))
+                    $payments[] = array(
+                        'value' => $code,
+                        'label' => $config['label'],
+                    );
+            }
+        return $payments;
+    }
+    
+    public function getAllPaymentOptionArray() {
+        $allPaymentConfig = Mage::getStoreConfig(self::XML_PAYMENT_METHODS);
     	$payments = array();
-    	foreach ($allPaymentConfig as $code => $config)
-    		if ($config['active'])
-    			$payments[] = array(
-    				'value'	=> $code,
-    				'label'	=> $config['label'],
-    			);
-    	
-    	return $payments;
+        foreach ($allPaymentConfig as $code => $config) {
+            if (isset($config['model'])) {
+                $payments[$code] = $config['label'];
+            }
+        }
+        return $payments;
+    }
+    
+    /*add by blanka*/
+    public function uploadVerifyImage($field,$files){
+        if(isset($files[$field]['name']) && $files[$field]['name'] != '') {
+            try {
+                $uploader = new Varien_File_Uploader($field);
+                $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
+                $uploader->setAllowRenameFiles(true);
+                $uploader->setFilesDispersion(false);
+
+                $path = Mage::getBaseDir('media') . DS . 'affiliateplus' . DS . 'payment' . DS;
+                $file = $uploader->save($path, $files[$field]['name'] );
+                return $file['file'];
+            } catch (Exception $e) {
+
+            }
+        }
+        return;
+    }
+    
+    /*end*/
+    
+    public function isRequireAuthentication($code){
+        $store = Mage::app()->getStore()->getId();
+        $config = Mage::getStoreConfig('affiliateplus_payment/'.$code.'/require_authentication',$store);
+        if($config) return true;
+        return false;
     }
 }

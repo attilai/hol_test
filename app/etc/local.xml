@@ -72,7 +72,7 @@
         <routers>
             <adminhtml>
                 <args>
-                    <frontName><![CDATA[admin]]></frontName>
+                    <frontName><![CDATA[onderhoud]]></frontName>
                 </args>
             </adminhtml>
         </routers>

@@ -26,64 +26,65 @@ class Magestore_Affiliateplusprogram_Block_Detail extends Mage_Core_Block_Templa
 		return $this->getData('is_joined');
 	}
 	
-	protected function _construct(){
-		parent::_construct();
+	// protected function _construct(){
+		// parent::_construct();
 		
-		$collection = Mage::getResourceModel('catalog/product_collection')
-			->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
-			->addAttributeToFilter('entity_id',array(
-				'in' => Mage::helper('affiliateplusprogram')->getProgramProductIds($this->getRequest()->getParam('id'))
-			));
+		// $collection = Mage::getResourceModel('catalog/product_collection')
+			// ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
+			// ->addAttributeToFilter('entity_id',array(
+				// 'in' => Mage::helper('affiliateplusprogram')->getProgramProductIds($this->getRequest()->getParam('id'))
+			// ));
 		
-		if ($name = $this->getRequest()->getParam('name'))
-			$collection->addAttributeToFilter('name',array('like' => "%$name%"));
+		// Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($collection);
+		// Mage::getSingleton('catalog/product_visibility')->addVisibleInSearchFilterToCollection($collection);
 		
-		Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($collection);
-		Mage::getSingleton('catalog/product_visibility')->addVisibleInSearchFilterToCollection($collection);
-		
-		$this->setCollection($collection);
-	}
+		// $this->setCollection($collection);
+	// }
 	
-	public function _prepareLayout(){
-		parent::_prepareLayout();
-		$pager = $this->getLayout()->createBlock('page/html_pager','products_pager')->setCollection($this->getCollection());
-		$this->setChild('products_pager',$pager);
+	// public function _prepareLayout(){
+		// parent::_prepareLayout();
+		// $pager = $this->getLayout()->createBlock('page/html_pager','products_pager')->setCollection($this->getCollection());
+		// $this->setChild('products_pager',$pager);
 		
-		$grid = $this->getLayout()->createBlock('affiliateplus/grid','products_grid');
+		// $grid = $this->getLayout()->createBlock('affiliateplus/grid','products_grid')
+            // ->setFilterUrl($this->getUrl('*/*/*', array('id' => $this->getRequest()->getParam('id'))));
 		
-		Mage::dispatchEvent('affiliateplus_program_listall_prepare_grid',array('grid' => $grid));
+		// Mage::dispatchEvent('affiliateplus_program_listall_prepare_grid',array('grid' => $grid));
 		
 		// prepare column
-		$grid->addColumn('id',array(
-			'header'	=> $this->__('#'),
-			'align'		=> 'left',
-			'index'		=> 'entity_id',
-		));
+		// $grid->addColumn('id',array(
+			// 'header'	=> $this->__('#'),
+			// 'align'		=> 'left',
+			// 'index'		=> 'entity_id',
+		// ));
 		
-		$grid->addColumn('product_name',array(
-			'header'	=> $this->__('Product'),
-			'render'	=> 'getProductName',
-		));
+		// $grid->addColumn('product_name',array(
+			// 'header'	=> $this->__('Product'),
+			// 'render'	=> 'getProductName',
+            // 'index'     => 'name',
+            // 'searchable'    => true,
+		// ));
 		
-		$grid->addColumn('price',array(
-			'header'	=> $this->__('Price'),
-			'type'		=> 'baseprice',
-			'index'		=> 'price',
-		));
+		// $grid->addColumn('price',array(
+			// 'header'	=> $this->__('Price'),
+			// 'type'		=> 'baseprice',
+			// 'index'		=> 'price',
+            // 'searchable'    => true,
+		// ));
 		
-		$grid->addColumn('discount',array(
-			'header'	=> $this->__('Discount'),
-			'render'	=> 'getDiscount',
-		));
+		// $grid->addColumn('discount',array(
+			// 'header'	=> $this->__('Discount'),
+			// 'render'	=> 'getDiscount',
+		// ));
 		
-		$grid->addColumn('commission',array(
-			'header'	=> $this->__('Commission'),
-			'render'	=> 'getCommission'
-		));
+		// $grid->addColumn('commission',array(
+			// 'header'	=> $this->__('Commission'),
+			// 'render'	=> 'getCommission'
+		// ));
 		
-		$this->setChild('products_grid',$grid);
-		return $this;
-	}
+		// $this->setChild('products_grid',$grid);
+		// return $this;
+	// }
 	
 	public function getProductName($row){
 		return sprintf('<a href="%s" title="%s">%s</a>'
@@ -93,32 +94,32 @@ class Magestore_Affiliateplusprogram_Block_Detail extends Mage_Core_Block_Templa
 		);
 	}
 	
-	public function getDiscount($row){
-		if ($this->getProgram()->getDiscountType() == 'fixed'){
-			return Mage::helper('core')->currency(min($this->getProgram()->getDiscount(),$row->getPrice()));
-		}
-		return sprintf('%.2f',$this->getProgram()->getDiscount()).'%';
-	}
+	// public function getDiscount($row){
+		// if ($this->getProgram()->getDiscountType() == 'fixed'){
+			// return Mage::helper('core')->currency(min($this->getProgram()->getDiscount(),$row->getPrice()));
+		// }
+		// return sprintf('%.2f',$this->getProgram()->getDiscount()).'%';
+	// }
 	
-	public function getCommission($row){
-		$standardCommission = $this->getProgram()->getCommission();
+	// public function getCommission($row){
+		// $standardCommission = $this->getProgram()->getCommission();
 	
-		if ($this->getProgram()->getCommissionType() == 'fixed'){
-			return Mage::helper('core')->currency(min($standardCommission,$row->getPrice()));
-		}
-		return sprintf('%.2f',$standardCommission).'%';
-	}
+		// if ($this->getProgram()->getCommissionType() == 'fixed'){
+			// return Mage::helper('core')->currency(min($standardCommission,$row->getPrice()));
+		// }
+		// return sprintf('%.2f',$standardCommission).'%';
+	// }
 	
-	public function getPagerHtml(){
-    	return $this->getChildHtml('products_pager');
-    }
+	// public function getPagerHtml(){
+    	// return $this->getChildHtml('products_pager');
+    // }
     
-    public function getGridHtml(){
-    	return $this->getChildHtml('products_grid');
-    }
+    // public function getGridHtml(){
+    	// return $this->getChildHtml('products_grid');
+    // }
     
-    protected function _toHtml(){
-    	$this->getChild('products_grid')->setCollection($this->getCollection());
-    	return parent::_toHtml();
-    }
+    // protected function _toHtml(){
+    	// $this->getChild('products_grid')->setCollection($this->getCollection());
+    	// return parent::_toHtml();
+    // }
 }

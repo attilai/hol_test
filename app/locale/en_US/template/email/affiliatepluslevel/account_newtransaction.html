@@ -4,7 +4,7 @@
 "skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
 "htmlescape var=$transaction.getReferralName()":"Referral Name",
 "var store.getFrontendName()":"Store Name",
-"store url=\"customer/account/\"":"Customer Account Url",
+"store url=\"customer/account/\"":"Customer Account Url"
 }
 @-->
 <!--@styles
@@ -28,7 +28,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                     <p>
                         <strong>Hello {{htmlescape var=$transaction.getAccountName()}}</strong>,<br/>
                         There was a customer placing an order from {{var store.getFrontendName()}}.
-                        One product of order items is presented by your tier affiliate. Hence, we created a transaction for you. 
+                        One product of order items is presented by you. Hence, we created a transaction for you. 
                         You can check the status of it by <a href="{{store url="customer/account/"}}" style="color:#1E7EC8;">logging into your account</a>.
                         When the order complete, we will transfer commission amount to your balance in our affiliate system.
 						If you have any questions about this transaction please contact us at <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> or call us at <span class="nobr">{{config path='general/store_information/phone'}}</span> Monday - Friday, 8am - 5pm PST.
@@ -81,7 +81,7 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                     </table>
                     <br/>
                     
-                    <p>Thank you again,<br/><strong>{{var store.getFrontendName()}}</strong></p>
+                    <p>Thank you again,<br/><strong>{{var sender_name}}</strong></p>
                 </td>
             </tr>
         </table>

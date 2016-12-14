@@ -44,23 +44,32 @@
 			'type'		=> 'number'
 		));
 		
-		$this->addColumn('account_name', array(
+		$this->addColumn('account_email', array(
 			'header'    => Mage::helper('affiliateplus')->__('Affiliate Account'),
-			'index'     => 'account_name',
+			'index'     => 'account_email',
 			'renderer'  => 'affiliateplus/adminhtml_transaction_renderer_account',
 		));	
 		
-		$this->addColumn('account_email', array(
-			'header'    => Mage::helper('affiliateplus')->__('Account Email'),
-			'index'     => 'account_email',
-			'renderer'  => 'affiliateplus/adminhtml_payment_renderer_account',
-		));	
+		// $this->addColumn('account_email', array(
+			// 'header'    => Mage::helper('affiliateplus')->__('Account Email'),
+			// 'index'     => 'account_email',
+			// 'renderer'  => 'affiliateplus/adminhtml_payment_renderer_account',
+		// ));	
 	
 		$this->addColumn('amount', array(
 			'header'    => Mage::helper('affiliateplus')->__('Amount'),
 			'width'     => '80px',
 			'align'     =>'right',
 			'index'     => 'amount',
+			'type'  	=> 'price',
+			'currency_code' => $currencyCode,
+		));
+        
+        $this->addColumn('tax_amount', array(
+			'header'    => Mage::helper('affiliateplus')->__('Tax'),
+			'width'     => '80px',
+			'align'     =>'right',
+			'index'     => 'tax_amount',
 			'type'  	=> 'price',
 			'currency_code' => $currencyCode,
 		));
@@ -74,12 +83,14 @@
 			'currency_code' => $currencyCode,
 		));
 		
-		$this->addColumn('payment_method_html', array(
+		$this->addColumn('payment_method', array(
 			'header'    => Mage::helper('affiliateplus')->__('Withdrawal Method'),
-			'index'     => 'payment_method_html',
+			'index'     => 'payment_method',
 			'renderer'  => 'affiliateplus/adminhtml_payment_renderer_info',
-			'filter'    => false,
-			'sortable'  => false,
+            'type'      => 'options',
+            'options'   => Mage::helper('affiliateplus/payment')->getAllPaymentOptionArray()
+			// 'filter'    => false,
+			// 'sortable'  => false,
 		));
 		
 		/*$this->addColumn('paypal_email', array(
@@ -102,7 +113,7 @@
 		
 		
 		$this->addColumn('request_time', array(
-			'header'    => Mage::helper('affiliateplus')->__('Time'),
+			'header'    => Mage::helper('affiliateplus')->__('Date Requested'),
 			'width'     => '180px',
 			'align'     =>'right',
 			'index'     => 'request_time',
@@ -116,18 +127,21 @@
 			'index'     => 'status',
 			'type'      => 'options',
 			'options'   => array(
-				1 =>  Mage::helper('affiliateplus')->__('Waiting'),
+				1 =>  Mage::helper('affiliateplus')->__('Pending'),
 				2 =>  Mage::helper('affiliateplus')->__('Processing'),
-				3 =>  Mage::helper('affiliateplus')->__('Completed')
+				3 =>  Mage::helper('affiliateplus')->__('Complete'),
+                                4 =>  Mage::helper('affiliateplus')->__('Canceled')
 			),
 		));
 	
 		$this->addColumn('action',
 			array(
 				'header'    =>  Mage::helper('affiliateplus')->__('Action'),
-				'width'     => '50px',
+				'width'     => '80px',
 				'type'      => 'action',
 				'getter'    => 'getId',
+//                                'align'     =>'center',
+//                                'renderer'  => 'affiliateplus/adminhtml_payment_renderer_actions',
 				'actions'   => array(
 					array(
 						'caption'   => Mage::helper('affiliateplus')->__('Edit'),
@@ -146,8 +160,12 @@
 		
 		return parent::_prepareColumns();
 	}
-	
-	
+    
+    protected function _prepareMassaction()
+    {
+        Mage::dispatchEvent('affiliateplus_adminhtml_payment_massaction', array('grid' => $this));
+        return $this;
+    }
 	
 	public function getRowUrl($row)
 	{

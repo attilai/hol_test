@@ -1,5 +1,5 @@
 <?
 
-echo $_SERVER["REMOTE_ADDR"];
+echo date(DATE_RFC822);
 
 ?>

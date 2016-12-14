@@ -1,5 +1,7 @@
 <?php
-class Magestore_Affiliatepluslevel_Block_Adminhtml_Program_Tier extends Mage_Adminhtml_Block_Abstract implements Varien_Data_Form_Element_Renderer_Interface
+class Magestore_Affiliatepluslevel_Block_Adminhtml_Program_Tier
+    extends Mage_Adminhtml_Block_Abstract
+    implements Varien_Data_Form_Element_Renderer_Interface
 {
 	protected function _getElementHtml(Varien_Data_Form_Element_Abstract $element){
 		$this->setElement($element);
@@ -23,7 +25,7 @@ class Magestore_Affiliatepluslevel_Block_Adminhtml_Program_Tier extends Mage_Adm
 	}
 	
 	public function getHtmlId(){
-		return '_tier_commission';
+		return 'grid_tier_commission';
 	}
 	
 	public function getMaxLevel(){

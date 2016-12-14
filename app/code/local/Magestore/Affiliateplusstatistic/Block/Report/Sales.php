@@ -4,7 +4,7 @@ class Magestore_Affiliateplusstatistic_Block_Report_Sales extends Mage_Adminhtml
 	public function __construct(){
 		$this->_blockGroup = 'affiliateplusstatistic';
 		$this->_controller = 'report_sales';
-		$this->_headerText = $this->__('Total Sales Report');
+		$this->_headerText = $this->__('Sales Report');
 		parent::__construct();
 		$this->setTemplate('report/grid/container.phtml');
 		$this->_removeButton('add');

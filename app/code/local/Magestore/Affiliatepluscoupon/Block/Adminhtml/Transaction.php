@@ -5,7 +5,7 @@ class Magestore_Affiliatepluscoupon_Block_Adminhtml_Transaction extends Mage_Adm
   {
     $this->_controller = 'adminhtml_transaction';
     $this->_blockGroup = 'affiliatepluscoupon';
-    $this->_headerText = Mage::helper('affiliatepluscoupon')->__('Coupon Transaction Manager');
+    $this->_headerText = Mage::helper('affiliatepluscoupon')->__('Transaction-from-Coupon Manager');
     parent::__construct();
 	$this->_removeButton('add');
   }

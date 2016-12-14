@@ -2,12 +2,14 @@
 
 class Magestore_Affiliateplusstatistic_Model_Mysql4_Sales_Collection extends Magestore_Affiliateplus_Model_Mysql4_Transaction_Collection
 {
-    public function prepareSummary($range, $customStart, $customEnd, $isFilter = 0){
-    	$this->setMainTable('affiliateplus/transaction');
+    public function prepareSummary($range, $customStart, $customEnd, $isFilter = 0,$account_id = null){
+    	// $this->setMainTable('affiliateplus/transaction');
     	$adapter = $this->getConnection();
     	
     	$this->getSelect()->reset(Zend_Db_Select::COLUMNS);
-    	
+        
+    	if($account_id)
+            $this->getSelect()->where('account_id = '.$account_id);
     	$this->getSelect()->columns(array(
     		'amount' 		=> 'SUM(total_amount)',
     		'transactions'	=> 'COUNT(transaction_id)',
@@ -23,15 +25,17 @@ class Magestore_Affiliateplusstatistic_Model_Mysql4_Sales_Collection extends Mag
     		->group('range');//$tzRangeOffsetExpression);
     	
     	$this->addFieldToFilter('created_time', $dateRange);
+        //Zend_Debug::dump($this->getSelect()->__toString());die();
     	return $this;
     }
     
-    public function prepareTotal($range, $customStart, $customEnd, $isFilter = 0){
-    	$this->setMainTable('affiliateplus/transaction');
+    public function prepareTotal($range, $customStart, $customEnd, $isFilter = 0,$account_id = null){
+    	// $this->setMainTable('affiliateplus/transaction');
     	$adapter = $this->getConnection();
     	
     	$this->getSelect()->reset(Zend_Db_Select::COLUMNS);
-    	
+    	if($account_id)
+            $this->getSelect()->where('account_id = '.$account_id);
     	$this->getSelect()->columns(array(
     		'total_amount'		=> 'SUM(total_amount)',
     		'total_transaction'	=> 'COUNT(transaction_id)',
@@ -45,15 +49,18 @@ class Magestore_Affiliateplusstatistic_Model_Mysql4_Sales_Collection extends Mag
     	return $this;
     }
     
-    public function prepareLifeTimeTotal(){
-    	$this->setMainTable('affiliateplus/transaction');
+    /* 23-04-2014 hainh update function fix error displaying google chart */
+    public function prepareLifeTimeTotal($account_id = null){
+    	// $this->setMainTable('affiliateplus/transaction');
     	$this->getSelect()->reset(Zend_Db_Select::COLUMNS);
-    	
+    	if($account_id)
+            $this->getSelect()->where('account_id = '.$account_id);
     	$this->getSelect()->columns(array(
-    		'total'	=> 'COUNT(transaction_id)'
+    		'total'	=> 'COUNT(transaction_id)',
+                'status' => 'status'
     	))->group('status')
-    	->order('status',Zend_Db_Select::SQL_ASC);
-    	
+    	->order('status',Zend_Db_Select::SQL_ASC)
+    	->where("status in ('1','2','3')");
     	return $this;
     }
     
@@ -176,6 +183,9 @@ class Magestore_Affiliateplusstatistic_Model_Mysql4_Sales_Collection extends Mag
                 if ($range == '2y') {
                     $dateStart->subYear(1);
                 }
+                $dateEnd->setDay(1);
+                $dateEnd->addMonth(1);
+                $dateEnd->subDay(1);
                 break;
         }
 

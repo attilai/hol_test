@@ -9,7 +9,7 @@ class Magestore_Affiliatepluslevel_Block_Adminhtml_Account_Edit_Tab_Toptier exte
         $this->setDefaultSort('toptier_id');
         $this->setUseAjax(true);
 		$this->setDefaultDir('DESC');
-		if ($this->getAccount()->getId()) {
+		if ($this->_getSelectedAccount()) {//->getAccount()->getId()) {
             $this->setDefaultFilter(array('in_toptiers'=>1));
         }
     }
@@ -154,10 +154,18 @@ class Magestore_Affiliatepluslevel_Block_Adminhtml_Account_Edit_Tab_Toptier exte
 	}
 	
 	protected function _getSelectedAccount(){// get top tier of current account
+        if ($this->getRequest()->getParam('map_toptier_id') != null) {
+            return $this->getRequest()->getParam('map_toptier_id');
+        }
 		$accountId = $this->getRequest()->getParam('id');
+        if (!$accountId) return 0;
 		$tier = Mage::getModel('affiliatepluslevel/tier')->getCollection()
 					->addFieldToFilter('tier_id', $accountId)
 					->getFirstItem();
 		return $tier->getToptierId();
 	}
+    
+    public function getSelectedAccount() {
+        return $this->_getSelectedAccount();
+    }
 }

@@ -22,7 +22,7 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tab_Form exten
       $data = $dataObj->getData();
       
       $this->setForm($form);
-      $fieldset = $form->addFieldset('affiliateplusprogram_form', array('legend'=>Mage::helper('affiliateplusprogram')->__('Program information')));
+      $fieldset = $form->addFieldset('affiliateplusprogram_form', array('legend'=>Mage::helper('affiliateplusprogram')->__('Program Information')));
       
       $inStore = $this->getRequest()->getParam('store');
       $defaultLabel = Mage::helper('affiliateplusprogram')->__('Use Default');
@@ -47,9 +47,10 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tab_Form exten
       $fieldset->addField('description', 'textarea', array(
           'label'     => Mage::helper('affiliateplusprogram')->__('Description'),
           'name'      => 'description',
-          'disabled'  => ($inStore && !$data['description_in_store']),
+          'required'  => true,
+          'disabled'  => ($inStore && (isset($data['description_in_store']) && !$data['description_in_store'])),	// Changed By Adam 16/10/2014: 2014-10-16T08:50:06+00:00 ERR (3): Notice: Undefined index: description_in_store  in C:\xampp\htdocs\project\magento1.5.0.1\app\code\local\Magestore\Affiliateplusprogram\Block\Adminhtml\Program\Edit\Tab\Form.php on line 51
           'after_element_html' => $inStore ? '</td><td class="use-default">
-			<input id="description_default" name="description_default" type="checkbox" value="1" class="checkbox config-inherit" '.($data['description_in_store'] ? '' : 'checked="checked"').' onclick="toggleValueElements(this, Element.previous(this.parentNode))" />
+			<input id="description_default" name="description_default" type="checkbox" value="1" class="checkbox config-inherit" '.((isset($data['description_in_store']) && $data['description_in_store']) ? '' : 'checked="checked"').' onclick="toggleValueElements(this, Element.previous(this.parentNode))" />
 			<label for="description_default" class="inherit" title="'.$defaultTitle.'">'.$defaultLabel.'</label>
           </td><td class="scope-label">
 			['.$scopeLabel.']
@@ -71,10 +72,24 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tab_Form exten
           ' : '</td><td class="scope-label">
 			['.$scopeLabel.']',
       ));
+      
+      $fieldset->addField('show_in_welcome', 'select', array(
+          'name'      => 'show_in_welcome',
+          'label'     => Mage::helper('affiliateplusprogram')->__('Visible'),
+          'values'	  => Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray(),
+          'disabled'  => ($inStore && !$data['show_in_welcome_in_store']),
+          'after_element_html' => $inStore ? '</td><td class="use-default">
+			<input id="show_in_welcome_default" name="show_in_welcome_default" type="checkbox" value="1" class="checkbox config-inherit" '.($data['show_in_welcome_in_store'] ? '' : 'checked="checked"').' onclick="toggleValueElements(this, Element.previous(this.parentNode))" />
+			<label for="show_in_welcome_default" class="inherit" title="'.$defaultTitle.'">'.$defaultLabel.'</label>
+          </td><td class="scope-label">
+			['.$scopeLabel.']
+          ' : '</td><td class="scope-label">
+			['.$scopeLabel.']',
+      ));
 	  
       $fieldset->addField('autojoin', 'select', array(
           'name'      => 'autojoin',
-          'label'     => Mage::helper('affiliateplusprogram')->__('Allow auto join'),
+          'label'     => Mage::helper('affiliateplusprogram')->__('Allow auto-join'),
           'values'	  => Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray(),
       ));
 	  
@@ -95,9 +110,13 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tab_Form exten
 							->toOptionArray(),
 		  'after_element_html' =>  '<script type="text/javascript">
 				function changeScope(el){
-					$(\'customer_groups\').disabled = (el.value != '.Magestore_Affiliateplusprogram_Model_Scope::SCOPE_GROUPS.');
+                    if (el.value != '.Magestore_Affiliateplusprogram_Model_Scope::SCOPE_GROUPS.'){
+                        $(\'customer_groups\').up(\'tr\').hide();
+                    } else {
+                        $(\'customer_groups\').up(\'tr\').show();
+                    }
 				}
-				$(\'customer_groups\').disabled = ($(\'scope\').value != '.Magestore_Affiliateplusprogram_Model_Scope::SCOPE_GROUPS.');
+                changeScope($(\'scope\'));
 			</script>',
       ));
       
@@ -118,25 +137,20 @@ class Magestore_Affiliateplusprogram_Block_Adminhtml_Program_Edit_Tab_Form exten
           'input_format'	=> Varien_Date::DATE_INTERNAL_FORMAT,
       ));
       
-      Mage::dispatchEvent('affiliateplusprogram_adminhtml_edit_form',array('fieldset' => $fieldset));
-      
-      $fieldset->addField('show_in_welcome', 'select', array(
-          'name'      => 'show_in_welcome',
-          'label'     => Mage::helper('affiliateplusprogram')->__('Visible'),
-          'values'	  => Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray(),
-          'disabled'  => ($inStore && !$data['show_in_welcome_in_store']),
-          'after_element_html' => $inStore ? '</td><td class="use-default">
-			<input id="show_in_welcome_default" name="show_in_welcome_default" type="checkbox" value="1" class="checkbox config-inherit" '.($data['show_in_welcome_in_store'] ? '' : 'checked="checked"').' onclick="toggleValueElements(this, Element.previous(this.parentNode))" />
-			<label for="show_in_welcome_default" class="inherit" title="'.$defaultTitle.'">'.$defaultLabel.'</label>
-          </td><td class="scope-label">
-			['.$scopeLabel.']
-          ' : '</td><td class="scope-label">
-			['.$scopeLabel.']',
+      /* Added By Adam to add priority 22/07/2014 */
+        $fieldset->addField('priority', 'text', array(
+            'name'    => 'priority',
+            'label'   => Mage::helper('affiliateplusprogram')->__('Priority'),
+            'class'     => 'validate-zero-or-greater',
+            'note' => Mage::helper('affiliateplusprogram')->__('The higher the atomic number, the higher the priority.'),
       ));
+        /* End Code*/
+      
+      Mage::dispatchEvent('affiliateplusprogram_adminhtml_edit_form',array('fieldset' => $fieldset,'data_form'=>$data,'in_store'=>$inStore));
       
       if ($data['program_id']){
       	 $fieldset->addField('created_date', 'note', array(
-	         'label'     => Mage::helper('affiliateplusprogram')->__('Created Date'),
+	         'label'     => Mage::helper('affiliateplusprogram')->__('Date Created'),
 	         'text'      => '<strong>'.$this->formatDate($data['created_date'],'long',false).'</strong>',
 	     ));
 	     

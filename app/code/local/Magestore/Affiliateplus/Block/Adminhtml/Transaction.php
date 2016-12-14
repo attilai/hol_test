@@ -7,6 +7,7 @@ class Magestore_Affiliateplus_Block_Adminhtml_Transaction extends Mage_Adminhtml
     $this->_blockGroup = 'affiliateplus';
     $this->_headerText = Mage::helper('affiliateplus')->__('Transaction Manager');
     parent::__construct();
-	$this->_removeButton('add');
+//    Removed by adam (27/08/2016):
+//	$this->_removeButton('add');
   }
 }

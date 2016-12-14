@@ -4,6 +4,7 @@
 		<Magestore_Affiliatepluscoupon>
 			<active>true</active>
 			<codePool>local</codePool>
+            <aliasName>Affiliate Plus Coupon</aliasName>
             <depends>
             	<Magestore_Affiliateplus />
             </depends>

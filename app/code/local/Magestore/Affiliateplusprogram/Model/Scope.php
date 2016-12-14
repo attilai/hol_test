@@ -8,9 +8,9 @@ class Magestore_Affiliateplusprogram_Model_Scope extends Varien_Object
 
     static public function getOptionArray(){
         return array(
-            self::SCOPE_GLOBAL		=> Mage::helper('affiliateplusprogram')->__('Global'),
+            self::SCOPE_GLOBAL		=> Mage::helper('affiliateplusprogram')->__('All Affiliates'),
             self::SCOPE_GROUPS		=> Mage::helper('affiliateplusprogram')->__('Customer Groups'),
-			self::SCOPE_CUSTOMER	=> Mage::helper('affiliateplusprogram')->__('Customer'),
+			self::SCOPE_CUSTOMER	=> Mage::helper('affiliateplusprogram')->__('Assigned Affiliates'),
         );
     }
     

@@ -59,7 +59,7 @@ class Magestore_Affiliateplusstatistic_Block_Sales extends Mage_Adminhtml_Block_
 		$reportDataObject = $reports->resetSelectColumns()
 			->addSumColumn('total_payout','amount')
 			->getDataObject();
-		$this->addTotal($this->__('Total Payout'),$reportDataObject->getTotalPayout());
+		$this->addTotal($this->__('Total Payouts'),$reportDataObject->getTotalPayout());
 		
 		$this->setEntryEditHead($this->__('General'))->setTableId('general');
 		parent::_prepareLayout();

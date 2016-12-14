@@ -6,7 +6,7 @@ class Magestore_Affiliateplusstatistic_Helper_Sales extends Mage_Adminhtml_Helpe
 		$isFilter = $this->getParam('store');
 		
 		$this->_collection = Mage::getResourceModel('affiliateplusstatistic/sales_collection')
-			->prepareSummary($this->getParam('period'),0,0,$isFilter);
+			->prepareSummary($this->getParam('period'),0,0,$isFilter,$this->getParam('account_id'));
 		
 		if ($this->getParam('store'))
 			$this->_collection->addFieldToFilter('store_id',$this->getParam('store'));

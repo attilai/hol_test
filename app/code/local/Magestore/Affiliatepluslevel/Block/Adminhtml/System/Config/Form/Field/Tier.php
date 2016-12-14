@@ -24,11 +24,11 @@ class Magestore_Affiliatepluslevel_Block_Adminhtml_System_Config_Form_Field_Tier
 	}
 	
 	public function getHtmlId(){
-		return '';
+		return 'affiliateplus_commission_tier_commission';
 	}
 	
 	public function getMaxLevel(){
-		$_maxLevel = intval($this->_getConfig('affiliateplus/multilevel/max_level'));
+		$_maxLevel = intval($this->_getConfig('affiliateplus/commission/max_level'));
 		return ($_maxLevel > 0) ? $_maxLevel : 1;
 	}
 	
@@ -52,10 +52,10 @@ class Magestore_Affiliatepluslevel_Block_Adminhtml_System_Config_Form_Field_Tier
 	}
 	
 	public function getDefaultCommission(){
-		return $this->_getConfig('affiliateplus/general/commission');
+		return $this->_getConfig('affiliateplus/commission/commission');
 	}
 	
 	public function getDefaultCommissionType(){
-		return $this->_getConfig('affiliateplus/general/commission_type');
+		return $this->_getConfig('affiliateplus/commission/commission_type');
 	}
 }

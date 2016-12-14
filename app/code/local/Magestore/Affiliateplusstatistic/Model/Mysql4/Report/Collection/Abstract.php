@@ -78,6 +78,13 @@ class Magestore_Affiliateplusstatistic_Model_Mysql4_Report_Collection_Abstract e
 	 * @var string
 	 */
 	protected $_status_column = null;
+    
+    /**
+     * Store column
+     * 
+     * @var string 
+     */
+    protected $_store_column = 'store_id';
 	
 	/**
 	 * set status column for collection
@@ -194,9 +201,9 @@ class Magestore_Affiliateplusstatistic_Model_Mysql4_Report_Collection_Abstract e
 		
 		$storeIds[0] = ($storeIds[0] == '') ? 0 : $storeIds[0];
 		if ($nullCheck)
-			$select->where('store_id IN(?) OR store_id IS NULL', $storeIds);
+			$select->where("{$this->_store_column} IN(?) OR {$this->_store_column} IS NULL", $storeIds);
 		else
-			$select->where('store_id IN(?)', $storeIds);
+			$select->where("{$this->_store_column} IN(?)", $storeIds);
 
 		return $this;
 	}

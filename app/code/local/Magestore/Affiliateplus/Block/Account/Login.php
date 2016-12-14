@@ -29,7 +29,7 @@ class Magestore_Affiliateplus_Block_Account_Login extends Mage_Core_Block_Templa
     }
     
     public function getRegisterDescription(){
-    	return Mage::helper('affiliateplus/config')->getGeneralConfig('register_description');
+    	return Mage::helper('affiliateplus/config')->getSharingConfig('register_description');
     }
     
     protected function _afterToHtml($html){

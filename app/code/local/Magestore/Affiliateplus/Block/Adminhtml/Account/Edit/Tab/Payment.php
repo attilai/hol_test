@@ -6,7 +6,7 @@ class Magestore_Affiliateplus_Block_Adminhtml_Account_Edit_Tab_Payment
     {
         parent::__construct();
         $this->setId('paymentgrid');
-        $this->setDefaultSort('payment_id');
+        $this->setDefaultSort('payment_grid_payment_id');
         $this->setDefaultDir('DESC');
         $this->setUseAjax(true);
     }
@@ -76,7 +76,7 @@ class Magestore_Affiliateplus_Block_Adminhtml_Account_Edit_Tab_Payment
 		));
 		
 		$this->addColumn($prefix.'request_time', array(
-			'header'	=> Mage::helper('catalog')->__('Request Date'),
+			'header'	=> Mage::helper('catalog')->__('Date Requested'),
 			'type'		=> 'date',
 			'index'		=> 'request_time',
 			'align'		=> 'right',
@@ -93,10 +93,11 @@ class Magestore_Affiliateplus_Block_Adminhtml_Account_Edit_Tab_Payment
           'index'     => 'status',
           'type'      => 'options',
           'options'   => array(
-              1 => 'Waiting',
-              2 => 'Processing',
-			  3 => 'Completed',
-          ),
+				1 =>  Mage::helper('affiliateplus')->__('Pending'),
+				2 =>  Mage::helper('affiliateplus')->__('Processing'),
+				3 =>  Mage::helper('affiliateplus')->__('Complete'),
+                4 =>  Mage::helper('affiliateplus')->__('Canceled')
+			),
       ));
 		
     }
@@ -115,7 +116,8 @@ class Magestore_Affiliateplus_Block_Adminhtml_Account_Edit_Tab_Payment
 	
 	public function getRowUrl($row) {
 		$id = $row->getId();
-		return $this->getUrl('*/adminhtml_payment/edit', array(
+                // Changed By Adam 10/11/2015: solve the problem of Supee-6788
+		return $this->getUrl('adminhtml/affiliateplus_payment/edit', array(
 			'id' => $id//,
 			//'store'	=> $this->getRequest()->getParam('store')
 		));
