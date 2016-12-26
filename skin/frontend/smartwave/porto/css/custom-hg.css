@@ -86,7 +86,10 @@ a.addtocart { background:#ff9a0a; color:#fff; border:none; font-size:12px; paddi
 .product-collateral { margin-top:0px; }
 .product-tabs .tab-content { box-shadow:none; }
 .qty-holder { width:auto; }
-
+.shipment-methods dt:last-of-type,
+.shipment-methods dd:last-of-type{
+	display: none;
+}
 /* Checkout */
 .data-table button.button > span { padding:0px; }
 button.button span span { padding:0px 12px; }
