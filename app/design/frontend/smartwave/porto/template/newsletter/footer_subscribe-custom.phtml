@@ -17,8 +17,9 @@
             <p><?php echo $footer['footer_newsletter']; ?></p>
             <div class="input-box">
                 <p class="label"><?php echo $this->__('Enter your e-mail Address'); ?></p>
-                <input type="text" name="email" id="newsletter_footer" title="<?php echo $this->__('Sign up for our newsletter') ?>" class="input-text required-entry validate-email" />
-                <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+                <input class="input-text required-entry validate-email" type="text" name="email" id="newsletter_footer" title="<?php echo $this->__('Sign up for our newsletter') ?>" />
+                <button class="button" id="buttonSubmit" title="<?php echo $this->__('Submit') ?>"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+                <div class="g-recaptcha" data-sitekey="6LdWuyIUAAAAAAGV_-f0b_uRaQ-byPvVNDCLrBWq" data-callback='submitForm1' data-size="invisible"></div>
                 <div class="clearer"></div>
             </div>
         </div>
@@ -28,4 +29,25 @@
         var footernewsletterSubscriberFormDetail = new VarienForm('footer-newsletter-validate-detail');
     //]]>
     </script>
+
+    <script type="text/javascript">
+        function submitForm1(token) {
+
+            document.getElementById("footer-newsletter-validate-detail").submit();
+        }
+
+        function validate(event){
+            event.preventDefault();
+            if(Validation.validate(document.getElementById('newsletter_footer'))){
+                grecaptcha.execute();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const button = document.querySelector('#buttonSubmit');
+            button.addEventListener('click', validate);
+        });
+
+    </script>
+
 </div>

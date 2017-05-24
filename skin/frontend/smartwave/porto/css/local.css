@@ -3891,3 +3891,6 @@ img.category-icon{margin-right:10px;max-height:11px;vertical-align:middle}
 .searchautocomplete .nav-submit-button .button:hover{
 	background: #548ac0;
 }
+.grecaptcha-badge {
+	display: none;
+}
