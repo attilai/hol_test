@@ -3,10 +3,10 @@
 html, body{
 	background-color:#fff;font:13px/1 'Open Sans',Arial,Helvetica,sans-serif;color:#777;text-align:center;
 	font-size: 14px;
-    font-weight: 300;
-    line-height: 1.6;
-    letter-spacing: 0.4px;
-    color: #151414;
+	font-weight: 300;
+	line-height: 1.6;
+	letter-spacing: 0.4px;
+	color: #151414;
 }
 body{overflow-x:hidden}
 img{border:0;vertical-align:top}
@@ -2013,13 +2013,13 @@ li.etalage_small_thumbs{margin-top:8px;top:100%}
 .captcha-reload.refreshing{animation:rotate 1.5s infinite linear}
 
 @-webkit-keyframes rotate{ 0%{-webkit-transform:rotate(0)}
- 0%{-webkit-transform:rotate(-360deg)}
+	0%{-webkit-transform:rotate(-360deg)}
 }
 @-moz-keyframes rotate{ 0%{-moz-transform:rotate(0)}
- 0%{-moz-transform:rotate(-360deg)}
+	0%{-moz-transform:rotate(-360deg)}
 }
 @keyframes rotate{ 0%{transform:rotate(0)}
- 0%{transform:rotate(-360deg)}
+	0%{transform:rotate(-360deg)}
 }
 
 /* Remember Me Popup ===================================================================== */
@@ -2928,7 +2928,7 @@ ul.icons{list-style:none}
 ul.list li{margin-bottom:13px;line-height:24px}
 ul.list.icons li i.icon{color:#08c}
 .header-container .links li.first {
-    border: 0;
+	border: 0;
 }
 .owl-carousel.owl-theme .owl-controls.clickable .owl-buttons div{opacity:1;filter:Alpha(Opacity=100);transition:all 0.2s}
 .owl-carousel.owl-theme .owl-controls.clickable .owl-buttons div:hover{opacity:0.9;filter:Alpha(Opacity=90)}
@@ -3382,19 +3382,19 @@ a.search-icon{display:inline-block;width:25px;text-align:center}
 .header-container.type11 .menu-icon{display:none;padding:0;margin:0;height:auto;margin-right:1px;margin-left:10px}
 .header-container.type11 .menu-icon a{color:#fff}
 .product-notices {
-    letter-spacing: 0;
-    padding: 0 0 0 19px;
-    font-size: 14px;
-    line-height: 1.3;
-    background: url(../images/Check-icon.png) no-repeat;
+	letter-spacing: 0;
+	padding: 0 0 0 19px;
+	font-size: 14px;
+	line-height: 1.3;
+	background: url(../images/Check-icon.png) no-repeat;
 }
 .product-notices.product-notices1{
 	background: none;
 	padding: 0;
 }
 .product-notices span {
-    color: #008500;
-    display: block;
+	color: #008500;
+	display: block;
 }
 #banner-slider-demo-13 .slide1-content img.quote{}
 #banner-slider-demo-13 .slide1-content em{font-size:26.26px;margin:0 10px}
@@ -3928,9 +3928,9 @@ img.category-icon{margin-right:10px;max-height:11px;vertical-align:middle}
 }
 @media only screen and (max-width: 991px){
 	.header-container.type3 .menu-icon {
-	    margin: 0px 5px;
-	    right: 15px;
-	    position: absolute;
+		margin: 0px 5px;
+		right: 15px;
+		position: absolute;
 	}
 }
 @media only screen and (max-width: 479px) {
@@ -3947,12 +3947,12 @@ img.category-icon{margin-right:10px;max-height:11px;vertical-align:middle}
 
 /*customer-service new*/
 .customer-service-new {
-    border-radius: 10px;
-    padding: 20px 0px 10px;
-    margin-bottom: 20px;
-    background: #2964a0;
-    color: #fff;
-    font-weight: 400;
+	border-radius: 10px;
+	padding: 20px 0px 10px;
+	margin-bottom: 20px;
+	background: #2964a0;
+	color: #fff;
+	font-weight: 400;
 }
 .customer-service-new .title {
 	font-size: 18px;
@@ -3995,13 +3995,13 @@ img.category-icon{margin-right:10px;max-height:11px;vertical-align:middle}
 }
 .line span {
 	display: inline-block;
-	vertical-align: middle;	
+	vertical-align: middle;
 }
 .line-val {
 	max-width: 70%;
 }
 .line-val a, .line a {
-	color: #fff;	
+	color: #fff;
 }
 .line-val a:hover, .line a:hover {
 	text-decoration: none;
@@ -4019,13 +4019,13 @@ img.category-icon{margin-right:10px;max-height:11px;vertical-align:middle}
 .line .fa-phone {
 	color: #fff;
 	font-size: 30px;
-    margin-right: 18px;
+	margin-right: 18px;
 }
 .customer-service-new .sticker {
 	font-size: 9px;
 	border-radius: 2px;
 	background: #ff9b00;
-    padding: 1px 2px 3px;
+	padding: 1px 2px 3px;
 }
 .mark {
 	color: #ff9b00;
@@ -4038,7 +4038,7 @@ img.category-icon{margin-right:10px;max-height:11px;vertical-align:middle}
 	.contacts-line {
 		font-size: 18px;
 	}
-	
+
 }
 @media only screen and (max-width: 1024px){
 	.line .fa, .line .sticker {
