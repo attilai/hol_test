@@ -37,7 +37,7 @@ class Idual_ExportOrders_IndexController extends Mage_Core_Controller_Front_Acti
 			} else {
 				$xml = $this->_GetXMLUpdate($orderId);
 			}
-			
+
 			$result = $this->_doXMLRequest($xml);
 
 			$bo_orderid = (int)$result->boresponse->bo_orderid;
@@ -56,7 +56,7 @@ class Idual_ExportOrders_IndexController extends Mage_Core_Controller_Front_Acti
 	        	$msg = "Data updated successfully.";
 			} catch (Exception $e){
 	     		$msg = $e->getMessage();
-			}	
+			}
 		}
 		
 		// EDDY
@@ -168,6 +168,8 @@ class Idual_ExportOrders_IndexController extends Mage_Core_Controller_Front_Acti
 		 
 		if (strpos(strtolower($order->getShippingDescription()),'koerier') !== false) {
 			$shipping_method = 'bezorgen';
+		} elseif(strpos(strtolower($order->getShippingDescription()),'opslag') !== false){
+			$shipping_method = 'bezorgen';
 		} elseif(strpos(strtolower($order->getShippingDescription()),'afhalen') !== false) {
 			$shipping_method = 'afhalen';
 		} else {
@@ -193,11 +195,15 @@ class Idual_ExportOrders_IndexController extends Mage_Core_Controller_Front_Acti
 		 */
 		 if( $payment_method_code == 'bankoverschrijving' OR $payment_method_code == 'checkmo') {
 		 	$payment_method = 'OVERSCHRIJVING';
-		 } elseif( $payment_method_code == 'idealcheckoutideal' ) {
+		 } elseif( $payment_method_code == 'idealcheckoutideal' or $payment_method_code == 'ingkassacompleet_ideal') {
 		 	$payment_method = 'IDEAL';
-		 } else {
+         } elseif( $payment_method_code == 'ingpsp_bancontact') {
+		 	$payment_method = 'BANCONTACT';
+         } else {
 		 	$payment_method = 'BALIE';
 		 }
+		 
+		 Mage::log(date("Y-m-d H:i:s")."=>".$order->getIncrementId()."=>".$payment_method_code."=>".$payment_method, null, 'idual_orders.log');
 		
 		// EDDY
 		//Mage::log('IndexController line 174');
@@ -282,6 +288,13 @@ class Idual_ExportOrders_IndexController extends Mage_Core_Controller_Front_Acti
 		$order_element->appendChild($domtree->createElement('voorletters',$shipping_FirstName));
 		$order_element->appendChild($domtree->createElement('geslacht',$shipping_Gender));
 		$order_element->appendChild($domtree->createElement('straatnaam',$shipping_Adrress1));
+
+		if($shipping_Adrress2 == ''){
+			trim($shipping_Adrress1);
+			$arayAddress = explode(" ", $shipping_Adrress1);
+			$shipping_Adrress2 = array_pop($arayAddress);			
+		}
+
 		$order_element->appendChild($domtree->createElement('huisnummer',$shipping_Adrress2));
 		$order_element->appendChild($domtree->createElement('huisnummertoev',''));
 		$order_element->appendChild($domtree->createElement('postcode',$shipping_Postcode));

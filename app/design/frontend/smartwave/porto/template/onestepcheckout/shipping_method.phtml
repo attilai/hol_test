@@ -56,11 +56,29 @@
     <?php else: ?>
         <dl class="shipment-methods" id="checkout-shipment-method-load">
         <?php $teller = 1; // tbv togglen ?>
+        <?php
+            $cart = Mage::getModel('checkout/cart')->getQuote();
+            foreach ($cart->getAllItems() as $item) {
+                $productId = $item->getProductId();            
+                $restricted = Mage::getModel('catalog/product')->load($productId)->getRestrictShipping();
+                if($restricted) {
+                    break;
+                }
+            }
+        ?>
+    <?php 
+        $resrtictedMethods = Mage::getStoreConfig('onestepcheckout/general/restrict_shipping'); 
+        if($resrtictedMethods){
+            $resrtictedMethods = explode(',', $resrtictedMethods);
+        } else {
+            $resrtictedMethods = array();        
+        }
+    ?>
             <?php foreach ($_shippingRateGroups as $code => $_rates): ?>
-                        <dd><?php echo $this->getCarrierName($code) ?></dd>
+                <?php if(in_array($code, $resrtictedMethods) and $restricted){ continue;}?>
+                <dd><?php echo $this->getCarrierName($code) ?> </dd>
                     <?php foreach ($_rates as $_rate): ?>
                         <dt style="margin-bottom: 5px;">
-
                            <?php if ($_rate->getErrorMessage()): ?>
                             <ul class="messages"><li class="error-msg"><ul><li><?php echo $_rate->getErrorMessage() ?></li></ul></li></ul>
                            <?php else: ?>
@@ -76,7 +94,8 @@
                                 <?php endif; ?>
                                 </strong>
                                 </label>
-								<?php 
+                                
+                                <?php 
                                 $detail = 0;
                                 if($code == 'msmultiflat') { $detail++;?>
                                      <div class="shipping-method" id="toggle_<?php echo $_rate->getCode() ?>" <?php //if($_rate->getCode()!=$this->getAddressShippingMethod()) echo ' style="display: none;"' ?>>
@@ -86,7 +105,7 @@
 
                                 <?php } else { ?>
 
-                                    <?php if ($this->getInfotext($code)) : ?>
+    								<?php if ($this->getInfotext($code)) : ?>
                                     <div class="shipping-method" id="toggle_<?php echo $_rate->getCode() ?>" <?php //if($_rate->getCode()!=$this->getAddressShippingMethod()) echo ' style="display: none;"' ?>>
                                         <?php echo $this->getInfotext($code); ?>
                                     </div>

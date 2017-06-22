@@ -1,5 +1,11 @@
 /*** Custom style for Hollandgold theme ***/
-body { font-size:13px; line-height:18px; }
+body { 
+	font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: 0.4px;
+    color: #151414;
+ }
 h1 { font-size:24px; font-weight:600; color:#074a8d; }
 h2 { font-size:18px; font-weight:600; color:#074a8d; }
 h3 { font-size:18px; color:#444; }
@@ -44,7 +50,11 @@ i.icon-usp-security { background:url(../images/hg/icon-usp-security.png) no-repe
 .product-image-area { overflow:visible; }
 .product-name { margin:20px 0px; min-height:3em; }
 .product-name a { color:#074a8d; display:block; }
-.products-grid div.labeldirect { width:100px; height:100px; top:-2px; left:-2px; position:absolute; z-index:99; }
+.products-grid div.labeldirect {
+ width:100px; height:100px; 
+ top:-2px; left:-2px; position:absolute; z-index:99; 
+ display: none;
+}
 a.addtocart { background:#ff9a0a; color:#fff; border:none; font-size:12px; padding:0px 20px; margin-bottom:20px; }
 .item:hover a.addtocart,
 .item:hover .details-area .actions a.addtocart,
@@ -183,7 +193,7 @@ div.checkoutcontainer { border-top:none !important; }
 	vertical-align: middle;
 }
 .tab__img {width: 38%;}
-.tab__info {font-size: 12px;width: 62%;}
+.tab__info {font-size: 12px;width: 60%;}
 @media only screen and (max-width: 1199px) {
 	.tab__img {width: 47%;}
 	.tab__info {width: 53%;}
@@ -204,7 +214,7 @@ div.checkoutcontainer { border-top:none !important; }
 .block-customer-service-info { padding:0px 15px 0px 0px; float:none; }
 .customer-service {}
 .customer-service .block-service { padding-left:0px; margin-bottom:20px; }
-.customer-service .block-service .wrapper { min-height:240px; background:#eee; border:1px solid #ccc; padding:20px; border-radius:10px; }
+.customer-service .block-service .wrapper { min-height:242px; background:#eee; border:1px solid #ccc; padding:20px; border-radius:10px; }
 .customer-service .block-service h3 { min-height:3em; }
 .customer-service .block-service i.fa, 
 .customer-service .block-service i { font-style:normal; margin-right:7px; margin-bottom:1em; line-height:1.5em; float:left; }
@@ -336,7 +346,9 @@ ul.footer-logos.merged img { width:100%; max-width:1031px; }
 .round-circle { border-radius:50% !important; }
 .round-corners { border-radius:10px !important; }
 .row.space { margin:20px -15px; }
-
+.info-tabs li{
+	padding: 0 27px 0 0;
+}
 /* Mobile View */
 @media (max-width:767px) {
     .homepage-bar { display:none; }

@@ -90,6 +90,7 @@
         </reference>
         <reference name="top.links">
             <remove name="checkout_cart_link"/>
+            <action method="addLink" translate="label title"><label>Klantenservice</label><url>klantenservice</url><title>Klantenservice</title><prepare/><urlParams/><position>1</position></action>
         </reference>
         <reference name="top.menu">
             <action method="unsetChild" ifconfig="porto_settings/header/type" condition="9"><name>catalog.topnav</name></action>

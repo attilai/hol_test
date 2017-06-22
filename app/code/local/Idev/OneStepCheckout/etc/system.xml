@@ -169,6 +169,16 @@
                             <depends><enable_different_shipping>1</enable_different_shipping></depends>
                             <comment><![CDATA[By default the shipping address form is displayed as "open". If you need to hide it then you can set this field to "yes"]]></comment>
                         </enable_different_shipping_hide>
+                        <restrict_shipping translate="label">
+                            <label>Restricted methods</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>onestepcheckout/source_methods</source_model>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enable_different_shipping>1</enable_different_shipping></depends>
+                        </restrict_shipping>
                         <enable_gift_messages translate="label">
                             <label>Enable gift messages</label>
                             <frontend_type>select</frontend_type>

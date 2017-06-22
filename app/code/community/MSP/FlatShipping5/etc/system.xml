@@ -532,6 +532,24 @@
                         </infotext>
                     </fields>
                 </flatrate5>
+                <tablerate translate="label">
+                    <label>Table Rates</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                         <infotext translate="label">
+                            <label>Info Text (supports HTML)</label>
+                            <frontend_type>editor</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </infotext>
+                    </fields>
+                </tablerate>
 			</groups>
 		</carriers>
     </sections>

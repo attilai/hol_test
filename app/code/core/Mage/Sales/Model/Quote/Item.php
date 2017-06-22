@@ -502,15 +502,17 @@ class Mage_Sales_Model_Quote_Item extends Mage_Sales_Model_Quote_Item_Abstract
                         /** @var Unserialize_Parser $parser */
                         $parser = Mage::helper('core/unserializeArray');
 
-                        $_itemOptionValue = $parser->unserialize($itemOptionValue);
-                        $_optionValue = $parser->unserialize($optionValue);
+                        $_itemOptionValue =
+                            is_numeric($itemOptionValue) ? $itemOptionValue : $parser->unserialize($itemOptionValue);
+                        $_optionValue = is_numeric($optionValue) ? $optionValue : $parser->unserialize($optionValue);
 
                         if (is_array($_itemOptionValue) && is_array($_optionValue)) {
                             $itemOptionValue = $_itemOptionValue;
                             $optionValue = $_optionValue;
                             // looks like it does not break bundle selection qty
-                            unset($itemOptionValue['qty'], $itemOptionValue['uenc']);
-                            unset($optionValue['qty'], $optionValue['uenc']);
+                            foreach (array('qty', 'uenc', 'form_key') as $key) {
+                                unset($itemOptionValue[$key], $optionValue[$key]);
+                            }
                         }
 
                     } catch (Exception $e) {

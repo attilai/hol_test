@@ -6,7 +6,10 @@ class Smartwave_Ajaxcart_IndexController extends Mage_Checkout_CartController
 	{
 		$cart   = $this->_getCart();
 		$params = $this->getRequest()->getParams();
+
 		if($params['isAjax'] == 1){
+
+
 			$response = array();
 			try {
 				if (isset($params['qty'])) {
@@ -19,6 +22,16 @@ class Smartwave_Ajaxcart_IndexController extends Mage_Checkout_CartController
 				$product = $this->_initProduct();
 				$related = $this->getRequest()->getParam('related_product');
 
+
+				// clear cookie
+
+
+
+
+
+
+
+
 				/**
 				 * Check product availability
 				 */
@@ -28,6 +41,7 @@ class Smartwave_Ajaxcart_IndexController extends Mage_Checkout_CartController
 				}
 
 				$cart->addProduct($product, $params);
+
 				if (!empty($related)) {
 					$cart->addProductsByIds(explode(',', $related));
 				}
@@ -89,7 +103,8 @@ class Smartwave_Ajaxcart_IndexController extends Mage_Checkout_CartController
 				$response['status'] = 'ERROR';
 				$response['message'] = $msg;
 			} catch (Exception $e) {
-				$response['status'] = 'ERROR';
+
+                $response['status'] = 'ERROR';
 				$response['message'] = $this->__('Cannot add the item to shopping cart.');
 				Mage::logException($e);
 			}
@@ -114,6 +129,9 @@ class Smartwave_Ajaxcart_IndexController extends Mage_Checkout_CartController
             if (!$params) {
                 $params = new Varien_Object();
             }
+
+            Mage::getSingleton('core/session')->setReferrerUrl($this->_getRefererUrl());
+            $viewHelper->prepareAndRender($productId, $this, $params);
 
             // Standard algorithm to prepare and rendern product view page
             $product = $productHelper->initProduct($productId, $this, $params);

@@ -5,16 +5,31 @@ require_once('/home/hollandgold/domains/hollandgold.nl/public_html/app/Mage.php'
 umask(0);
 Mage::app();
 
-Mage::log("Start", false, "margemod.log");
-
 // functies includen
 include ('includes/functions.php');
 
 // Database verbinding opbouwen en prijzen ophalen. Geeft $silverRate en $goldRate terug.
 include ('includes/initialize.php');
-  	
-
+Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID); 
 $startTime = microtime(true);	
+$website = Mage::app()->getWebsite();
+$rules = Mage::getModel('catalogrule/rule')->getCollection()
+    ->addWebsiteFilter($website) //filter rules for current site
+    ->addIsActiveFilter(1); //filter active rules
+
+$affectedProductIds = array();
+
+foreach ($rules as $rule) {
+    foreach($rule->getMatchingProductIds() as $single_id){
+        array_push($affectedProductIds, $single_id);
+    }
+}
+
+$resource = Mage::getSingleton('core/resource');
+$connection = $resource->getConnection('core_read');
+$tableName = $resource->getTableName('catalogrule_product');
+
+
 $numberOfProducts = 0;
 
 if($silverRate > 10 && $goldRate > 500 && $platinumRate > 1 && $palladiumRate > 1)
@@ -39,7 +54,7 @@ if($silverRate > 10 && $goldRate > 500 && $platinumRate > 1 && $palladiumRate > 
         
 	}
     $collection = Mage::getModel('catalog/product')->getCollection()
-        ->addAttributeToSelect(array('price', 'name'))
+        ->addAttributeToSelect('*')
         ->addAttributeToFilter('entity_id', array('in' => $productIds));
         
         foreach($collection as $product) {
@@ -48,8 +63,9 @@ if($silverRate > 10 && $goldRate > 500 && $platinumRate > 1 && $palladiumRate > 
             print "SKU: " . $product->getSku() . ";" . PHP_EOL;
             print "Name: " . $product->getName() . ";" . PHP_EOL;
             print "Current price: " . number_format($product->getPrice(), 2, '.', '') . "€;" . PHP_EOL;
-            
-            if($product->getPrice() == $prices[$product->getId()]){
+            $discount = $connection->fetchOne('SELECT action_amount as c FROM '.$tableName.' WHERE product_id = '. $product->getId());
+
+            if($product->getPrice() == $prices[$product->getId()] and !in_array($product->getId(), $affectedProductIds)){
                 print "New price: " . $prices[$product->getId()] . "€;". PHP_EOL;                    
                 print "\e[1;33mPrice not changes. Skip update.\033[0m" . PHP_EOL;
                 continue;
@@ -60,12 +76,23 @@ if($silverRate > 10 && $goldRate > 500 && $platinumRate > 1 && $palladiumRate > 
                     $tier_prices = $product->getTierPrice();
                     $new_tier = array();
                     foreach($tier_prices as $tier_price){
-                        $updated = array('cust_group'    => 32000,
+                        $updated = array('cust_group'    => $tier_price['cust_group'],
                                           'price_qty' => $tier_price['price_qty'],
                                           'price' => ($prices[$product->getId()] - ($staffel[$product->getId()] * $step)) 
                         );
                         $step++;
                         array_push($new_tier, $updated);
+                    }
+                    if($discount > 0) {
+                        $step = 1;
+                        foreach($tier_prices as $tier_price){
+                            $updated = array('cust_group'    => 2,
+                                              'price_qty' => $tier_price['price_qty'],
+                                              'price' => ($prices[$product->getId()] - $discount - ($staffel[$product->getId()] * $step)) 
+                            );
+                            $step++;
+                            array_push($new_tier, $updated);
+                        }
                     }
                     $product->unsTierPrice()->save()->setTierPrice($new_tier);
                 }
@@ -73,7 +100,7 @@ if($silverRate > 10 && $goldRate > 500 && $platinumRate > 1 && $palladiumRate > 
                 print "\e[1;31mNew price:" . $prices[$product->getId()] . "€\033[0m" . ";" . PHP_EOL;
                 print "Updating...". PHP_EOL;
                 try {
-                    $product->setPrice($prices[$product->getId()])->getResource()->save($product);
+                    $product->setPrice($prices[$product->getId()])->save();
                     print "\e[1;32mUpdated.\033[0m" . PHP_EOL;
                 } catch(Exception $e) {
                     print "\e[1;31m" . $e->getMessage() . "\033[0m" . PHP_EOL;
@@ -85,10 +112,26 @@ if($silverRate > 10 && $goldRate > 500 && $platinumRate > 1 && $palladiumRate > 
             }
         }
     print PHP_EOL . "--------------------------------" . PHP_EOL . PHP_EOL;
-    $runTime = microtime(true) - $startTime; 
+ 
+    if($numberOfProducts > 0){
+        print "Reindexing price.........";
+        Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();        
+        print "Applying catalog price rules.........";
+        try {
+            Mage::getModel('catalogrule/rule')->applyAll();
+            Mage::app()->removeCache('catalog_rules_dirty');
+            print ' done!';
+            print PHP_EOL;
+        } catch (Exception $exception) {
+            print 'fail';
+            print $exception->getMessage() . PHP_EOL;
+        }
+        print PHP_EOL . PHP_EOL;
+    }
+    $runTime = microtime(true) - $startTime;
     Mage::log("Elapsed time: " . $runTime . " seconds. for " . $numberOfProducts . " products.", false, "margemod.log");
     print "Done! Elapsed time: " . $runTime . " seconds. for " . $numberOfProducts . " products." . PHP_EOL . PHP_EOL;
-
+    
 } else {
  print('not ok');
 

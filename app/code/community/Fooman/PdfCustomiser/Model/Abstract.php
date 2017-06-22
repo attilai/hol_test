@@ -238,6 +238,19 @@ abstract class Fooman_PdfCustomiser_Model_Abstract extends Mage_Sales_Model_Orde
                         }
                     }
                     break;
+                case 'ingpsp_fee':
+                   //Prepare INGPSP Fee
+                    if (
+                        $pdfTotal->canDisplay()
+                        && strtoupper($pdfTotal->getSortOrder())!='NO'
+                    ) {
+                        $totals[$sortOrder][] = array(
+                            'label'      => Mage::helper('ingpsp')->__('INGPSP Fee') . ':',
+                            'amount'     => $salesObject->getIngpspFee(),
+                            'baseAmount' => $salesObject->getIngpspFee()
+                        );
+                    }
+                break;
                 case 'discount_amount':
                     //Prepare Discount
                     //Prepare positive or negative Discount to display with minus sign

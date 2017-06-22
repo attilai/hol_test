@@ -48,7 +48,7 @@ City,Plaats
 Company,Bedrijf
 Config,Config
 Confirm New Password,Bevestig nieuw wachtwoord
-Confirm Password,Bevstig het wachtwoord
+Confirm Password,Bevestig het wachtwoord
 Confirmation Link Email,Bevesting-link e-mail
 Confirmed,Bevestigd
 Contact Information,Contactgegevens
@@ -407,3 +407,4 @@ ZIP/Postal Code,Postcode
 Zip/Postal Code,Postcode
 n/a,n.v.t.
 or,of
+"Thank you for registering with %s.","Bedankt voor uw registratie %s."

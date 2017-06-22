@@ -954,6 +954,26 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
              */
         }
 
+        // change select country nl, bl, lu
+        $countries = $this->getCountryOptions();
+
+        $newOrder = array();
+
+       foreach($countries as $country){
+        if($country["value"] == "BE" or $country["value"] == "NL" or $country["value"] == "LU")
+
+        $newOrder[] =  $country;
+       }
+
+       foreach($countries as $country){
+            if($country["value"] == "BE" or $country["value"] == "NL" or $country["value"] == "LU" or $country["value"] == "")
+            {
+                continue;
+            }
+            $newOrder[] =  $country;
+            
+       }
+
         $countryId = $address->getCountryId();
         if (is_null($countryId)) {
             $countryId = Mage::getStoreConfig('general/country/default');
@@ -964,7 +984,8 @@ class Idev_OneStepCheckout_Block_Checkout extends Mage_Checkout_Block_Onepage_Ab
         ->setTitle(Mage::helper('checkout')->__('Country'))
         ->setClass('validate-select')
         ->setValue($countryId)
-        ->setOptions($this->getCountryOptions());
+        //->setOptions($this->getCountryOptions());
+        ->setOptions($newOrder);
         if ($type === 'shipping') {
             $select->setExtraParams('onchange="shipping.setSameAsBilling(false);"');
         }

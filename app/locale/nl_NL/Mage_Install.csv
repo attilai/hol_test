@@ -13,7 +13,7 @@
 "Check this box only if it is not possible to automatically validate Secure URL, for example if HTTP authentication is required.","Alleen aanvinken als het niet mogelijk is de Secure-URL automatisch te valideren, bijvoorbeeld als HTTP-authenticatie verplicht is."
 "Choose this if you would like to test frontend and backend functionality.","Kies dit als u de functionaliteit van het front-end en back-end wilt testen."
 "Configuration","Configuratie"
-"Confirm Password","Bevstig het wachtwoord"
+"Confirm Password","Bevestig het wachtwoord"
 "Connection","Verbinding"
 "Continue","Ga verder"
 "Continue After Manual Download","Ga verder na handmatige download"

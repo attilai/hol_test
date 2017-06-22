@@ -391,6 +391,12 @@ class Idev_OneStepCheckout_AjaxController extends Mage_Core_Controller_Front_Act
         $helper = Mage::helper('onestepcheckout/checkout');
 
         $billing_data = $this->getRequest()->getPost('billing', array());
+
+        if(empty($billing_data['street'][1])){
+            $billing_data['street'][1] = intval(preg_replace('/[^0-9]+/', '', $billing_data['street'][0]), 10);
+            $billing_data['street'][0] = preg_replace('/[0-9]+/', '', $billing_data['street'][0]);
+        }
+        
         $shipping_data = $this->getRequest()->getPost('shipping', array());
         $customerAddressId = $this->getRequest()->getPost('billing_address_id', false);
         $shippingAddressId = $this->getRequest()->getPost('shipping_address_id', false);

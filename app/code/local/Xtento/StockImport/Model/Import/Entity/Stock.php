@@ -753,36 +753,57 @@ class Xtento_StockImport_Model_Import_Entity_Stock extends Xtento_StockImport_Mo
                         $currentPrice = $this->_costValues[$productId]['cost'];
                         if ($updateData['cost'] != '') {
                             $newPrice = $updateData['cost'];
-/* EDDY values from Magento
-16 = Direct leverbaar
-15 = Leverbaar binnen 1 week
-14 = Leverbaar binnen 2 weken
-13 = Leverbaar binnen 3 weken
-12 = Leverbaar binnen 4 weken
-11 = Niet meer leverbaar
-31 = Normaal leverbaar
-*/
-if ($newPrice == "direct leverbaar") {
-  $newPrice = 16;
-}
-if ($newPrice == "1 week") {
-  $newPrice = 15;
-}
-if ($newPrice == "2 weken" || $newPrice == "1-2 weken") {
-  $newPrice = 14;
-}
-if ($newPrice == "3 weken" || $newPrice == "2-3 weken") {
-  $newPrice = 13;
-}
-if ($newPrice == "4 weken" || $newPrice == "3-4 weken") {
-  $newPrice = 12;
-}
-if ($newPrice == "1-2 maanden" || $newPrice == "2 maanden") {
-  $newPrice = 11;
-}
-if ($newPrice == "normaal leverbaar") {
-  $newPrice = 31;
-}
+							/* EDDY values from Magento
+							16 = Direct leverbaar
+							15 = Leverbaar binnen 1 week
+							14 = Leverbaar binnen 2 weken
+							13 = Leverbaar binnen 3 weken
+							12 = Leverbaar binnen 4 weken
+							11 = Niet meer leverbaar
+							31 = Normaal leverbaar
+							*/
+							if ($newPrice == "direct leverbaar") {
+							  $newPrice = 16;
+							}
+							if ($newPrice == "1 week") {
+							  $newPrice = 15;
+							}
+							if ($newPrice == "2 weken" || $newPrice == "1-2 weken") {
+							  $newPrice = 14;
+							}
+							if ($newPrice == "3 weken" || $newPrice == "2-3 weken") {
+							  $newPrice = 13;
+							}
+							if ($newPrice == "4 weken" || $newPrice == "3-4 weken") {
+							  $newPrice = 12;
+							}
+							if ($newPrice == "1-2 maanden" || $newPrice == "2 maanden") {
+							  $newPrice = 11;
+							}
+							if ($newPrice == "normaal leverbaar") {
+							  $newPrice = 31;
+							}
+							if ($newPrice == "Levertijd 1 à 2 weken") {
+								  $newPrice = 34;
+							}
+							if ($newPrice == "Levertijd meer dan vier weken") {
+							  $newPrice = 32;
+							}
+							if ($newPrice == "Levertijd onbekend") {
+							  $newPrice = 33;
+							}
+							if ($newPrice == "Levertijd ongeveer 1 week") {
+							  $newPrice = 35;
+							}
+							if ($newPrice == "Levertijd ongeveer 3 weken") {
+							  $newPrice = 38;
+							}
+							if ($newPrice == "Levertijd ongeveer 4 weken") {
+							  $newPrice = 40;
+							}
+							if ($newPrice == "Tijdelijk niet leverbaar") {
+							  $newPrice = 36;
+							}
                         } else {
                             $newPrice = '';
                         }

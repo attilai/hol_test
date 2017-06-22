@@ -76,13 +76,13 @@ require_once $mageFilename;
 
 #Varien_Profiler::enable();
 
-if (isset($_SERVER['MAGE_IS_DEVELOPER_MODE'])) {
-    Mage::setIsDeveloperMode(true);
-}
+//if (isset($_SERVER['MAGE_IS_DEVELOPER_MODE'])) {
+    //Mage::setIsDeveloperMode(true);
+//}
 
-#ini_set('display_errors', 1);
+//ini_set('display_errors', 1);
 
-umask(0);
+//umask(0);
 
 /* Store or website code */
 if (in_array($_SERVER['SERVER_NAME'], array('www.hollandgold.nl', 'hollandgold.nl'))){
@@ -93,6 +93,11 @@ if (in_array($_SERVER['SERVER_NAME'], array('www.hollandgold.nl', 'hollandgold.n
 	} else {
 		Mage::run('hg_be_fr', 'store');
 	}
-} else {
+} 
+elseif(in_array($_SERVER['SERVER_NAME'], array('demo.hollandgold.nl')))
+{
+   Mage::run('demo', 'store');
+}
+else {
 	die('no routing');	
 }

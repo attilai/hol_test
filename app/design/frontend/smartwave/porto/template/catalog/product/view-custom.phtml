@@ -174,21 +174,46 @@ $stock = Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product)
                             
                             <?php echo $this->getChildHtml('product_type_data'); ?>
                         </div>
-                        <div class="product-notices">
+                        <div class="<?php echo ($stock->getQty() > 0) ? "product-notices" : "product-notices product-notices1"; ?>">
     						 <?php
 							$availability_notice = $_product->getAttributeText('availability_notice');
 							$qty = number_format($stock->getQty(), 0, ',', ' ');
-                            if($stock->getQty() > 0) {
-								if ($availability_notice == "Tijdelijk niet leverbaar") {
-									echo 'Nog '.$qty.' stuk(s) leverbaar, meer stuks bestellen van dit product is helaas niet mogelijk.';
-								} else {
-									echo 'Nog '.$qty.' stuk(s) voorradig, bij een groter aantal bedraagt de '.$availability_notice.'.';
-								}
-                                // echo $this->__('Direct beschikbaar');
+
+
+
+                             /*if($stock->getQty() > 0) {
+								 if ($availability_notice == "Tijdelijk niet leverbaar") {
+								 	echo 'Nog '.$qty.' stuk(s) leverbaar, meer stuks bestellen van dit product is helaas niet mogelijk.';
+								 } else {
+								 	echo 'Nog '.$qty.' stuk(s) voorradig, bij een groter aantal bedraagt de '.$availability_notice.'.';
+								 }
+                                  echo $this->__('Direct beschikbaar');
+                             } else {
+                                 // Add attribute Availability
+                                 echo $availability_notice;
+                             }*/
+
+                             if($stock->getQty() > 0) {
+                                 if ($availability_notice == "Tijdelijk niet leverbaar") {
+                                echo '<span class="availability_notice">'.$qty.' stuk(s) leverbaar,</span> meer stuks bestellen van dit product is helaas niet mogelijk.';
                             } else {
-                                // Add attribute Availability
-                                echo $availability_notice;
+                                echo '<span class="availability_notice">'.$qty.' stuk(s) voorradig,</span> bij een groter aantal bedraagt de '.$availability_notice.'.';
                             }
+                                  
+                             } else {
+                                 // Add attribute Availability
+                                 echo $availability_notice;
+                             }
+
+
+                            /*if ($availability_notice == "Tijdelijk niet leverbaar") {
+                                echo '<span class="availability_notice">'.$qty.' stuk(s) leverbaar,</span> meer stuks bestellen van dit product is helaas niet mogelijk.';
+                            } else {
+                                echo '<span class="availability_notice">'.$qty.' stuk(s) voorradig,</span> bij een groter aantal bedraagt de '.$availability_notice.'.';
+                            }*/
+
+
+
                             ?>
                             <?php echo $this->getTierPriceHtml(); ?>
                             <?php echo $price_properties; ?>
