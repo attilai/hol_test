@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<config>
+
+    <modules>
+        <Elmaonline_Upsell>
+            <version>0.0.1</version>
+        </Elmaonline_Upsell>
+    </modules>
+    
+    <frontend>
+        <layout>
+            <updates>
+                <upsell>
+                    <file>upsell.xml</file>
+                </upsell>                
+            </updates>
+        </layout>
+    </frontend>  
+
+    <global>       
+
+        <blocks>
+            <upsell>
+                <class>Elmaonline_Upsell_Block</class>
+            </upsell>
+        </blocks> 
+
+        <helpers>
+            <upsell>
+                <class>Elmaonline_Upsell_Helper</class>
+            </upsell>
+        </helpers>
+    </global>
+    
+</config>

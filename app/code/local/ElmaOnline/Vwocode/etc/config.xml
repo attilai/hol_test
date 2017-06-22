@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config>
+
+    <modules>
+        <Elmaonline_Vwocode>
+            <version>0.1.0</version>
+        </Elmaonline_Vwocode>
+    </modules>
+
+    <frontend>
+        
+        <layout>
+            <updates>
+                <vwocode>
+                    <file>vwocode.xml</file>
+                </vwocode>                
+            </updates>
+        </layout>        
+       
+    </frontend>
+
+    <global>
+
+        
+        <blocks>
+            <vwocode>
+                <class>Elmaonline_Vwocode_Block</class>
+            </vwocode>
+        </blocks> 
+
+        <helpers>
+            <vwocode>
+                <class>Elmaonline_Vwocoder_Helper</class>
+            </vwocode>
+        </helpers>
+
+    </global>
+
+</config>

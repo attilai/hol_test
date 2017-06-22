@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>	 
+
+	<checkout_onepage_success>		
+		<reference name="content">		   
+		   <block type="vwocode/addvwocode" name="addvwocode" template="addvwocode/addvwocode.phtml" />		   
+		</reference>
+	</checkout_onepage_success>
+
+</layout>

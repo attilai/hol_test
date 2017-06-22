@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <customersync_config translate="label comment" module="customersync">
+            <tab>customer</tab>
+            <label>Customer Syncronization</label>
+            <frontend_type>text</frontend_type>
+            <sort_order>250</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label comment" module="customersync">
+                    <label>General configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <remote_url_admin translate="label comment">
+                            <label>Remote action URL 1</label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[Customer data update (admin)]]></comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </remote_url_admin>
+                        <remote_url_admin_delete translate="label comment">
+                            <label>Remote action URL 2</label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[Customer delete (admin)]]></comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </remote_url_admin_delete>
+                        <remote_url translate="label comment">
+                            <label>Remote action URL 3</label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[Customer data update (frontend)]]></comment>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </remote_url>
+                        <remote_url_address translate="label comment">
+                            <label>Remote action URL 4</label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[Customer address update (frontend)]]></comment>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </remote_url_address>
+                        <remote_url_address_delete translate="label comment">
+                            <label>Remote action URL 5</label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[Customer address delete (frontend)]]></comment>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </remote_url_address_delete>
+                    </fields>
+                </general>
+            </groups>
+        </customersync_config>
+    </sections>
+</config>
