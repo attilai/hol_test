@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Elmaonline_Vwocode>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Elmaonline_Vwocode>
+    </modules>
+</config>   

@@ -1,0 +1,51 @@
+<h1><?php echo $this->__('Anderen kochten ook'); ?></h1>
+<?php $_productCollection = $this->getUpsellProductData();
+    $productBlock = new Mage_Catalog_Block_Product;
+    $store = Mage::app()->getStore();
+    $code  = $store->getCode();
+ ?>
+
+<?php  foreach($_productCollection as $productData): ?>  
+
+<?php  $product = $this->getUpsellProduct($productData["entity_id"]); ?>
+
+
+    <div class="col-xs-4 text-center">
+    <?php
+    
+    
+    $stock = Mage::getModel('cataloginventory/stock_item')->loadByProduct($product);
+
+    if($stock->getQty() > 0) {
+        echo '<div class="labeldirect"><img src="/skin/frontend/default/hollandgold/images/label_available.png" alt="'.$this->__('Direct beschikbaar').'" title="'.$this->__('Direct beschikbaar').'" /></div>';
+    }
+    ?>
+    <a href="<?php echo $product->getProductUrl(); ?>" title="<?php echo $product->getData('name'); ?>" class="product-image">
+        <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(150);?>" alt=="<?php echo $product->getData('name'); ?>">
+    </a><br>
+
+    <a href="<?php echo $product->getProductUrl(); ?>"><?php echo $product->getData('name'); ?><br></a>
+    <?php echo $productBlock->getPriceHtml($product); ?>
+    <p><?php echo nl2br($product->getResource()->getAttribute('availability_notice')->getFrontend()->getValue($product)); ?></p>
+
+    <div class="actions">
+        <?php if($product->isSaleable()): ?>
+            
+                <a href="<?php if(Mage::getStoreConfig("ajaxcart/addtocart/enablecategory", $code)):?>javascript:setLocationAjax('<?php echo Mage::helper('checkout/cart')->getAddUrl($product); ?>')
+                         <?php else: ?><?php echo $this->getAddToCartUrl($product); ?>
+                         <?php endif; ?>" class="addtocart" title="<?php echo $this->__('Add to Cart') ?>"><span>&nbsp;<?php echo $this->__('Add to Cart') ?></span><i class="icon-cart"></i></a>
+
+                <a href='<?php echo $this->getUrl('ajaxcart/index/options',array('product_id'=>$product->getId()));?>' class='fancybox' id='fancybox<?php echo $product->getId()?>' style='display:none'>Options</a>
+           
+        <?php else: ?>
+            <a href="javascript:void(0);" class="addtocart outofstock" title="<?php echo $this->__('Out of stock') ?>"><span><?php echo $this->__('Out of stock') ?></span></a>
+        <?php endif; ?>
+       
+        <div class="clearer"></div>
+    </div>
+    </div>
+
+
+
+<?php  endforeach; ?>
+ 
