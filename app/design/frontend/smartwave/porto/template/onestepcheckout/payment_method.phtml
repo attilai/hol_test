@@ -104,6 +104,11 @@ if($helper->settings['hide_nonfree_payment_methods'])   {
                  Direct de bestelling in de beveiligde omgeving van uw bank afrekenen.
             </dd>
             <?php endif; ?>
+            <?php if($_code == "ingpsp_bancontact"): ?>
+                <dd id="container_payment_method_<?php echo $_code; ?>" class="payment-method" style="display: none;">
+                    <?php echo Mage::getStoreConfig("payment/ingpsp_bancontact/description"); ?>
+                </dd>
+            <?php endif; ?>
         <?php endforeach; ?>
         </dl>
     <?php endif;?>
