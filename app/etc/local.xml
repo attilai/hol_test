@@ -59,8 +59,8 @@
             <default_setup>
                 <connection>
                     <host><![CDATA[localhost]]></host>
-                    <username><![CDATA[admin]]></username>
-                    <password><![CDATA[7bp4UgdZc]]></password>
+                    <username><![CDATA[hollandgold_mage]]></username>
+                    <password><![CDATA[608BnbvQ2Eb7]]></password>
                     <dbname><![CDATA[hollandgold_db]]></dbname>
                     <active>1</active>
                 </connection>

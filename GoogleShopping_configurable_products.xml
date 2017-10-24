@@ -38,7 +38,7 @@
 <g:condition><![CDATA[new]]></g:condition>
 <g:product_type><![CDATA[RSS feed]]></g:product_type>
 <g:availability><![CDATA[in stock]]></g:availability>
-<g:quantity><![CDATA[150]]></g:quantity>
+<g:quantity><![CDATA[50]]></g:quantity>
 <g:featured_product><![CDATA[0]]></g:featured_product>
 <g:shipping_weight><![CDATA[0.00 kilograms]]></g:shipping_weight>
 <!-- In most of cases brand + mpn are sufficient, eg. :-->
@@ -72,6 +72,33 @@
 <!-- In most of cases brand + mpn are sufficient, eg. :-->
 <g:brand><![CDATA[Münze Österreich]]></g:brand>
 <g:mpn><![CDATA[4011100]]></g:mpn>
+<!-- But it is better to use one of these identifiers if available : EAN, ISBN or UPC, eg : -->
+
+</item>
+<item>
+<g:id><![CDATA[6001000]]></g:id>
+<title><![CDATA[1 troy ounce Cook Island platina munt]]></title>
+<link><![CDATA[https://www.hollandgold.nl/index.php/catalog/product/view/id/144/]]></link>
+<g:price><![CDATA[1607.44]]></g:price>
+<g:online_only><![CDATA[y]]></g:online_only>
+<description><![CDATA[Platina Cook Island specificaties
+Deze fijne Cook Island platina munt doet het hart sneller kloppen van verzamelaars en investeerders. De munt heeft een nominale waarde van 100 dollar en bevat 99,95% zuiver platina. De munt heeft een diameter van 33 mm en wordt geproduceerd door Heimerle & Meule in Duitsland. De platina Cook Island munt bevat een totaal van 31,1 gram fijn platina.
+Geschiedenis en Ontwerp
+De cook eilanden werden in 1773 in kaart gebracht door de Britse navigator James Cook, hij gaf de eilanden de naam: ''Hervey Islands''. De eilanden werden later vernoemd naar James Cook. Op de achterzijde van de munt is het schip de Bounty te zien. De Cook eilanden werden bezocht door de Bounty enkele weken nadat er muiterij plaats had gevonden op het schip. Tijdens dit bezoek mocht er een eilandbewoner aan boord komen van het schip en na de rondleiding kreeg de eilandbewoner sinaasappelpitten mee. Deze sinaasappelpitten zijn de basis geweest van de hedendaagse citrusvrucht industrie op de eilanden.
+Op de voorzijde van deze zilveren munt staat het portret van Elizabeth II en haar naam. Dit is de koningin van het Verenigd Koninkrijk, Canada, twee andere landen en de twaalf Commonwealth Realms. Ook staat er het jaar waarin de munt is geslagen en de woorden: ''Cook Island'' zijn te vinden. Op de achterzijde van de munt is er een zeilschip te zien genaamd de Bounty, de nominale waarde van 100 dollar en de zuiverheid van 999,5 / 1000.]]></description>
+<g:condition><![CDATA[new]]></g:condition>
+<g:product_type><![CDATA[Platina Kopen]]></g:product_type>
+<g:product_type><![CDATA[Platina Kopen > Platina munten kopen]]></g:product_type>
+<g:product_type><![CDATA[RSS feed]]></g:product_type>
+<g:image_link><![CDATA[https://www.hollandgold.nl/media/catalog/product/c/o/cook_islands_platina.jpeg]]></g:image_link>
+<g:availability><![CDATA[out of stock]]></g:availability>
+<g:quantity><![CDATA[0]]></g:quantity>
+<g:featured_product><![CDATA[0]]></g:featured_product>
+<g:shipping_weight><![CDATA[31.10 kilograms]]></g:shipping_weight>
+<g:manufacturer><![CDATA[Heimerle & Meule / Valcambi]]></g:manufacturer>
+<!-- In most of cases brand + mpn are sufficient, eg. :-->
+<g:brand><![CDATA[Heimerle & Meule / Valcambi]]></g:brand>
+<g:mpn><![CDATA[6001000]]></g:mpn>
 <!-- But it is better to use one of these identifiers if available : EAN, ISBN or UPC, eg : -->
 
 </item>
@@ -188,7 +215,7 @@ Op de voorzijde van de Koala munt 2013 is een afbeelding van Koningin Elizabeth 
 <g:additional_image_link><![CDATA[https://www.hollandgold.nl/media/catalog/product/m/a/maple-leaf-goud-1-troy-ounce-2013-gouden-munt-kopen_2_1.jpg]]></g:additional_image_link>
 <g:additional_image_link><![CDATA[https://www.hollandgold.nl/media/catalog/product/m/a/maple-leaf-goud-1-troy-ounce-2013-kop-gouden-munt-kopen_2_1.jpg]]></g:additional_image_link>
 <g:availability><![CDATA[in stock]]></g:availability>
-<g:quantity><![CDATA[22]]></g:quantity>
+<g:quantity><![CDATA[37]]></g:quantity>
 <g:featured_product><![CDATA[0]]></g:featured_product>
 <g:color><![CDATA[Goud]]></g:color>
 <g:shipping_weight><![CDATA[31.10 kilograms]]></g:shipping_weight>
@@ -215,7 +242,7 @@ Op de voorzijde van de Koala munt 2013 is een afbeelding van Koningin Elizabeth 
 <g:additional_image_link><![CDATA[https://www.hollandgold.nl/media/catalog/product/g/o/goud-baren-goudbaren-goudbaar-100-gram_2.png]]></g:additional_image_link>
 <g:additional_image_link><![CDATA[https://www.hollandgold.nl/media/catalog/product/g/o/goud-baren-goudbaren-goudbaar-100-gram_2.png]]></g:additional_image_link>
 <g:availability><![CDATA[in stock]]></g:availability>
-<g:quantity><![CDATA[0]]></g:quantity>
+<g:quantity><![CDATA[4]]></g:quantity>
 <g:featured_product><![CDATA[0]]></g:featured_product>
 <g:color><![CDATA[Goud]]></g:color>
 <g:shipping_weight><![CDATA[100.00 kilograms]]></g:shipping_weight>

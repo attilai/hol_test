@@ -90,7 +90,6 @@
         </reference>
         <reference name="top.links">
             <remove name="checkout_cart_link"/>
-            <action method="addLink" translate="label title"><label>Klantenservice</label><url>klantenservice</url><title>Klantenservice</title><prepare/><urlParams/><position>1</position></action>
         </reference>
         <reference name="top.menu">
             <action method="unsetChild" ifconfig="porto_settings/header/type" condition="9"><name>catalog.topnav</name></action>
@@ -268,6 +267,20 @@
     </catalog_product_compare_index>
     <cms_index_index>
         <update handle="MAP_popup"/>
+        <reference name="head">
+            <action method="addLinkRel">
+                <rel>canonical</rel>
+                <href helper="core/url/getHomeUrl" />
+            </action>
+            <!--<block type="core/text" name="google_meta.nositelinks_searchbox" after="-">-->
+                <!--<action method="setText">-->
+                    <!--<text>-->
+                        <!--<![CDATA[<meta name="google" content="nositelinkssearchbox" />]]>-->
+                    <!--</text>-->
+                <!--</action>-->
+            <!--</block>-->
+            <block type="core/template" name="google.sitelinks_searchbox" template="page/html/head/google-sitelinks-searchbox.phtml" after="-" />
+        </reference>
         <reference name="top.container">
             <block type="core/template" name="home_slider">
                 <action method="setTemplate" ifconfig="homeslider/general/slider_type" condition="0"><template>homeslider/home_slider.phtml</template></action>

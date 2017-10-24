@@ -1,4 +1,4 @@
-# $Id: robots.txt,v magento-specific 2010/28/01 18:24:19 goba Exp $
+﻿# $Id: robots.txt,v magento-specific 2010/28/01 18:24:19 goba Exp $
 # Edited: 2014/10/30 by Byte.nl
 #
 # robots.txt
@@ -33,7 +33,7 @@ Crawl-delay: 10
 Allow: /*?p=
 Allow: /index.php/blog/
 Allow: /catalog/seo_sitemap/category/
-# Allow: /catalogsearch/result/
+Allow: /catalogsearch/result/
 Allow: /media/catalog/
  
 # Directories
@@ -107,3 +107,4 @@ Disallow: /*.php$
 Disallow: /*?SID=
 Disallow: /rss*
 Disallow: /*PHPSESSID
+ 
